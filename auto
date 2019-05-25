@@ -1,0 +1,204 @@
+echo -e '▒█░▒░▓█░█▒░▒▒█░█▓░▒░█▓   █████▒    ▓█ ▒█▓▓█▓ ██████ ▓████▒░█░      ░█████░▒████▓ ▓█████░ 
+ ░▓ █▓▓█ ▓ ██▒█░▓░▓█░█▓   ▓▒  █▓    ▒█ ▒▓▓▓█▓ ▓░█▓▒█░▓▒  █▓ ▓       ░█░  ▓ ▒▓  ▓█ ▓▒▓█▒█▒ 
+ ▒█▒█▓▓█░█▓▓█▒█▒█▓▓█▒█▓   █▓  █▓░▓░ ▓█ ██▒▒█▓░█▒█▓▒█░██  █▓░█▒  ░   ▒█▒ ░▓ ██  ██ █▓▓█░█▒ 
+ ░█████▓ ██████ ▓█████░▓█ █████░░█████ █▓  █▓░█▒░░▒█ ▓████▒░█████▒█▓ █████ ▒████▓ █▓░▒░█▒ ';
+echo -e "$GREEN 
+# Powered By DjAmol Group Inc         #
+# Email : Support@djamol.com          #
+# Website : www.djamol.com            #
+# Copyright By PatilWeb.com           #
+# IG:PatilWeb FB:PatilWeb TW:PatilWeb #
+$RESET";
+
+date +"%r" >> $BUILD;echo "Status : Auto Installation Start" >> $BUILD
+date +"%r" >> $BUILD;echo "Status : Auto Bind Installation" >> $BUILD
+echo -e "\e[32m########################################\n####   BIND DNS Software       #########\n########################################"
+if [ $BIND = "true" ]
+        then
+                source "$SCRIPTPATH/inc/binddns.sh";
+        else
+                echo "Reject By USER Bind INstall";date +"%r" >> $BUILD;echo "Status :  Bind Reject By USER" >> $BUILD
+fi
+date +"%r" >> $BUILD;echo "Status : Auto Bind Installation END" >> $BUILD
+date +"%r" >> $BUILD;echo "Status : Auto Development Tool" >> $BUILD
+if yum -y groupinstall "Development Tools"; then 
+echo -e "\033[33;32m yum -y groupinstall ----Development Tools Success ";date +"%r" >> $BUILD;echo "Success : Development Tools Install" >> $BUILD
+else
+echo -e "\033[33;31m yum -y groupinstall ----Development Tools Failed";date +"%r" >> $BUILD;echo "Failed : Development Tools Install" >> $BUILD
+fi
+if yum -y install sudo; then 
+echo -e "\033[33;32m Sudo Success";date +"%r" >> $BUILD;echo "Success : Sudo Install" >> $BUILD
+else
+echo -e "\033[33;31m Sudo Failed";date +"%r" >> $BUILD;echo "Failed : Sudo Install" >> $BUILD
+fi
+echo -e "\033[33;34m Blue"
+if mkdir $SCRIPTPATH/src; then 
+echo -e "\033[33;32m making dir src Success";date +"%r" >> $BUILD;echo "Success : src Making dir in $SCRIPTPATH/" >> $BUILD
+else
+echo -e "\033[33;31m making dir Failed";date +"%r" >> $BUILD;echo "Failed : src making dir $SCRIPTPATH/" >> $BUILD
+fi
+if cd $SCRIPTPATH/src; then 
+echo -e "\033[33;32m go to $SCRIPTPATH/src Success";date +"%r" >> $BUILD;echo "Success : Go To SRC dir $SCRIPTPATH/src" >> $BUILD
+else
+echo -e "\033[33;31m go to $SCRIPTPATH/src Failed";date +"%r" >> $BUILD;echo "Failed : Go To SRC dir $SCRIPTPATH/src" >> $BUILD
+fi
+clear
+date +"%r" >> $BUILD;echo "Status : Auto Devlopment Tool END" >> $BUILD
+date +"%r" >> $BUILD;echo "Status : Auto CURL Installation" >> $BUILD
+echo -e "\e[32m########################################\n####   CURL Software       #########\n########################################"
+if [ $CURL = "true" ]
+        then
+                source "$SCRIPTPATH/inc/curl.sh";
+        else
+                echo "Reject By USER CURL INstall"
+fi
+date +"%r" >> $BUILD;echo "Status : Auto CURL Installation END" >> $BUILD
+date +"%r" >> $BUILD;echo "Status : Auto MariaDB Installation" >> $BUILD
+echo -e "\e[32m########################################\n####   MariaDB Software       #########\n########################################"
+if [ $DB = "true" ]
+        then
+                source "$SCRIPTPATH/inc/mysql.sh";
+        else
+                echo "Reject By USER MariaDB INstall"
+fi
+date +"%r" >> $BUILD;echo "Status : Auto MariaDB Installation END" >> $BUILD
+date +"%r" >> $BUILD;echo "Status : Auto Apache Installation Start" >> $BUILD
+echo -e "\e[32m########################################\n####   Apache2.4 Server Soft       #########\n#####################################"
+if [ $Apache = "true" ]
+        then
+              yum remove httpd -y; source "$SCRIPTPATH/inc/aprq.sh";source "$SCRIPTPATH/inc/apache.sh"; 
+        else
+                echo "Reject By USER Apache INstall"
+fi
+date +"%r" >> $BUILD;echo "Status : Auto Apache Installation END" >> $BUILD
+
+
+
+date +"%r" >> $BUILD;echo "Status : Auto Apache Create SSL Certificate" >> $BUILD
+mkdir /usr;mkdir /usr/share;mkdir /usr/share/ssl; mkdir /usr/share/ssl//certs; 
+#CAC=IN #CAS=MAH #CAL=City #CAO="INDIA ORG" #CAU="DA Group" #CACM="serv.djamol.com" #CAM="nomail@djamol.com"
+
+SSLCERt=$(expect -c "
+set timeout 10
+  spawn openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /usr/share/ssl/certs/amol.key -out /usr/share/ssl/certs/amol.cert
+  expect \"Country Name*:\"
+  send \"$CAC\r\"
+  expect \"State*:\"
+  send \"$CAS\r\"
+  expect \"Locality*:\"
+  send \"$CAL\r\"
+  expect \"Organization Name*:\"
+  send \"$CAO\r\"
+  expect \"Organizational Unit*:\"
+  send \"$CAU\r\"
+  expect \"Common Name*:\"
+  send \"$CACM\r\"
+  expect \"Email*:\"
+  send \"$CAM\r\"
+
+expect eof
+")
+echo "$SSLCERt"
+
+SSLHTTPS=$(expect -c "
+set timeout 10
+  spawn openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /usr/share/ssl/certs/ssl.crt -out /usr/share/ssl/certs/ssl.crt
+  expect \"Country Name*:\"
+  send \"$CAC\r\"
+  expect \"State*:\"
+  send \"$CAS\r\"
+  expect \"Locality*:\"
+  send \"$CAL\r\"
+  expect \"Organization Name*:\"
+  send \"$CAO\r\"
+  expect \"Organizational Unit*:\"
+  send \"$CAU\r\"
+  expect \"Common Name*:\"
+  send \"$CACM\r\"
+  expect \"Email*:\"
+  send \"$CAM\r\"
+
+expect eof
+")
+echo "$SSLHTTPS"
+
+
+
+date +"%r" >> $BUILD;echo "Status : Auto Apache SSL Cert END" >> $BUILD
+date +"%r" >> $BUILD;echo "Status : Auto PHP 5 Installation Start" >> $BUILD
+echo -e "\e[32m########################################\n####    PHP 5 Package/Software     #########\n#####################################"
+if [ $PHPe = "true" ]
+        then
+                source "$SCRIPTPATH/inc/phpauto.sh"; 
+        else
+                echo "Reject By USER PHP 5 INstall"
+fi
+date +"%r" >> $BUILD;echo "Status : Auto PHP 5 Installation END" >> $BUILD
+date +"%r" >> $BUILD;echo "Status : Auto Cron JOB Installation Start" >> $BUILD
+echo -e "\e[32m########################################\n####   Cron JOB Software     #########\n#####################################"
+if [ $CRON = "true" ]
+        then
+               source "$SCRIPTPATH/inc/cron.sh"; 
+        else
+                echo "Reject By USER Cron JOB INstall"
+fi
+date +"%r" >> $BUILD;echo "Status : Auto CronJOB Installation END" >> $BUILD
+date +"%r" >> $BUILD;echo "Status : Auto ConfigServer Security Installation Start" >> $BUILD
+echo -e "\e[32m###############################\n###ConfigServer Security & Firewall #########\n#####################################"
+if [ $CSSF = "true" ]
+        then
+                 source "$SCRIPTPATH/inc/csf.sh"; 
+        else
+                echo "Reject By USER ConfigServer INstall"
+fi
+date +"%r" >> $BUILD;echo "Status : Auto ConfServerSec Firewall Installation END" >> $BUILD
+date +"%r" >> $BUILD;echo "Status : Auto WEBMIN Installation Start" >> $BUILD
+echo -e "\e[32m###############################\n###Webmin Control Panel #########\n#####################################"
+if [ $WCP = "true" ]
+        then
+                 source "$SCRIPTPATH/inc/cvpsauto.sh"; 
+        else
+                echo "Reject By USER Webmin INstall"
+fi
+date +"%r" >> $BUILD;echo "Status : Auto Webmin Control Panel Installation END" >> $BUILD
+date +"%r" >> $BUILD;echo "Status : Auto Proftpd Installation Start" >> $BUILD
+echo -e "\e[32m###############################\n###Proftpd Software #########\n#####################################"
+if [ $PFTP = "true" ]
+        then
+                source "$SCRIPTPATH/inc/ftp.sh"; 
+        else
+                echo "Reject By USER Proftpd INstall"
+fi
+date +"%r" >> $BUILD;echo "Status : Auto PROFTPD Installation END" >> $BUILD
+date +"%r" >> $BUILD;echo "Status : Auto POSTFIX Installation Start" >> $BUILD
+echo -e "\e[32m###############################\n###PostFix Mail Software #########\n#####################################"
+if [ $PostFix = "true" ]
+        then
+                source "$SCRIPTPATH/inc/postfixauto.sh"; 
+        else
+                echo "Reject By USER PostFix INstall"
+fi
+date +"%r" >> $BUILD;echo "Status : Auto POSTFIX Installation END" >> $BUILD
+date +"%r" >> $BUILD;echo "Status : Last Setup bash Start" >> $BUILD
+source "$SCRIPTPATH/inc/last.sh";
+date +"%r" >> $BUILD;echo "Status : Last Setup bash END" >> $BUILD
+date +"%r" >> $BUILD;echo "Status : Auto Extra Domain conf Start" >> $BUILD
+source "$SCRIPTPATH/inc/domainauto.sh";
+date +"%r" >> $BUILD;echo "Status : Auto Extra Domain Conf END" >> $BUILD
+date +"%r" >> $BUILD;echo "Status : Auto PERL And NET-SSL Installation Start" >> $BUILD
+yum -y install perl perl-CPAN perl-Net-SSLeay perl-IO-Socket-SSL
+date +"%r" >> $BUILD;echo "Status : Auto PERL And NET-SSL Installation END" >> $BUILD
+date +"%r" >> $BUILD;echo "Status : Auto END OF Server Setup Installation Start" >> $BUILD
+source "$SCRIPTPATH/inc/end.sh";
+date +"%r" >> $BUILD;echo "Status : Auto END OF Server Setup  Installation END" >> $BUILD
+
+
+date +"%r" >> $BUILD;echo "Status : Auto FFMPEG  Installation Start" >> $BUILD
+echo -e "\e[32m###############################\n###FFMPEG SOFT #########\n#####################################"
+if [ $FF = "true" ]
+        then
+                source "$SCRIPTPATH/inc/ffmpeg.sh"; 
+        else
+                echo "Reject By USER ffmpeg INstall"
+fi
+date +"%r" >> $BUILD;echo "Status : Auto FFMPEG Installation END" >> $BUILD
