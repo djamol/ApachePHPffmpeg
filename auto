@@ -201,4 +201,7 @@ if [ $FF = "true" ]
         else
                 echo "Reject By USER ffmpeg INstall"
 fi
-date +"%r" >> $BUILD;echo "Status : Auto FFMPEG Installation END" >> $BUILD
+date +"%r" >> $BUILD;echo "Status : Auto FFMPEG Installation Check Another Log" >> $BUILD
+
+date +"%r" >> $BUILD; 
+which {curl,php,mysql,proftpd,postfix,perl,openssl,crond,csf} >> $BUILD
