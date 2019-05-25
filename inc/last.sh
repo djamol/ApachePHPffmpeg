@@ -17,7 +17,7 @@ chmod -R g+rx /home/www/;chmod -R g+rwx /home/www/
 #Auto Start Apache2 on boot/reboot server
 #touch /etc/init.d/apache2
 #echo -e '#!/bin/bash\n# apache2-Startup script for the Apache HTTP Server\n/usr/local/apache2/bin/apachectl $@' >> /etc/init.d/apache2
-cp -f $SCRIPTPATH/apache2 /etc/init.d/apache2
+cp -f $SCRIPTPATH/conf/apache2 /etc/init.d/apache2
 chmod 755 /etc/init.d/apache2
 chkconfig --add apache2
 chkconfig --list apache2
