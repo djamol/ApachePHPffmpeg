@@ -1,0 +1,8 @@
+amolp_logs:$6$b/DLMvesYzY54wOb$DCTExStZ3mQUTCa.dwLnntHG6ylQumykS0EWVe9iJa2nOR2OOrlsTiUbbbj59j.jNZxnUQkQFXuqYnIAQ3GCI/:501:501::/usr/local/apache/domlogs/amolp:/bin/ftpsh
+mvid@djamol.com:$6$dZv4XpckYnWww0O5$LrOZTBsa8UMIe5CgtDXJ6fxwsmvWGpWv5lYPlNzm6JwRud6zVWoVSQ48opmLy9t20Ba1up.Nl2NrUdaIOMkfx/:501:501:amolp:/home/amolp/public_html/domain/mvid.in:/bin/ftpsh
+musicd@djamol.com:$6$v2BpKuBGojXK4BaG$9f.nC9JdEtN7vnqar79Rwp8gy9xwgTFEip23/QhlBC7bntajTa3RJYNYWiYOpyaAOQt1OaK8e3Zkf1qO31Tw41:501:501:amolp:/home/amolp/public_html/domain/musicd.in:/bin/ftpsh
+amolp+djamol.com:$6$b/DLMvesYzY54wOb$DCTExStZ3mQUTCa.dwLnntHG6ylQumykS0EWVe9iJa2nOR2OOrlsTiUbbbj59j.jNZxnUQkQFXuqYnIAQ3GCI/:501:501::/home/amolp:/bin/bash
+avpt@djamol.com:$6$LAq5QmWBkkWE2soh$3NxtC6rHCvWiDVWypAUTe8i4h1tJaiePk652TUc7LeguVUvRI8kGhPOzonQG7rEsbuPssYhHWdFxW0an9v/m31:501:501:amolp:/home/amolp/public_html/sub/avptube:/bin/ftpsh
+amolp@djamol.com:$6$b/DLMvesYzY54wOb$DCTExStZ3mQUTCa.dwLnntHG6ylQumykS0EWVe9iJa2nOR2OOrlsTiUbbbj59j.jNZxnUQkQFXuqYnIAQ3GCI/:501:501::/home/amolp:/bin/bash
+musicd+djamol.com:$6$v2BpKuBGojXK4BaG$9f.nC9JdEtN7vnqar79Rwp8gy9xwgTFEip23/QhlBC7bntajTa3RJYNYWiYOpyaAOQt1OaK8e3Zkf1qO31Tw41:501:501:amolp:/home/amolp/public_html/domain/musicd.in:/bin/ftpsh
+amol:$6$60968987$DBaxn5ylPor7eGJWZtlxsE/NklFd2rixtJQVT5VxaTVAjK7KWEgkZFW83ZlKhyfxMmOK3Hfwy5vNtAxMsoHmi1:2:2::/home/www:/sbin/nologin
