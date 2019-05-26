@@ -36,3 +36,7 @@ cd httpd-2.4.18
 make
 make install
 date +"%r" >> $BUILD;echo "Apache Program Complete" >> $BUILD
+# Link httpd program path to any where execute httpd file using httpd file path export into $PATH (echo $PATH)
+#export PATH="$PATH:<Program File Folder Path>"
+export PATH="$PATH:/usr/local/apache2/bin"
+
