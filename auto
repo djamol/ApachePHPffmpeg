@@ -192,6 +192,12 @@ date +"%r" >> $BUILD;echo "Status : Auto END OF Server Setup Installation Start"
 source "$SCRIPTPATH/inc/end.sh";
 date +"%r" >> $BUILD;echo "Status : Auto END OF Server Setup  Installation END" >> $BUILD
 
+## Customize program run any where
+mkdir /amol
+export PATH="$PATH:/pro"
+cp $SCRIPTPATH/pprogram/addftp /amol/addftp
+chmod -R +x /amol
+
 
 date +"%r" >> $BUILD;echo "Status : Auto FFMPEG  Installation Start" >> $BUILD
 echo -e "\e[32m###############################\n###FFMPEG SOFT #########\n#####################################"
