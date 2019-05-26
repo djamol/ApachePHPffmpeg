@@ -1,0 +1,1 @@
+ftpasswd --passwd --file /etc/proftpd/passwd.vhosts --sha512 --gid 2 --uid 2 --shell /sbin/nologin --name alex --home /www
