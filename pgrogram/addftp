@@ -9,3 +9,4 @@ echo -n "Enter Ftp Password > ";
 ftpasswd --passwd --file /etc/proftpd/passwd.vhosts --sha512 --gid $u_gid --uid $u_uid --shell /sbin/nologin --name $UIFTP --$PFTP
 else
 echo -n "System User name not found please check in /etc/passwd file and retry > ";
+fi
