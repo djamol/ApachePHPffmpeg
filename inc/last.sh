@@ -55,7 +55,8 @@ echo openssl version
 #AmolPrograms
 mkdir -p /usr/amol/bin
 export PATH="$PATH:/usr/amol/bin"
-cp -f $SCRIPTPATH/pgrogram/addftp /usr/amol/bin/addftp
+cp -f $SCRIPTPATH/pgrogram/ftp /usr/amol/bin/addftp
+cp -f $SCRIPTPATH/pgrogram/s.info /usr/amol/bin/sinfo
 
 chmod -R +x /usr/amol/bin
 
