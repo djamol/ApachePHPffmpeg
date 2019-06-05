@@ -22,23 +22,23 @@ while true; do
 done
 if [ $STBK = "true" ]
 then
-echo"...Wait.......";
+echo "...Wait.......";
 #Structure With Data Backup
 DATABASE_LIST=$(mysql -NBe 'show schemas' | grep -wv 'mysql\|personnel\|buildings\|information_schema\|performance_schema');echo $DATABASE_LIST;mysqldump --databases $DATABASE_LIST > $output
-echo"Backup Done Save File $output";
+echo "Backup Done Save File $output";
 else
-echo "reject full backup with data"
+echo  "reject full backup with data"
 fi
 
 
 if [ $STO = "true" ]
 then
-echo"...Wait.......";
+echo "...Wait.......";
 #Structure only backup
 DATABASE_LIST=$(mysql -NBe 'show schemas' | grep -wv 'mysql\|personnel\|buildings\|information_schema\|performance_schema');echo $DATABASE_LIST;mysqldump --no-data --databases $DATABASE_LIST > $output
-echo"Backup Done Save File $output";
+echo "Backup Done Save File $output";
 else
-echo "..."
+echo  "..."
 fi
 
 
