@@ -7,6 +7,43 @@ yum install ccrypt -y
 fi
 #tar cvf - /home/www/srv | gzip -9 - > files3.tar.gz # GZIP=-9 tar cvzf file2.tar.gz /home/www/srv
 #tar -zc -f test.tar.gz --exclude='*.xdr' *
+echo -e "\e[32m########################################\n####  Backup With Config Server Files      #########\n########################################"
+while true; do
+    read -p "Do you wish to Backup config files httpd,proftd,bind dns  and other?" yn
+    case $yn in
+        [Yy]* ) SRVC='true'; break;;
+        [Nn]* ) echo "Service config file backup( Reject By You)  "; break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+if [ $SRVC = "true" ]
+        then
+mkdir -p /home/conf
+#BIND DNS
+cp -rf /etc/named.main.zones /home/conf/nmz
+cp -rf /etc/named.conf /home/conf/nc
+cp -rf /var/named/*.db /home/conf/
+#PROFTPD 
+cp -rf /etc/proftpd.conf /home/www/pc
+cp -rf /etc/proftpd/ftpd-rsa.pem /home/conf/fp
+cp -rf /etc/proftpd/passwd.vhosts /home/conf/vh
+cp -rf /etc/proftpd/ftpd-rsa-key.pem /home/conf/fk
+#PostFix
+cp -rf /etc/postfix/virtual-regexp /home/conf/vr
+cp -rf /etc/postfix/virtual /home/conf/v
+#Apache 
+cp -rf /usr/local/apache2/conf/httpd.conf /home/conf/hc
+#Cron JOb
+cp -rf /var/spool/cron/root /home/conf/cr
+#PHP Config
+cp -rf /usr/local/lib/php.ini /home/conf/pin
+        else
+                echo "Reject By you server config file backup";
+fi
+
+
+
+
 Path="/home/www"
 exclude="--exclude='*.mp3' --exclude='*.mp4' --exclude='*.gz'"
 output="$file.tar.gz"
@@ -22,6 +59,8 @@ while true; do
         * ) echo "Please answer yes or no.";;
     esac
 done
+
+
 
 #ccrypt $output
 
