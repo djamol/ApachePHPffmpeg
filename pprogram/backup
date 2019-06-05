@@ -11,7 +11,7 @@ echo -e "\e[32m########################################\n####  Backup With Confi
 while true; do
     read -p "Do you wish to Backup config files httpd,proftd,bind dns  and other?" yn
     case $yn in
-        [Yy]* ) SRVC='true'; break;;
+        [Yy]* ) SRVC="true"; break;;
         [Nn]* ) echo "Service config file backup( Reject By You)  "; break;;
         * ) echo "Please answer yes or no.";;
     esac
