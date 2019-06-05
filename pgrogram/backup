@@ -1,0 +1,16 @@
+file=$(date +"%d-%m-%y")
+yum install ccrypt -y
+#tar cvf - /home/www/srv | gzip -9 - > files3.tar.gz # GZIP=-9 tar cvzf file2.tar.gz /home/www/srv
+#tar -zc -f test.tar.gz --exclude='*.xdr' *
+Path="/home/www"
+exclude="--exclude='*.mp3' --exclude='*.mp4' --exclude='*.gz'"
+output="$file.tar.gz"
+#tar cvf - $Path $exclude | gzip -9 - > $output
+tar cvf - $Path --exclude='*.mp3' --exclude='*.mp4' --exclude='*.gz' | gzip -9 - > $output
+#Encrypt with password/key
+ccrypt $output
+
+#Decrypt
+# ccrypt -d files3.tar.gz.cpt
+#Enter Key/Password
+echo "File is Created Successfully"
