@@ -6,8 +6,12 @@
 
 
 ## Make Public folder And enable php allow to access makefolder/create file and more
-mkdir /home; mkdir /home/www
-echo "<html><body><h1>It works Apache!<br> <?php phpinfo(); ?></h1></body></html>" >> /home/www/index.php
+#mkdir /home; mkdir /home/www;
+mkdir -p /home/www/filemanager;
+cp -f $SCRIPTPATH/conf/fm.php /home/www/filemanager/index.php
+cp -f $SCRIPTPATH/conf/fm.inc /home/www/filemanager/fm.inc
+
+echo "<html><body><h1>It works Apache!<br></h1><br><br><a href='filemanager/'>File Manager</a><br> <?php phpinfo(); ?></body></html>" >> /home/www/index.php
 #First :We need to set the owner/group of the web root (and any directories/files therein):
 chown -R daemon:daemon /home/www
 #Second:We need to setup the proper permissions for users and groups.'go'-'group' and 'other'.rwx-Read,Write,execute
