@@ -6,7 +6,7 @@ Path="/home/www"
 exclude="--exclude='*.mp3' --exclude='*.mp4' --exclude='*.gz'"
 output="$file.tar.gz"
 #tar cvf - $Path $exclude | gzip -9 - > $output
-tar cvf - $Path --exclude='*.mp3' --exclude='*.mp4' --exclude='*.gz' | gzip -9 - > $output
+tar cvf - $Path --exclude='*.mp3' --exclude='*.mp4' --exclude='*error_log' --exclude='*.gz' | gzip -9 - > $output
 #Encrypt with password/key
 ccrypt $output
 
