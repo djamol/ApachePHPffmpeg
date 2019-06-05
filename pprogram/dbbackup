@@ -1,7 +1,36 @@
+STO="false"
+STBK="false"
+file=$(date +"%d-%m-%y")
+
+echo -e "\e[32m########################################\n####  Backup With Config Server Files      #########\n########################################"
+while true; do
+    read -p "Do you wish to Backup Structure With Data Backup?" yn
+    case $yn in
+        [Yy]* ) STBK="true"; output="$file.sql"; break;;
+        [Nn]* )  
+                            while true; do
+                            read -p "Do you wish to Backup Only Structure Database and tables without data?" yn
+                            case $yn in
+                            [Yy]* ) STO="true";output="$file.struct.sql"; break;;
+                            [Nn]* )  break;;
+                             * ) echo "Please answer yes or no.";;
+                             esac
+                            done
+        break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+if [ $STBK = "true" ]      
+then
 #Structure With Data Backup
-DATABASE_LIST=$(mysql -NBe 'show schemas' | grep -wv 'mysql\|personnel\|buildings\|information_schema\|performance_schema');echo $DATABASE_LIST;mysqldump --databases $DATABASE_LIST > bk.sql
+DATABASE_LIST=$(mysql -NBe 'show schemas' | grep -wv 'mysql\|personnel\|buildings\|information_schema\|performance_schema');echo $DATABASE_LIST;mysqldump --databases $DATABASE_LIST > $output
+else
+fi
 
 
+if [ $STO = "true" ]      
+then
 #Structure only backup
-DATABASE_LIST=$(mysql -NBe 'show schemas' | grep -wv 'mysql\|personnel\|buildings\|information_schema\|performance_schema');echo $DATABASE_LIST;mysqldump --no-data --databases $DATABASE_LIST > structure.sql
-
+DATABASE_LIST=$(mysql -NBe 'show schemas' | grep -wv 'mysql\|personnel\|buildings\|information_schema\|performance_schema');echo $DATABASE_LIST;mysqldump --no-data --databases $DATABASE_LIST > $output
+else
+fi
