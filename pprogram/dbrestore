@@ -1,0 +1,18 @@
+ while true; do
+                            read -p "Do you wish to Restore DATABASE File (SQL File) in DB Server?" yn
+                            case $yn in
+                            [Yy]* ) 
+                            echo -n "Enter sql filename with path(Eg. /root/home/05-04-19.sql) > ";read text;FILEX=$text;
+
+#Restore/Install/Dump sql file
+mysql -uroot -p < $FILEX
+#Dump table backup in gz file
+#mysqldump db_name table_name | gzip > table_name.sql.gz
+#Restore table from gz file
+#gunzip < table_name.sql.gz | mysql -u username -p db_name
+
+                            break;;
+                            [Nn]* )  break;;
+                             * ) echo "Please answer yes or no.";;
+                             esac
+done
