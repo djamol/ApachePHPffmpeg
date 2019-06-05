@@ -22,7 +22,7 @@ while true; do
 done
 if [ $STBK = "true" ]
 then
-echo "...Wait.......";
+echo "...Wait.......Backup Started....";
 #Structure With Data Backup
 DATABASE_LIST=$(mysql -NBe 'show schemas' | grep -wv 'mysql\|personnel\|buildings\|information_schema\|performance_schema');echo $DATABASE_LIST;mysqldump --databases $DATABASE_LIST > $output
 echo "Backup Done Save File $output";
@@ -33,7 +33,7 @@ fi
 
 if [ $STO = "true" ]
 then
-echo "...Wait.......";
+echo "...Wait.......Backup Started....Without Data(only Structure)";
 #Structure only backup
 DATABASE_LIST=$(mysql -NBe 'show schemas' | grep -wv 'mysql\|personnel\|buildings\|information_schema\|performance_schema');echo $DATABASE_LIST;mysqldump --no-data --databases $DATABASE_LIST > $output
 echo "Backup Done Save File $output";
