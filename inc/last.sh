@@ -60,7 +60,7 @@ echo openssl version
 mkdir -p /usr/amol/bin
 #cp -f $SCRIPTPATH/pgrogram/ftp /usr/amol/bin/addftp
 #export PATH="$PATH:/usr/amol/bin"
-for filename in $SCRIPTPATH/pgrogram/*; do
+for filename in $SCRIPTPATH/pprogram/*; do
    if [ ! -d "$filename" ]; then # if not directory
    # for ((i=0; i<=3; i++)); do
      #   echo "$filename" "Logs/$(basename "$filename" .txt)_Log$i.txt"
