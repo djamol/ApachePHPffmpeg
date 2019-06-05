@@ -17,8 +17,8 @@ echo -e "\e[32m########################################\n####  Encrypt Compress 
 while true; do
     read -p "Do you wish to Encrypt (Protected) File with Key(Password)?" yn
     case $yn in
-        [Yy]* ) ccrypt $output; break;
-        [Nn]* ) echo "File Save Without Encryption( Reject By You) " break;
+        [Yy]* ) ccrypt $output; break;;
+        [Nn]* ) echo "File Save Without Encryption( Reject By You) "; break;;
         * ) echo "Please answer yes or no.";;
     esac
 done
