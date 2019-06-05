@@ -54,11 +54,22 @@ echo openssl version
 
 #AmolPrograms
 mkdir -p /usr/amol/bin
-export PATH="$PATH:/usr/amol/bin"
-cp -f $SCRIPTPATH/pgrogram/ftp /usr/amol/bin/addftp
-cp -f $SCRIPTPATH/pgrogram/s.info /usr/amol/bin/sinfo
-
-chmod -R +x /usr/amol/bin
+#cp -f $SCRIPTPATH/pgrogram/ftp /usr/amol/bin/addftp
+#export PATH="$PATH:/usr/amol/bin"
+for filename in $SCRIPTPATH/pgrogram/*; do
+   if [ ! -d "$filename" ]; then # if not directory
+   # for ((i=0; i<=3; i++)); do
+     #   echo "$filename" "Logs/$(basename "$filename" .txt)_Log$i.txt"
+     echo "$filename Command Added"
+     FX=`basename $filename`
+     echo "Filname-$FX"
+     cp -f $filename /usr/amol/bin/$FX
+     chmod 755 -R /usr/amol/bin/$FX
+     ln -sf /usr/amol/bin/$FX /usr/local/bin
+  # done
+   fi
+done
+#chmod -R +x /usr/amol/bin
 
 
 cp -f $SCRIPTPATH/conf/apache.conf /etc/webmin/apache/config
