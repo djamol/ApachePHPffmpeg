@@ -2,7 +2,7 @@ STO="false"
 STBK="false"
 file=$(date +"%d-%m-%y")
 
-echo -e "\e[32m########################################\n####  Backup With Config Server Files      #########\n########################################"
+echo -e "\e[32m########################################\n####  DATABASE BACKUP service      #########\n########################################"
 while true; do
     read -p "Do you wish to Backup Structure With Data Backup?" yn
     case $yn in
