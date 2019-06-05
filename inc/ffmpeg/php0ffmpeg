@@ -1,0 +1,7 @@
+ wget http://downloads.sourceforge.net/project/ffmpeg-php/ffmpeg-php/0.6.0/ffmpeg-php-0.6.0.tbz2
+  tar -xjf ffmpeg-php-0.6.0.tbz2
+  cd ffmpeg-php-0.6.0
+   phpize
+./configure --enable-shared --with-ffmpeg=/usr/local/avpffmpeg
+make
+make install
