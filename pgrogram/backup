@@ -1,3 +1,4 @@
+echo date +"%r"
 file=$(date +"%d-%m-%y")
 yum install ccrypt -y
 #tar cvf - /home/www/srv | gzip -9 - > files3.tar.gz # GZIP=-9 tar cvzf file2.tar.gz /home/www/srv
@@ -14,3 +15,4 @@ ccrypt $output
 # ccrypt -d files3.tar.gz.cpt
 #Enter Key/Password
 echo "File is Created Successfully"
+echo date +"%r"
