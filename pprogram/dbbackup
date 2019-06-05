@@ -7,7 +7,7 @@ while true; do
     read -p "Do you wish to Backup Structure With Data Backup?" yn
     case $yn in
         [Yy]* ) STBK="true"; output="$file.sql"; break;;
-        [Nn]* )  
+        [Nn]* )
                             while true; do
                             read -p "Do you wish to Backup Only Structure Database and tables without data?" yn
                             case $yn in
@@ -20,17 +20,26 @@ while true; do
         * ) echo "Please answer yes or no.";;
     esac
 done
-if [ $STBK = "true" ]      
+if [ $STBK = "true" ]
 then
+echo"...Wait.......";
 #Structure With Data Backup
 DATABASE_LIST=$(mysql -NBe 'show schemas' | grep -wv 'mysql\|personnel\|buildings\|information_schema\|performance_schema');echo $DATABASE_LIST;mysqldump --databases $DATABASE_LIST > $output
+echo"Backup Done Save File $output";
 else
+echo "reject full backup with data"
 fi
 
 
-if [ $STO = "true" ]      
+if [ $STO = "true" ]
 then
+echo"...Wait.......";
 #Structure only backup
 DATABASE_LIST=$(mysql -NBe 'show schemas' | grep -wv 'mysql\|personnel\|buildings\|information_schema\|performance_schema');echo $DATABASE_LIST;mysqldump --no-data --databases $DATABASE_LIST > $output
+echo"Backup Done Save File $output";
 else
+echo "..."
 fi
+
+
+
