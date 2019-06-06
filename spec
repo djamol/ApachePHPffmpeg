@@ -1,6 +1,6 @@
 # rpmbuild -bb rpmbuild/SPECS/amol.spec
 # make all files in tar.gz using below command
-# and move file to rpmbuild/SOURCE/ folder
+# and move file to rpmbuild/SOURCES/ folder
 #tar -zcvf tar-archive-name.tar.gz source-folder-name
 #tar -zcvf Amol-Installer-1.0.tar.gz Amol-Installer-1.0
 Name:          Amol-Installer
