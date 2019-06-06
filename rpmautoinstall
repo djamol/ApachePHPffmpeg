@@ -1,0 +1,554 @@
+##for centos 7 (no required for centos minimal version)
+##  yum install iptables-services
+    systemctl start iptables
+    systemctl enable iptables
+    systemctl disable firewalld
+    systemctl stop firewalld
+    iptables -P INPUT ACCEPT
+    iptables -F
+    iptables -A INPUT -m state --state ESTABLISHED -j ACCEPT
+    iptables -A INPUT -m state --state RELATED -j ACCEPT
+    iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+    iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+    iptables -A INPUT -p tcp --dport 443 -j ACCEPT # if need
+    # add any other port you need, like above
+    iptables -P INPUT DROP
+    service iptables save
+    service iptables stop
+    
+    #### END ###
+
+
+RED='\033[01;31m'
+RESET='\033[0m'
+GREEN='\033[01;32m'
+echo -e '                                  ..:ir7YsJYLii:.                               
+                           :iL1XqEZggQgQgQgRMQRQRRDd2Yi.                        
+                    .rIZBBBBBQBRgPSjLrr::.......::rv5dBQBBQ2i                   
+                .vPBBBQMEbSU7i:                          :vPBBBX:               
+             :IRBQQdKUj7i:.                                   rPBBq:            
+          .URBQRE5v77:.......  dZdbEPEPEbZdEbZM1                 igBQL          
+        :PBRZEDUrirLi...:.:.. SgPKPKPqPKPKPKPKPR7                  .PBBs        
+      .EQRPbdPi:ivv7.:::::.. YgKIS25ISKPIS25IIIPM:                   .PBQv      
+     JBMPKPES.:7v7vi:::::.. rgqI5252SPuJd55UI2IIPg.                    7BBZ:    
+    ZBPPXqPq.:vv77rr:::::. :DPSSI52Sqg  EPIIUIUIIdd                     :BgQ7   
+   RBPPSKKD::77rrrrr:::::..dbISI525SRi  :gK25UI2I2DS                     iBbMs  
+  EBPPSXSbS:r7rrrriri:::..XZ55ISI55g2    LgS2IUI1I5gs      .              SQKR7 
+ :BPqXKSKqqirrrrririi::..JgSXIS2S5bE. ..  XdSU222UI5Rr    . . .           .RPSQ 
+ PgPXqXKSKbY:rirrriiii:.7gXSISI5IKgi .... .Dq52IUI25SR:  . . . . .         EqXP7
+iEEKqSqXKXPPr:iiiii:i:.igKS5SISISEs .....  :gS52212U5qg.  . . . . . . .    qq2SY
+vZPPSKSXXXSPPv::iiii:.:EPXISI5ISq2          iP2IUIUIU5Pd   ... ..... . .  .E2IIj
+iZdKKXqSX5X1qd5i::i::.PbKIS5SIKSPvirv77r7r7iiS5UIUIU225bX  .............  YX1jXs
+ bgPXKXX1dBR5SdZ27:..SDqSS5XXKJ1KPdDZgZDZDZZPS25UIUIU2USZu  ...........  iXjL5Pr
+ iBPqXK2UBBgBSXKZDPY7U2IqXqX17srjPPqbqPqPqPPPKqIIUIUIU22XZY  .........  iUY7uKQ 
+  gQqKI2BBvgB17b1KqZP5jsvsJvvSKqrLIS5SIS5S5SII2P25UI12UIUSd2.  ..... .:7vrrUKQr 
+   QQXbBBXZBP:PIrrXKXSKXSUJ1P5XXPr ........ .  1d25UIUI1225PEJi.....:irrrYSKQL  
+    DBPdQBBgiuuYr5qPSK5X5KSX5S5SSEY..:::::::::..5dIIU21I12UI5PddKXI5U21SSqPQ7   
+     jBZX5LirLuvvb1j5XqKq5SIS5X5SSD1:.i:i:i:iii::ubS5UIUI12U225IXXXSK5X5qDg:    
+      .EBMrLX12rYKJusuKUuXPD5dPbqS5E5::i:iiiiiii::7SKXI5UIUIU2U2UIUIU5SggJ      
+        :dBQgPPI2J2Y21r7.1QPZr..rI55dXi:riiiririri:ivuX5X5SIIUIUI255Pggs        
+          .2RQqPKqI5uu:v.Rgd: X7:ZI5KZP7irrrrrrrrrrrirrvLjuU122IIqdgq7          
+             .PKKSqXPKY7EQ.i rgJBRBvrY5Ivir7777r7777v77r77vvYs5PdXL.            
+            .IMgdZdEPEZDPP1Z: .EQQBivr77Psrv7vvLvYLsYssu1SXEdb2r.               
+          .qBQDZDEggMgRMQQBQBDZEQRs7Jv7sEqUvssJJuuIIPPZEdSJi.                   
+                           .:irrrrvus1vJJjjsLsvL77ii..                          ';
+echo -e '▒█░▒░▓█░█▒░▒▒█░█▓░▒░█▓   █████▒    ▓█ ▒█▓▓█▓ ██████ ▓████▒░█░      ░█████░▒████▓ ▓█████░ 
+ ░▓ █▓▓█ ▓ ██▒█░▓░▓█░█▓   ▓▒  █▓    ▒█ ▒▓▓▓█▓ ▓░█▓▒█░▓▒  █▓ ▓       ░█░  ▓ ▒▓  ▓█ ▓▒▓█▒█▒ 
+ ▒█▒█▓▓█░█▓▓█▒█▒█▓▓█▒█▓   █▓  █▓░▓░ ▓█ ██▒▒█▓░█▒█▓▒█░██  █▓░█▒  ░   ▒█▒ ░▓ ██  ██ █▓▓█░█▒ 
+ ░█████▓ ██████ ▓█████░▓█ █████░░█████ █▓  █▓░█▒░░▒█ ▓████▒░█████▒█▓ █████ ▒████▓ █▓░▒░█▒ ';
+echo -e "$GREEN 
+# Powered By DjAmol Group Inc         #
+# Email : Support@djamol.com          #
+# Website : www.djamol.com            #
+# Copyright By PatilWeb.com           #
+# IG:PatilWeb FB:PatilWeb TW:PatilWeb #
+$RESET";
+echo -n "Enter Your Main Domain(Eg. domain.com) >"
+read text
+echo "Main Domain: $text"
+MAINDOMAIN=$text
+MAINIP=$(hostname --ip-address)
+MYHOST=$(hostname)
+while true; do
+    read -p "Your System Main Ip is : $MAINIP?" yn
+    case $yn in
+        [Yy]* )  echo "Main IP Detect"; break;;
+        [Nn]* ) echo -n "Enter Server Ipv4(Eg. 001.100.200.300) > ";read text;MAINIP=$text;break;;#exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+echo "Main IP: $MAINIP";
+SCRIPT=$(readlink -f "$0")
+# Absolute path this script is in, thus /home/user/bin
+SCRIPTPATH=$(dirname "$SCRIPT")
+#echo $SCRIPTPATH
+
+BIND="n"; CURL="n"; DB="n"; Apache="n";PHPe="n";CRON="n";CSSF="n";WCP="n";PFTP="n";PostFix="n";FF="n";PHPT="n";
+#set timezone
+rm -rf /etc/localtime
+ln -s /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
+
+mkdir $SCRIPTPATH/log
+BUILDDIR=$SCRIPTPATH/log/
+BUILDFILE=$RANDOM.txt
+BUILD=$BUILDDIR$BUILDFILE
+
+echo $BUILD
+clear
+
+echo -e '▒█░▒░▓█░█▒░▒▒█░█▓░▒░█▓   █████▒    ▓█ ▒█▓▓█▓ ██████ ▓████▒░█░      ░█████░▒████▓ ▓█████░ 
+ ░▓ █▓▓█ ▓ ██▒█░▓░▓█░█▓   ▓▒  █▓    ▒█ ▒▓▓▓█▓ ▓░█▓▒█░▓▒  █▓ ▓       ░█░  ▓ ▒▓  ▓█ ▓▒▓█▒█▒ 
+ ▒█▒█▓▓█░█▓▓█▒█▒█▓▓█▒█▓   █▓  █▓░▓░ ▓█ ██▒▒█▓░█▒█▓▒█░██  █▓░█▒  ░   ▒█▒ ░▓ ██  ██ █▓▓█░█▒ 
+ ░█████▓ ██████ ▓█████░▓█ █████░░█████ █▓  █▓░█▒░░▒█ ▓████▒░█████▒█▓ █████ ▒████▓ █▓░▒░█▒ ';
+echo -e "$GREEN 
+# Powered By DjAmol Group Inc         #
+# Email : Support@djamol.com          #
+# Website : www.djamol.com            #
+# Copyright By PatilWeb.com           #
+# IG:PatilWeb FB:PatilWeb TW:PatilWeb #
+$RESET";
+BIND="";
+echo -e "\e[32m########################################\n####   BIND DNS Software       #########\n########################################"
+while true; do
+    read -p "Do you wish to install (BIND DNS) program?" yn
+    case $yn in
+        [Yy]* ) BIND="true"; break;;
+        [Nn]* ) echo "Reject Program : BIND DNS (By You) " >> $BUILD; break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+
+echo -e '▒█░▒░▓█░█▒░▒▒█░█▓░▒░█▓   █████▒    ▓█ ▒█▓▓█▓ ██████ ▓████▒░█░      ░█████░▒████▓ ▓█████░ 
+ ░▓ █▓▓█ ▓ ██▒█░▓░▓█░█▓   ▓▒  █▓    ▒█ ▒▓▓▓█▓ ▓░█▓▒█░▓▒  █▓ ▓       ░█░  ▓ ▒▓  ▓█ ▓▒▓█▒█▒ 
+ ▒█▒█▓▓█░█▓▓█▒█▒█▓▓█▒█▓   █▓  █▓░▓░ ▓█ ██▒▒█▓░█▒█▓▒█░██  █▓░█▒  ░   ▒█▒ ░▓ ██  ██ █▓▓█░█▒ 
+ ░█████▓ ██████ ▓█████░▓█ █████░░█████ █▓  █▓░█▒░░▒█ ▓████▒░█████▒█▓ █████ ▒████▓ █▓░▒░█▒ ';
+echo -e "$GREEN 
+# Powered By DjAmol Group Inc         #
+# Email : Support@djamol.com          #
+# Website : www.djamol.com            #
+# Copyright By PatilWeb.com           #
+# IG:PatilWeb FB:PatilWeb TW:PatilWeb #
+$RESET";
+echo -e "\e[32m########################################\n####   Curl Software           #########\n########################################"
+while true; do
+    read -p "Do you wish to install (CURL) program?" yn
+    case $yn in
+        [Yy]* ) CURL="true"; break;;
+        [Nn]* ) echo "Reject Program : CURL (By You) " >> $BUILD; break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+
+echo -e '▒█░▒░▓█░█▒░▒▒█░█▓░▒░█▓   █████▒    ▓█ ▒█▓▓█▓ ██████ ▓████▒░█░      ░█████░▒████▓ ▓█████░ 
+ ░▓ █▓▓█ ▓ ██▒█░▓░▓█░█▓   ▓▒  █▓    ▒█ ▒▓▓▓█▓ ▓░█▓▒█░▓▒  █▓ ▓       ░█░  ▓ ▒▓  ▓█ ▓▒▓█▒█▒ 
+ ▒█▒█▓▓█░█▓▓█▒█▒█▓▓█▒█▓   █▓  █▓░▓░ ▓█ ██▒▒█▓░█▒█▓▒█░██  █▓░█▒  ░   ▒█▒ ░▓ ██  ██ █▓▓█░█▒ 
+ ░█████▓ ██████ ▓█████░▓█ █████░░█████ █▓  █▓░█▒░░▒█ ▓████▒░█████▒█▓ █████ ▒████▓ █▓░▒░█▒ ';
+echo -e "$GREEN 
+# Powered By DjAmol Group Inc         #
+# Email : Support@djamol.com          #
+# Website : www.djamol.com            #
+# Copyright By PatilWeb.com           #
+# IG:PatilWeb FB:PatilWeb TW:PatilWeb #
+$RESET";
+echo -e "\e[32m########################################\n####   MariaDB/MySQL Software  #########\n########################################"
+while true; do
+    read -p "Do you wish to install (MariaDB/MYSQL) DATABASE program?" yn
+    case $yn in
+        [Yy]* ) DB="true"; break;;
+        [Nn]* ) echo "Reject Program : MYSQL (By You) " >> $BUILD; break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+
+
+echo -e '▒█░▒░▓█░█▒░▒▒█░█▓░▒░█▓   █████▒    ▓█ ▒█▓▓█▓ ██████ ▓████▒░█░      ░█████░▒████▓ ▓█████░ 
+ ░▓ █▓▓█ ▓ ██▒█░▓░▓█░█▓   ▓▒  █▓    ▒█ ▒▓▓▓█▓ ▓░█▓▒█░▓▒  █▓ ▓       ░█░  ▓ ▒▓  ▓█ ▓▒▓█▒█▒ 
+ ▒█▒█▓▓█░█▓▓█▒█▒█▓▓█▒█▓   █▓  █▓░▓░ ▓█ ██▒▒█▓░█▒█▓▒█░██  █▓░█▒  ░   ▒█▒ ░▓ ██  ██ █▓▓█░█▒ 
+ ░█████▓ ██████ ▓█████░▓█ █████░░█████ █▓  █▓░█▒░░▒█ ▓████▒░█████▒█▓ █████ ▒████▓ █▓░▒░█▒ ';
+echo -e "$GREEN 
+# Powered By DjAmol Group Inc         #
+# Email : Support@djamol.com          #
+# Website : www.djamol.com            #
+# Copyright By PatilWeb.com           #
+# IG:PatilWeb FB:PatilWeb TW:PatilWeb #
+$RESET";
+echo -e "\e[32m########################################\n####   Apache2.4 Server Soft.  #########\n########################################"
+while true; do
+    read -p "Do you wish to install (Apache) program?" yn
+    case $yn in
+        [Yy]* ) Apache="true";break;;
+        [Nn]* ) echo "Reject Program : Apache (By You) " >> $BUILD; break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+echo "Enter Below Details For openssl Certificate ";
+echo -n "Enter YOUR Country Code [XX] In Two Character e.g IN for India > ";read btext;
+echo -n "Enter Your State > ";read stext;
+echo -n "Enter Your City  > ";read ctext;
+echo -n "Enter Your Organization  > ";read otext;
+echo -n "Enter Your Organization  Unit > ";read outext;
+echo -n "Enter Your Server Name > ";read srvtext;
+echo -n "Enter Your Email ID > ";read etext;
+
+
+echo -e '▒█░▒░▓█░█▒░▒▒█░█▓░▒░█▓   █████▒    ▓█ ▒█▓▓█▓ ██████ ▓████▒░█░      ░█████░▒████▓ ▓█████░ 
+ ░▓ █▓▓█ ▓ ██▒█░▓░▓█░█▓   ▓▒  █▓    ▒█ ▒▓▓▓█▓ ▓░█▓▒█░▓▒  █▓ ▓       ░█░  ▓ ▒▓  ▓█ ▓▒▓█▒█▒ 
+ ▒█▒█▓▓█░█▓▓█▒█▒█▓▓█▒█▓   █▓  █▓░▓░ ▓█ ██▒▒█▓░█▒█▓▒█░██  █▓░█▒  ░   ▒█▒ ░▓ ██  ██ █▓▓█░█▒ 
+ ░█████▓ ██████ ▓█████░▓█ █████░░█████ █▓  █▓░█▒░░▒█ ▓████▒░█████▒█▓ █████ ▒████▓ █▓░▒░█▒ ';
+echo -e "$GREEN 
+# Powered By DjAmol Group Inc         #
+# Email : Support@djamol.com          #
+# Website : www.djamol.com            #
+# Copyright By PatilWeb.com           #
+# IG:PatilWeb FB:PatilWeb TW:PatilWeb #
+$RESET";
+echo -e "\e[32m########################################\n####   PHP 5 Package/Software  #########\n########################################"
+while true; do
+    read -p "Do you wish to install (php) program?" yn
+    case $yn in
+        [Yy]* ) PHPe="true"; break;;
+        [Nn]* ) echo "Reject Program : PHP 5 (By You) " >> $BUILD; break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+while true; do
+    read -p "Do you wish to Run PHP5 Test program?" yn
+    case $yn in
+        [Yy]* ) PHPT="true"; break;;
+        [Nn]* ) date +"%r" >> $BUILD;echo "Status : Php Testing function Disable" >> $BUILD; break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+
+echo -e '▒█░▒░▓█░█▒░▒▒█░█▓░▒░█▓   █████▒    ▓█ ▒█▓▓█▓ ██████ ▓████▒░█░      ░█████░▒████▓ ▓█████░ 
+ ░▓ █▓▓█ ▓ ██▒█░▓░▓█░█▓   ▓▒  █▓    ▒█ ▒▓▓▓█▓ ▓░█▓▒█░▓▒  █▓ ▓       ░█░  ▓ ▒▓  ▓█ ▓▒▓█▒█▒ 
+ ▒█▒█▓▓█░█▓▓█▒█▒█▓▓█▒█▓   █▓  █▓░▓░ ▓█ ██▒▒█▓░█▒█▓▒█░██  █▓░█▒  ░   ▒█▒ ░▓ ██  ██ █▓▓█░█▒ 
+ ░█████▓ ██████ ▓█████░▓█ █████░░█████ █▓  █▓░█▒░░▒█ ▓████▒░█████▒█▓ █████ ▒████▓ █▓░▒░█▒ ';
+echo -e "$GREEN 
+# Powered By DjAmol Group Inc         #
+# Email : Support@djamol.com          #
+# Website : www.djamol.com            #
+# Copyright By PatilWeb.com           #
+# IG:PatilWeb FB:PatilWeb TW:PatilWeb #
+$RESET";
+echo -e "\e[34m########################################\n####   Cron JOB Software       #########\n########################################"
+while true; do
+    read -p "Do you wish to install (Cron JOB) program?" yn
+    case $yn in
+        [Yy]* ) CRON="n";="true"; break;;
+        [Nn]* ) echo "Reject Program : Cron JOB (By You) " >> $BUILD; break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+
+
+echo -e '▒█░▒░▓█░█▒░▒▒█░█▓░▒░█▓   █████▒    ▓█ ▒█▓▓█▓ ██████ ▓████▒░█░      ░█████░▒████▓ ▓█████░ 
+ ░▓ █▓▓█ ▓ ██▒█░▓░▓█░█▓   ▓▒  █▓    ▒█ ▒▓▓▓█▓ ▓░█▓▒█░▓▒  █▓ ▓       ░█░  ▓ ▒▓  ▓█ ▓▒▓█▒█▒ 
+ ▒█▒█▓▓█░█▓▓█▒█▒█▓▓█▒█▓   █▓  █▓░▓░ ▓█ ██▒▒█▓░█▒█▓▒█░██  █▓░█▒  ░   ▒█▒ ░▓ ██  ██ █▓▓█░█▒ 
+ ░█████▓ ██████ ▓█████░▓█ █████░░█████ █▓  █▓░█▒░░▒█ ▓████▒░█████▒█▓ █████ ▒████▓ █▓░▒░█▒ ';
+echo -e "$GREEN 
+# Powered By DjAmol Group Inc         #
+# Email : Support@djamol.com          #
+# Website : www.djamol.com            #
+# Copyright By PatilWeb.com           #
+# IG:PatilWeb FB:PatilWeb TW:PatilWeb #
+$RESET";
+echo -e "\e[34m########################################\n####ConfigServer Security & Firewall####\n########################################"
+while true; do
+    read -p "Do you wish to install (ConfigServer Security & Firewall (csf) ) program?" yn
+    case $yn in
+        [Yy]* ) CSSF="true"; break;;
+        [Nn]* ) echo "Reject Program : ConfigServer Security & Firewall (csf)  (By You) " >> $BUILD; break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+
+echo -e '▒█░▒░▓█░█▒░▒▒█░█▓░▒░█▓   █████▒    ▓█ ▒█▓▓█▓ ██████ ▓████▒░█░      ░█████░▒████▓ ▓█████░ 
+ ░▓ █▓▓█ ▓ ██▒█░▓░▓█░█▓   ▓▒  █▓    ▒█ ▒▓▓▓█▓ ▓░█▓▒█░▓▒  █▓ ▓       ░█░  ▓ ▒▓  ▓█ ▓▒▓█▒█▒ 
+ ▒█▒█▓▓█░█▓▓█▒█▒█▓▓█▒█▓   █▓  █▓░▓░ ▓█ ██▒▒█▓░█▒█▓▒█░██  █▓░█▒  ░   ▒█▒ ░▓ ██  ██ █▓▓█░█▒ 
+ ░█████▓ ██████ ▓█████░▓█ █████░░█████ █▓  █▓░█▒░░▒█ ▓████▒░█████▒█▓ █████ ▒████▓ █▓░▒░█▒ ';
+echo -e "$GREEN 
+# Powered By DjAmol Group Inc         #
+# Email : Support@djamol.com          #
+# Website : www.djamol.com            #
+# Copyright By PatilWeb.com           #
+# IG:PatilWeb FB:PatilWeb TW:PatilWeb #
+$RESET";
+echo -e "\e[34m########################################\n####  Webmin Control Panel #############\n########################################"
+while true; do
+    read -p "Do you wish to install (Control Panel) program?" yn
+    case $yn in
+        [Yy]* ) WCP="true"; break;;
+        [Nn]* ) echo "Reject Program : Control Panel (By You) " >> $BUILD; break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+echo -n "Control Panel Username (Eg. root) > ";read btext;weba=$btext;
+echo -n "Control Panel Password (Eg. pass1234) > ";read ctext;webp=$ctext;
+echo -n "Control Panel Port (Eg. 2083) > ";read ctext;webo=$ctext;
+if ! [ "$webo" -eq "$webo" ] 2> /dev/null
+then
+    echo "Sorry integers only now your control panel PORT - default 2083"; webo=2083;
+fi
+
+
+echo -e '▒█░▒░▓█░█▒░▒▒█░█▓░▒░█▓   █████▒    ▓█ ▒█▓▓█▓ ██████ ▓████▒░█░      ░█████░▒████▓ ▓█████░ 
+ ░▓ █▓▓█ ▓ ██▒█░▓░▓█░█▓   ▓▒  █▓    ▒█ ▒▓▓▓█▓ ▓░█▓▒█░▓▒  █▓ ▓       ░█░  ▓ ▒▓  ▓█ ▓▒▓█▒█▒ 
+ ▒█▒█▓▓█░█▓▓█▒█▒█▓▓█▒█▓   █▓  █▓░▓░ ▓█ ██▒▒█▓░█▒█▓▒█░██  █▓░█▒  ░   ▒█▒ ░▓ ██  ██ █▓▓█░█▒ 
+ ░█████▓ ██████ ▓█████░▓█ █████░░█████ █▓  █▓░█▒░░▒█ ▓████▒░█████▒█▓ █████ ▒████▓ █▓░▒░█▒ ';
+echo -e "$GREEN 
+# Powered By DjAmol Group Inc         #
+# Email : Support@djamol.com          #
+# Website : www.djamol.com            #
+# Copyright By PatilWeb.com           #
+# IG:PatilWeb FB:PatilWeb TW:PatilWeb #
+$RESET";
+echo -e "\e[34m########################################\n####  ProFTP FTP Solution  #############\n########################################"
+while true; do
+    read -p "Do you wish to install (FTP proftpd) program?" yn
+    case $yn in
+        [Yy]* ) PFTP="true"; break;;
+        [Nn]* ) echo "Reject Program : Pro FTPd   (By You) " >> $BUILD; break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+
+
+
+echo -e '▒█░▒░▓█░█▒░▒▒█░█▓░▒░█▓   █████▒    ▓█ ▒█▓▓█▓ ██████ ▓████▒░█░      ░█████░▒████▓ ▓█████░ 
+ ░▓ █▓▓█ ▓ ██▒█░▓░▓█░█▓   ▓▒  █▓    ▒█ ▒▓▓▓█▓ ▓░█▓▒█░▓▒  █▓ ▓       ░█░  ▓ ▒▓  ▓█ ▓▒▓█▒█▒ 
+ ▒█▒█▓▓█░█▓▓█▒█▒█▓▓█▒█▓   █▓  █▓░▓░ ▓█ ██▒▒█▓░█▒█▓▒█░██  █▓░█▒  ░   ▒█▒ ░▓ ██  ██ █▓▓█░█▒ 
+ ░█████▓ ██████ ▓█████░▓█ █████░░█████ █▓  █▓░█▒░░▒█ ▓████▒░█████▒█▓ █████ ▒████▓ █▓░▒░█▒ ';
+echo -e "$GREEN 
+# Powered By DjAmol Group Inc         #
+# Email : Support@djamol.com          #
+# Website : www.djamol.com            #
+# Copyright By PatilWeb.com           #
+# IG:PatilWeb FB:PatilWeb TW:PatilWeb #
+$RESET";
+echo -e "\e[34m########################################\n####  PostFix Mail Solution  ###########\n########################################"
+while true; do
+    read -p "Do you wish to install (Mail Forward And Sendmail )Postfix program?" yn
+    case $yn in
+        [Yy]* ) PostFix="true"; break;;
+        [Nn]* ) echo "Reject Program : PostFix   (By You) " >> $BUILD; break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+clear
+
+echo -e '▒█░▒░▓█░█▒░▒▒█░█▓░▒░█▓   █████▒    ▓█ ▒█▓▓█▓ ██████ ▓████▒░█░      ░█████░▒████▓ ▓█████░ 
+ ░▓ █▓▓█ ▓ ██▒█░▓░▓█░█▓   ▓▒  █▓    ▒█ ▒▓▓▓█▓ ▓░█▓▒█░▓▒  █▓ ▓       ░█░  ▓ ▒▓  ▓█ ▓▒▓█▒█▒ 
+ ▒█▒█▓▓█░█▓▓█▒█▒█▓▓█▒█▓   █▓  █▓░▓░ ▓█ ██▒▒█▓░█▒█▓▒█░██  █▓░█▒  ░   ▒█▒ ░▓ ██  ██ █▓▓█░█▒ 
+ ░█████▓ ██████ ▓█████░▓█ █████░░█████ █▓  █▓░█▒░░▒█ ▓████▒░█████▒█▓ █████ ▒████▓ █▓░▒░█▒ ';
+echo -e "$GREEN 
+# Powered By DjAmol Group Inc         #
+# Email : Support@djamol.com          #
+# Website : www.djamol.com            #
+# Copyright By PatilWeb.com           #
+# IG:PatilWeb FB:PatilWeb TW:PatilWeb #
+$RESET";
+echo -e "\e[34m########################################\n####  FFMPEG Software  ###########\n########################################"
+while true; do
+    read -p "Do you wish to install (Video FrameWork )FFMPEG program?" yn
+    case $yn in
+        [Yy]* ) FF="true"; break;;
+        [Nn]* ) echo "Reject Program : FFMPEG   (By You) " >> $BUILD; break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+
+
+clear
+echo -e '▒█░▒░▓█░█▒░▒▒█░█▓░▒░█▓   █████▒    ▓█ ▒█▓▓█▓ ██████ ▓████▒░█░      ░█████░▒████▓ ▓█████░ 
+ ░▓ █▓▓█ ▓ ██▒█░▓░▓█░█▓   ▓▒  █▓    ▒█ ▒▓▓▓█▓ ▓░█▓▒█░▓▒  █▓ ▓       ░█░  ▓ ▒▓  ▓█ ▓▒▓█▒█▒ 
+ ▒█▒█▓▓█░█▓▓█▒█▒█▓▓█▒█▓   █▓  █▓░▓░ ▓█ ██▒▒█▓░█▒█▓▒█░██  █▓░█▒  ░   ▒█▒ ░▓ ██  ██ █▓▓█░█▒ 
+ ░█████▓ ██████ ▓█████░▓█ █████░░█████ █▓  █▓░█▒░░▒█ ▓████▒░█████▒█▓ █████ ▒████▓ █▓░▒░█▒ ';
+echo -e "$GREEN 
+# Powered By DjAmol Group Inc         #
+# Email : Support@djamol.com          #
+# Website : www.djamol.com            #
+# Copyright By PatilWeb.com           #
+# IG:PatilWeb FB:PatilWeb TW:PatilWeb #
+$RESET";
+echo "Domain Added (MAIN):$MAINDOMAIN (Domain Directory:/home/www)"
+while true; do
+    read -p "Do You Want Add More Domains?" yn
+    case $yn in
+        [Yy]* )  echo "."; 
+                
+echo -n "Enter Your Additional Domain seprate by comma(Eg. domain.com,domain.in,three.in) > "
+read dstring
+EXTRAD=$dstring;
+
+break;;
+        [Nn]* ) echo -e "You Select Cancel For More Domain Option";EXTRAD="no";break;;#exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+
+echo -e '▒█░▒░▓█░█▒░▒▒█░█▓░▒░█▓   █████▒    ▓█ ▒█▓▓█▓ ██████ ▓████▒░█░      ░█████░▒████▓ ▓█████░ 
+ ░▓ █▓▓█ ▓ ██▒█░▓░▓█░█▓   ▓▒  █▓    ▒█ ▒▓▓▓█▓ ▓░█▓▒█░▓▒  █▓ ▓       ░█░  ▓ ▒▓  ▓█ ▓▒▓█▒█▒ 
+ ▒█▒█▓▓█░█▓▓█▒█▒█▓▓█▒█▓   █▓  █▓░▓░ ▓█ ██▒▒█▓░█▒█▓▒█░██  █▓░█▒  ░   ▒█▒ ░▓ ██  ██ █▓▓█░█▒ 
+ ░█████▓ ██████ ▓█████░▓█ █████░░█████ █▓  █▓░█▒░░▒█ ▓████▒░█████▒█▓ █████ ▒████▓ █▓░▒░█▒ ';
+echo -e "$GREEN 
+# Powered By DjAmol Group Inc         #
+# Email : Support@djamol.com          #
+# Website : www.djamol.com            #
+# Copyright By PatilWeb.com           #
+# IG:PatilWeb FB:PatilWeb TW:PatilWeb #
+$RESET";
+while true; do
+    read -p "Do You Want Domain SSL https connection?" yn
+    case $yn in
+        [Yy]* )  echo "."; 
+echo -n "Enable https connection Domain seprate by comma(,)(Eg. domain.com,domain.in,three.in) > "
+read dstring
+EXTRADS=$dstring;
+break;;
+        [Nn]* ) echo -e "You Select Cancel SSL https";EXTRADS="no";break;;#exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+
+set -a
+# Global Variable to access any bash other files run by this file
+#TESTVARIABLE=hellohelloheloo
+WEBA=$weba
+WEBP=$webp
+WEBO=$webo
+SCRIPTPATH=$SCRIPTPATH
+BUILD=$BUILD
+CAC=$btext
+CAS=$stext
+CAL=Aurangabad
+CAO=$otext
+CAU=$outext
+CACM=$srvtext
+CAM=$etext
+BIND=$BIND
+CURL=$CURL
+DB=$DB
+WCP=$WCP
+Apache=$Apache
+PHPe=$PHPe
+PHPT=$PHPT;
+CRON=$CRON
+CSSF=$CSSF
+PFTP=$PFTP
+PostFix=$PostFix
+MAINDOMAIN=$MAINDOMAIN
+MAINIP=$MAINIP
+MYHOST=$MYHOST
+EXTRAD=$EXTRAD
+EXTRADS=$EXTRADS
+FF=$FF
+# ...
+# Here put all the variables that will be marked for export
+# and that will be available from within test2 (and all other commands).
+# If test2 modifies the variables, the modifications will never be
+# seen in the present script!
+set +a
+
+# Here, even if test2 modifies TESTVARIABLE, you'll still have
+ # TESTVARIABLE=hellohelloheloo
+#./start.sh > FFMPEG-output.log 2>&1 &
+chmod +x auto*;
+chmod +x inc/*.sh
+./auto > ServerInstaller-output.log 2>&1 &
+
+
+
+clear
+RED='\033[01;31m'
+RESET='\033[0m'
+GREEN='\033[01;32m'
+echo -e '                                  ..:ir7YsJYLii:.                               
+                           :iL1XqEZggQgQgQgRMQRQRRDd2Yi.                        
+                    .rIZBBBBBQBRgPSjLrr::.......::rv5dBQBBQ2i                   
+                .vPBBBQMEbSU7i:                          :vPBBBX:               
+             :IRBQQdKUj7i:.                                   rPBBq:            
+          .URBQRE5v77:.......  dZdbEPEPEbZdEbZM1                 igBQL          
+        :PBRZEDUrirLi...:.:.. SgPKPKPqPKPKPKPKPR7                  .PBBs        
+      .EQRPbdPi:ivv7.:::::.. YgKIS25ISKPIS25IIIPM:                   .PBQv      
+     JBMPKPES.:7v7vi:::::.. rgqI5252SPuJd55UI2IIPg.                    7BBZ:    
+    ZBPPXqPq.:vv77rr:::::. :DPSSI52Sqg  EPIIUIUIIdd                     :BgQ7   
+   RBPPSKKD::77rrrrr:::::..dbISI525SRi  :gK25UI2I2DS                     iBbMs  
+  EBPPSXSbS:r7rrrriri:::..XZ55ISI55g2    LgS2IUI1I5gs      .              SQKR7 
+ :BPqXKSKqqirrrrririi::..JgSXIS2S5bE. ..  XdSU222UI5Rr    . . .           .RPSQ 
+ PgPXqXKSKbY:rirrriiii:.7gXSISI5IKgi .... .Dq52IUI25SR:  . . . . .         EqXP7
+iEEKqSqXKXPPr:iiiii:i:.igKS5SISISEs .....  :gS52212U5qg.  . . . . . . .    qq2SY
+vZPPSKSXXXSPPv::iiii:.:EPXISI5ISq2          iP2IUIUIU5Pd   ... ..... . .  .E2IIj
+iZdKKXqSX5X1qd5i::i::.PbKIS5SIKSPvirv77r7r7iiS5UIUIU225bX  .............  YX1jXs
+ bgPXKXX1dBR5SdZ27:..SDqSS5XXKJ1KPdDZgZDZDZZPS25UIUIU2USZu  ...........  iXjL5Pr
+ iBPqXK2UBBgBSXKZDPY7U2IqXqX17srjPPqbqPqPqPPPKqIIUIUIU22XZY  .........  iUY7uKQ 
+  gQqKI2BBvgB17b1KqZP5jsvsJvvSKqrLIS5SIS5S5SII2P25UI12UIUSd2.  ..... .:7vrrUKQr 
+   QQXbBBXZBP:PIrrXKXSKXSUJ1P5XXPr ........ .  1d25UIUI1225PEJi.....:irrrYSKQL  
+    DBPdQBBgiuuYr5qPSK5X5KSX5S5SSEY..:::::::::..5dIIU21I12UI5PddKXI5U21SSqPQ7   
+     jBZX5LirLuvvb1j5XqKq5SIS5X5SSD1:.i:i:i:iii::ubS5UIUI12U225IXXXSK5X5qDg:    
+      .EBMrLX12rYKJusuKUuXPD5dPbqS5E5::i:iiiiiii::7SKXI5UIUIU2U2UIUIU5SggJ      
+        :dBQgPPI2J2Y21r7.1QPZr..rI55dXi:riiiririri:ivuX5X5SIIUIUI255Pggs        
+          .2RQqPKqI5uu:v.Rgd: X7:ZI5KZP7irrrrrrrrrrrirrvLjuU122IIqdgq7          
+             .PKKSqXPKY7EQ.i rgJBRBvrY5Ivir7777r7777v77r77vvYs5PdXL.            
+            .IMgdZdEPEZDPP1Z: .EQQBivr77Psrv7vvLvYLsYssu1SXEdb2r.               
+          .qBQDZDEggMgRMQQBQBDZEQRs7Jv7sEqUvssJJuuIIPPZEdSJi.                   
+                           .:irrrrvus1vJJjjsLsvL77ii..                          ';
+echo -e '▒█░▒░▓█░█▒░▒▒█░█▓░▒░█▓   █████▒    ▓█ ▒█▓▓█▓ ██████ ▓████▒░█░      ░█████░▒████▓ ▓█████░ 
+ ░▓ █▓▓█ ▓ ██▒█░▓░▓█░█▓   ▓▒  █▓    ▒█ ▒▓▓▓█▓ ▓░█▓▒█░▓▒  █▓ ▓       ░█░  ▓ ▒▓  ▓█ ▓▒▓█▒█▒ 
+ ▒█▒█▓▓█░█▓▓█▒█▒█▓▓█▒█▓   █▓  █▓░▓░ ▓█ ██▒▒█▓░█▒█▓▒█░██  █▓░█▒  ░   ▒█▒ ░▓ ██  ██ █▓▓█░█▒ 
+ ░█████▓ ██████ ▓█████░▓█ █████░░█████ █▓  █▓░█▒░░▒█ ▓████▒░█████▒█▓ █████ ▒████▓ █▓░▒░█▒ ';
+echo -e "$GREEN 
+# Powered By DjAmol Group Inc         #
+# Email : Support@djamol.com          #
+# Website : www.djamol.com            #
+# Copyright By PatilWeb.com           #
+# IG:PatilWeb FB:PatilWeb TW:PatilWeb #
+$RESET";
+
+
+echo -e "$GREEN 
+Now Relax Installation is Started in Background
+But if you want check output then all output live store in
+ServerInstaller-output.log  File
+Command To Check LOG
+1)All-Command-OUPUT(Show on Console)
+  cat ApachePHPffmpeg-amol/ServerInstaller-output.log;
+2)Status-OUPUT-Only(Show on Console)
+  cat  ApachePHPffmpeg-amol/log/*.txt;
+&(if)  FFMPEG Installation Output
+  1) All-Output
+  cat ApachePHPffmpeg-amol/FFMPEG-output.log;
+  2) Status Output ONly
+ cat /root/djamolDEV/ffmpeg/log/*.txt;
+ #######################
+ After Complete Installation 
+  You Can use below shell command
+ #######################
+ # adddomain <-for add domain in apache server with bind dns
+ # addftp OR addftpuser <- add ftp account to access ftp service
+ # backup <- backup home directory with server config files
+ # dbbackup  <- database backup StructureWithDATA or Only Table Structure
+ # dbrestore <- restore database from sql file
+ # sinfo <- Your VPS benchmark information
+ ######################################
+Now Relax Installation is Started in Background
+PHP Apache,PHP,MariaDB,Curl,OpenSSLL And Other Customization Auto Installation Maximum Time ->> Time 20-30  minutes
+FFMPEG Customization Auto Installation Maximum Time ->> Time 19-25  minutes
+Check Installation is Completed By Command
+ffmpeg -v
+amol
+######################################
+$RESET";
