@@ -11,7 +11,7 @@ mkdir -p /home/www/filemanager;
 cp -f $SCRIPTPATH/conf/fm.php /home/www/filemanager/index.php
 cp -f $SCRIPTPATH/conf/fm.inc /home/www/filemanager/fm.inc
 
-echo "<html><body><h1>It works Apache!<br></h1><br><br><a href='filemanager/'>File Manager</a><br> <?php phpinfo(); ?></body></html>" >> /home/www/index.php
+echo "<html><body><center><h1>It works Apache!<br></h1><br><br><h1><a href='filemanager/'>File Manager</a></h1></center><br><small>Change user name password for filemanager edit /home/www/filemanager/index.php </small><br> <?php phpinfo(); ?></body></html>" >> /home/www/index.php
 #First :We need to set the owner/group of the web root (and any directories/files therein):
 chown -R daemon:daemon /home/www
 #Second:We need to setup the proper permissions for users and groups.'go'-'group' and 'other'.rwx-Read,Write,execute
