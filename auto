@@ -79,7 +79,7 @@ mkdir /usr;mkdir /usr/share;mkdir /usr/share/ssl; mkdir /usr/share/ssl//certs;
 #CAC=IN #CAS=MAH #CAL=City #CAO="INDIA ORG" #CAU="DA Group" #CACM="serv.djamol.com" #CAM="nomail@djamol.com"
 
 SSLCERt=$(expect -c "
-set timeout 10
+set timeout 35
   spawn openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /usr/share/ssl/certs/amol.key -out /usr/share/ssl/certs/amol.cert
   expect \"Country Name*:\"
   send \"$CAC\r\"
@@ -101,7 +101,7 @@ expect eof
 echo "$SSLCERt"
 
 SSLHTTPS=$(expect -c "
-set timeout 10
+set timeout 35
   spawn openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /usr/share/ssl/certs/ssl.crt -out /usr/share/ssl/certs/ssl.crt
   expect \"Country Name*:\"
   send \"$CAC\r\"
