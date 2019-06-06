@@ -46,6 +46,16 @@ echo -e "$GREEN
 $RESET";
 
 echo -e "$GREEN 
+#############################################################
 # Apache  PHP,MariaDB,Apache,Webmin,FFMPeg...more  Auto  Installed    #
+#                                               Version 2.0.0                                                 #
+#############################################################
+ ---->>>>>>>>>>>You Can use below shell command
+ # adddomain <-for add domain in apache server with bind dns
+ # addftp OR addftpuser <- add ftp account to access ftp service
+ # backup <- backup home directory with server config files
+ # dbbackup  <- database backup StructureWithDATA or Only Table Structure
+ # dbrestore <- restore database from sql file
+ # sinfo <- Your VPS benchmark information
 $RESET";
 
