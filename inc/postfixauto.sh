@@ -15,7 +15,7 @@ yum -y install postfix mailx
 mkdir /etc;mkdir /etc/ssl;mkdir /etc/ssl/certs;mkdir /etc/ssl/private;
 #openssl req -new -x509 -days 3650 -nodes -out /etc/ssl/certs/postfix.pem -keyout /etc/ssl/private/postfix.pem
 SSLCERt=$(expect -c "
-set timeout 10
+set timeout 35
   spawn openssl req -new -x509 -days 3650 -nodes -out /etc/ssl/certs/postfix.pem -keyout /etc/ssl/private/postfix.pem
   expect \"Country Name*:\"
   send \"$CAC\r\"
