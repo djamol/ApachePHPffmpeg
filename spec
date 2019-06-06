@@ -25,6 +25,8 @@ By DjAmol Group For Centos
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/opt/amol
 install autoinstall $RPM_BUILD_ROOT/opt/amol/autoinstall
+install auto $RPM_BUILD_ROOT/opt/amol/auto
+install latest.sh $RPM_BUILD_ROOT/opt/amol/latest.sh
 install -d $RPM_BUILD_ROOT/opt/amol/src
 cp -rf src/* $RPM_BUILD_ROOT/opt/amol/src/
 
@@ -52,7 +54,7 @@ cp -rf pprogram/* $RPM_BUILD_ROOT/opt/amol/pprogram
 
 %post
 mkdir /$RPM_BUILD_ROOT/opt/two
-$RPM_BUILD_ROOT/opt/amol/autoinstall
+$RPM_BUILD_ROOT/opt/amol/latest.sh
 #chmod 755 -R $RPM_BUILD_ROOT/opt/amol/inc/
 #chmod 755 $RPM_BUILD_ROOT/opt/amol/auto
 #chmod 755 $RPM_BUILD_ROOT/opt/amol/inc/latest
@@ -64,6 +66,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-,root,root,-)
 /opt/amol/autoinstall
+/opt/amol/auto
+/opt/amol/latest.sh
 #%defattr(755,root,root,777)
 #%dir /opt/amol/inc
 %defattr(-,root,root,-)
