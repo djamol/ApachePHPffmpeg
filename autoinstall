@@ -525,12 +525,12 @@ But if you want check output then all output live store in
 ServerInstaller-output.log  File
 Command To Check LOG
 1)All-Command-OUPUT(Show on Console)
-  cat ServerInstaller-output.log;
+  cat ApachePHPffmpeg-amol/ServerInstaller-output.log;
 2)Status-OUPUT-Only(Show on Console)
-  cat log/*.txt;
+  cat  ApachePHPffmpeg-amol/log/*.txt;
 &(if)  FFMPEG Installation Output
   1) All-Output
-  cat FFMPEG-output.log;
+  cat ApachePHPffmpeg-amol/FFMPEG-output.log;
   2) Status Output ONly
  cat /root/djamolDEV/ffmpeg/log/*.txt;
  #######################
