@@ -194,9 +194,9 @@ date +"%r" >> $BUILD;echo "Status : Auto END OF Server Setup  Installation END" 
 
 ## Customize program run any where
 mkdir /amol
-export PATH="$PATH:/pro"
-cp $SCRIPTPATH/pprogram/addftp /amol/addftp
-chmod -R +x /amol
+#export PATH="$PATH:/pro"
+#cp $SCRIPTPATH/pprogram/addftp /amol/addftp
+#chmod -R +x /amol
 
 
 date +"%r" >> $BUILD;echo "Status : Auto FFMPEG  Installation Start" >> $BUILD
