@@ -21,7 +21,8 @@ LD_LIBRARY_PATH=$LD_LIBRARY_PATH
 LIBRARY_PATH=$LIBRARY_PATH
 CPATH=$CPATH
 BUILDFILE=$RANDOM.txt
-BUILD=$BUILDDIR$BUILDFILE
+#BUILD=$BUILDDIR$BUILDFILE  ## New Log BUILD File
+BUILD=$ServBUILD ## Append in server build log file
 # Global Variable to access any bash other files run by this file
 #TESTVARIABLE=hellohelloheloo
 # ...
