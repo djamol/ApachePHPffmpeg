@@ -357,4 +357,4 @@ echo -e "\e[32m########################################\n#### 37 POST INSTALL ##
 ./post.sh
 date +"%r" >> $BUILD;echo "Status :37 POST INSTALL Install END" >> $BUILD;
 date +"%r" >> $BUILD;echo "Status :100% FFMpeg Process is Ended..Thanks For Choosing Our Service" >> $BUILD; 
-
+echo "AmolInstaller: SUCCESS" >> $BUILD; ##tail read BULD Live Close after match this text( autoinstall define function)
