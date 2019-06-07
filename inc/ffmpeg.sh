@@ -15,6 +15,7 @@ cd $SCRIPTPATH/inc/ffmpeg
 chmod +x *.sh
 set -a
 # Global Variable to access any bash other files run by this file
+ServBUILD=$BUILD
 SCRIPTPATH=$SCRIPTPATH
 # seen in the present script!
 set +a
