@@ -469,7 +469,7 @@ set +a
 chmod +x auto*;
 chmod +x inc/*.sh
 ./auto > ServerInstaller-output.log 2>&1 &
-
+tail -f $BUILD | sed '/^AmolInstaller: SUCCESS$/ q'
 
 
 clear
