@@ -43,9 +43,9 @@ tar xvf $_package
 #/usr/local/avpffmpeg/bin/svn  checkout  svn://svn.mplayerhq.hu/mplayer/trunk mplayer
 #cd mplayer/
 cd mplayer-exp*
-echo y | ./configure --prefix=/usr --codecsdir=/usr/local/avpffmpeg/lib/codecs/ \
+echo y | ./configure --prefix=$INSTALL_DDIR --codecsdir=$INSTALL_DDIR/lib/codecs/ \
 		--extra-cflags=-I/usr/local/avpffmpeg/include/ --extra-ldflags=-L/usr/local/avpffmpeg/lib \
-		--with-freetype-config=/usr/local/avpffmpeg/bin/freetype-config   --yasm=/usr/local/avpffmpeg/bin/yasm --disable-gui
+		--with-freetype-config=$INSTALL_DDIR/bin/freetype-config   --yasm=$INSTALL_DDIR/bin/yasm --disable-gui
 
 #./configure --prefix=$INSTALL_DDIR  --codecsdir=$INSTALL_DDIR/lib/codecs/   \
 #		--extra-cflags=-I/usr/local/avpffmpeg/include/ --extra-ldflags=-L/usr/local/avpffmpeg/lib \
