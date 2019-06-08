@@ -2,7 +2,7 @@
 # Amol Patil
 #Email US :support@djamol.com
  # WEB@DjAmol.com
-_package='MPlayer-1.3.0.tar.xz'
+_package='mplayer-export-snapshot.tar.bz2'
 clear
 sleep 2
 echo -e '
@@ -38,11 +38,11 @@ else
 		cp $SCRIPTPATH/src/ffmpeg/$_package $INSTALL_SDIR/
 		echo -e "\033[33;32m file " $_package " exists.";date +"%r" >> $BUILD;echo "Status : Already Exist $_package" >> $BUILD
 fi
-
-tar -xvJf $_package
+tar xvf $_package
+#tar -xvJf $_package
 #/usr/local/avpffmpeg/bin/svn  checkout  svn://svn.mplayerhq.hu/mplayer/trunk mplayer
 #cd mplayer/
-cd MPlayer-1.3.0/
+cd mplayer-exp*
 ./configure --prefix=$INSTALL_DDIR  --codecsdir=$INSTALL_DDIR/lib/codecs/   \
 		--extra-cflags=-I/usr/local/avpffmpeg/include/ --extra-ldflags=-L/usr/local/avpffmpeg/lib \
 		--with-freetype-config=/usr/local/avpffmpeg/bin/freetype-config   --yasm=/usr/local/avpffmpeg/bin/yasm --disable-gui
