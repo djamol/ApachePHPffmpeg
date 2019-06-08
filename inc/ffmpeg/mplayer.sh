@@ -43,9 +43,13 @@ tar xvf $_package
 #/usr/local/avpffmpeg/bin/svn  checkout  svn://svn.mplayerhq.hu/mplayer/trunk mplayer
 #cd mplayer/
 cd mplayer-exp*
-./configure --prefix=$INSTALL_DDIR  --codecsdir=$INSTALL_DDIR/lib/codecs/   \
+echo y | ./configure --prefix=/usr --codecsdir=/usr/local/avpffmpeg/lib/codecs/ \
 		--extra-cflags=-I/usr/local/avpffmpeg/include/ --extra-ldflags=-L/usr/local/avpffmpeg/lib \
 		--with-freetype-config=/usr/local/avpffmpeg/bin/freetype-config   --yasm=/usr/local/avpffmpeg/bin/yasm --disable-gui
+
+#./configure --prefix=$INSTALL_DDIR  --codecsdir=$INSTALL_DDIR/lib/codecs/   \
+#		--extra-cflags=-I/usr/local/avpffmpeg/include/ --extra-ldflags=-L/usr/local/avpffmpeg/lib \
+#		--with-freetype-config=/usr/local/avpffmpeg/bin/freetype-config   --yasm=/usr/local/avpffmpeg/bin/yasm --disable-gui
 make -j$cpu
 if   make install; then
 date +"%r" >> $BUILD;echo "Succcess :MPlayer Installled" >> $BUILD;
