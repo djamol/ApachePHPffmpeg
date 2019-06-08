@@ -26,7 +26,7 @@ echo " "
 echo "The ffmpeg and dependency package installation has  been completed. You can use the following"
 echo "paths for the major binary locations. (Powered ByDjAmolGroup) Make sure to configure it in your conversion scripts too."
 echo ""
-which {ffmpeg,mplayer,mencoder,flvtool2,MP4Box,yamdi}
+which {ffmpeg,mplayer,mencoder,flvtool2,MP4Box,lame,yamdi}
 echo " "
 echo "				Don't forget to do the following "
 echo " "
