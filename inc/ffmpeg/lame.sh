@@ -49,6 +49,7 @@ make -j$cpu
 if   make install; then
 date +"%r" >> $BUILD;echo "Succcess :lame Installled" >> $BUILD;
 echo -e $RED" lame Installed Success ......"$RESET
+ln -sf $INSTALL_DDIR/bin/lame /usr/local/bin
 else
 date +"%r" >> $BUILD;echo "Failed :lame Installation Failed" >> $BUILD;
 echo -e $RED"Failed :lame Installation Failed ......"$RESET
