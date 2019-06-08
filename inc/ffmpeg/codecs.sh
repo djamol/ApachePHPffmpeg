@@ -44,7 +44,8 @@ else
 fi
 
 
-   tar -xvjf $codec_source
+   tar -xvjf $_package
+   tar xjf $_package
    chown -R root.root all-20071007/
    mkdir -pv $INSTALL_DDIR/lib/codecs/
    cp -vrf all-20071007/* $INSTALL_DDIR/lib/codecs/
