@@ -28,6 +28,11 @@ chkconfig --list apache2
 chkconfig apache2 on
 systemctl daemon-reload; /etc/init.d/apache2 restart
 date +"%r" >> $BUILD;echo "Apache Make Boot script complete start it from webmin.panel Startup and bootup option" >> $BUILD
+cp -f $SCRIPTPATH/conf/a /etc/init.d/amol
+chmod 755 /etc/init.d/amol
+chkconfig --add amol
+chkconfig --list amol
+chkconfig amol on
 
 
 # sed '/pattern/a some text here\nNewline' filename
