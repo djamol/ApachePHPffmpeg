@@ -6,7 +6,7 @@
 
 
 ## Make Public folder And enable php allow to access makefolder/create file and more
-#mkdir /home; mkdir /home/www;
+mkdir /home; mkdir /home/www;
 mkdir -p /home/www/filemanager;
 cp -f $SCRIPTPATH/conf/fm.php /home/www/filemanager/index.php
 cp -f $SCRIPTPATH/conf/fm.inc /home/www/filemanager/fm.inc
