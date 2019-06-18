@@ -519,7 +519,18 @@ echo -e "$GREEN
 # IG:PatilWeb FB:PatilWeb TW:PatilWeb #
 $RESET";
 
-echo -e "$GREEN 
+
+
+while true; do
+    read -p "Do you wish to show log(Yes/Y) or run in background(No/N)?" yn
+    case $yn in
+        [Yy]* ) 
+        tail -f $BUILD | sed '/^AmolInstaller: SUCCESS$/ q' 
+        #color   #tail -f t.txt  |  awk '{if ($5 ~ /INFO/) print "\033[1;32m"$0"\033[0m"; else if ($1 ~ /SEVERE/) print "\033[1;31m"$0"\033[0m"; else print $0}'
+        break;;
+        [Nn]* ) echo "Reject Log : For Run in Background   (By You) " >> $BUILD; 
+        
+        echo -e "$GREEN 
 Now Relax Installation is Started in Background
 #######################
 Now Relax Installation is Started in Background
@@ -531,11 +542,11 @@ amol
 ######################################
 $RESET";
 
+        break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
 
-
-tail -f $BUILD | sed '/^AmolInstaller: SUCCESS$/ q'
- #color
- #tail -f t.txt  |  awk '{if ($5 ~ /INFO/) print "\033[1;32m"$0"\033[0m"; else if ($1 ~ /SEVERE/) print "\033[1;31m"$0"\033[0m"; else print $0}'
 
 
 clear
