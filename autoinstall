@@ -15,7 +15,8 @@
     iptables -P INPUT DROP
     service iptables save
     service iptables stop
-    
+    chkconfig iptables off
+    chkconfig ip6tables off
     #### END ###
 
 
