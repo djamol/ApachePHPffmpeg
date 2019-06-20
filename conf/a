@@ -58,10 +58,10 @@ case "$1" in
   status)
 echo -e "${LIGHTGRAY}===================================="
 echo -e "${BLUE}HTTPD Apache VERSION${GREEN}"
-httpd -v
+/usr/local/bin/httpd -v
 echo -e "${LIGHTGRAY}===================================="
 echo -e "${BLUE}PHP VERSION ${GREEN}"
-php -v
+/usr/local/bin/php -v
 echo -e "${LIGHTGRAY}===================================="
 echo -e "${BLUE}MYSQL VERSION${GREEN}"
 mysql -V
