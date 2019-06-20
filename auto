@@ -179,12 +179,14 @@ if [ $PostFix = "true" ]
                 echo "Reject By USER PostFix INstall"
 fi
 date +"%r" >> $BUILD;echo "Status : Auto POSTFIX Installation END" >> $BUILD
+date +"%r" >> $BUILD;echo "Status : Generate SSL Certificate Files" >> $BUILD
+source "$SCRIPTPATH/inc/ssl.sh";
+date +"%r" >> $BUILD;echo "Status : Generate SSL Certificate END" >> $BUILD
 date +"%r" >> $BUILD;echo "Status : Last Setup bash Start" >> $BUILD
 source "$SCRIPTPATH/inc/last.sh";
 date +"%r" >> $BUILD;echo "Status : Last Setup bash END" >> $BUILD
 date +"%r" >> $BUILD;echo "Status : Auto Extra Domain conf Start" >> $BUILD
 source "$SCRIPTPATH/inc/domainauto.sh";
-source "$SCRIPTPATH/inc/ssl.sh";
 date +"%r" >> $BUILD;echo "Status : Auto Extra Domain Conf END" >> $BUILD
 date +"%r" >> $BUILD;echo "Status : Auto PERL And NET-SSL Installation Start" >> $BUILD
 yum -y install perl perl-CPAN perl-Net-SSLeay perl-IO-Socket-SSL
