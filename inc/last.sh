@@ -27,6 +27,8 @@ chkconfig --add apache2
 chkconfig --list apache2
 chkconfig apache2 on
 systemctl daemon-reload; /etc/init.d/apache2 restart
+#https://confluence.atlassian.com/kb/starting-service-on-linux-throws-a-no-such-file-or-directory-error-794203722.html
+sed -i -e 's/\r//g' /etc/init.d/apache2 #This issue may occurs on *nix systems , looking for ^M at the end of each line. 
 date +"%r" >> $BUILD;echo "Apache Make Boot script complete start it from webmin.panel Startup and bootup option" >> $BUILD
 cp -f $SCRIPTPATH/conf/a /etc/init.d/amol
 chmod 755 /etc/init.d/amol
