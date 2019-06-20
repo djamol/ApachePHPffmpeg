@@ -184,6 +184,7 @@ source "$SCRIPTPATH/inc/last.sh";
 date +"%r" >> $BUILD;echo "Status : Last Setup bash END" >> $BUILD
 date +"%r" >> $BUILD;echo "Status : Auto Extra Domain conf Start" >> $BUILD
 source "$SCRIPTPATH/inc/domainauto.sh";
+source "$SCRIPTPATH/inc/ssl.sh";
 date +"%r" >> $BUILD;echo "Status : Auto Extra Domain Conf END" >> $BUILD
 date +"%r" >> $BUILD;echo "Status : Auto PERL And NET-SSL Installation Start" >> $BUILD
 yum -y install perl perl-CPAN perl-Net-SSLeay perl-IO-Socket-SSL
