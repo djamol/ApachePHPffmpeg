@@ -74,7 +74,9 @@ curl -V
 echo -e "${LIGHTGRAY}===================================="
 echo -e "${BLUE}OPEN SSL${GREEN}"
 openssl version
-
+echo -e "${LIGHTGRAY}===================================="
+echo -e "${BLUE}FFMPEG VERSION${GREEN}"
+/usr/local/bin/ffmpeg -version
         RETVAL=$?
         ;;
   restart)
