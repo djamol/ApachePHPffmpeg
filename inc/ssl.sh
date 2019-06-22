@@ -13,7 +13,8 @@ CAC="US"; CAS="New York"; CAL="New York City"; CAO="Private ORG"; CAU="DA Group"
 mkdir -p /usr/share/ssl/certs
 mkdir -p /etc/ssl/private
 _file="/etc/ssl/certs/postfix.pem"
-if [ -s "$_file" ] && [ -f "$_file" ] then
+if [ -s "$_file" ] && [ -f "$_file" ]
+then
         echo "$_file ssl certificate Exist."
 else
         echo "$_file certificate file is empty or not found."
@@ -40,7 +41,8 @@ echo "$SSLCERt"
 fi
 
 _file="/usr/share/ssl/certs/amol.cert"
-if [ -s "$_file" ] && [ -f "$_file" ] then
+if [ -s "$_file" ] && [ -f "$_file" ]
+then
         echo "$_file ssl certificate Exist."
 else
         echo "$_file certificate file is empty or not found."
@@ -70,7 +72,8 @@ fi
 
 
 _file="/usr/share/ssl/certs/ssl.crt"
-if [ -s "$_file" ] && [ -f "$_file" ] then
+if [ -s "$_file" ] && [ -f "$_file" ] 
+then
         echo "$_file ssl certificate Exist."
 else
         echo "$_file certificate file is empty or not found."
