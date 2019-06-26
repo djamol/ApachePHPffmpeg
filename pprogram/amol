@@ -81,26 +81,35 @@ if [ $ClearX = "true" ]
 then
  clear
 fi
- echo "   M A I N - M E N U"
- echo "1. Contents of /etc/passwd"
- echo "2. List of users currently logged"
- echo "3. Prsent handling directory"
- echo "4. Exit"
+ echo -e "${ORANGE}########################"
+ echo -e "${LIGHTRED}   M A I N - M E N U"
+ echo -e "${ORANGE}########################"
+ echo -e "${BLUE}1. Your VPS benchmark information"
+ echo -e "${PURPLE}2. Add Domain in Apache server with Bind DNS"
+ echo -e "${CYAN}3. ADD ftp account to access ftp service"
+ echo -e "${DARKGRAY}4. Database Backup StructureWithDATA or Only Table Structure"
+ echo -e "${LIGHTGREEN}5. Restore database from sql"
+ echo -e "${RED}6. Exit"
  ClearX="false"
- echo -n "Please enter option [1 - 4]"
+ echo -n "${DARKGRAY}Please enter option [1 - 4]${NOCOLOR}"
  read opt
  case $opt in
-  1) echo "************ Conents of /etc/passwd *************";
-     more /etc/passwd;;
-  2) echo "*********** List of users currently logged";
-     who | more;;
-  3) echo "You are in $(pwd) directory";
+  1) echo -e "${BLUE}************ sinfo Service *************${NOCOLOR}";
+     sinfo;;
+  2) echo "${BLUE}*********** adddomain Service ***********${NOCOLOR}";
+     adddomain;;
+  3) echo "${BLUE}*********** addftp Service [ftp://IP:1980]***********${NOCOLOR}";
+     addftp;
      echo "Press [enter] key to continue. . .";
      read enterKey;;
-  4) echo "Bye $USER";
+  2) echo "${BLUE}*********** dbbackup Service ***********${NOCOLOR}";
+     dbbackup;;
+  2) echo "${BLUE}*********** dbrestore Service ***********${NOCOLOR}";
+     dbrestore;;
+  4) echo "${GREEN}Bye $USER";
      exit 1;;
-  *) echo "$opt is an invaild option. Please select option between 1-4 only";
-     echo "Press [enter] key to continue. . .";
+  *) echo "${PURPLE}$opt is an invaild option. Please select option between 1-4 only${NOCOLOR}";
+     echo "${YELLOW}Press [enter] key to continue. . .{NOCOLOR}";
      read enterKey;;
 esac
 done
