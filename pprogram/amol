@@ -103,8 +103,8 @@ ${NOCOLOR}";
  echo -e "${LIGHTGREEN}5. Restore database from sql"
  echo -e "${BLUE}6. Exit"
  ClearX="true"
- echo -e "${ORANGE}";
- echo -n "Please enter option [1 - 4]${NOCOLOR}"
+ echo -e "${NOCOLOR}";
+ echo -n "Please enter option [1 - 4]"
  read opt
  case $opt in
   1) echo -e "${BLUE}************ sinfo Service *************${NOCOLOR}";
