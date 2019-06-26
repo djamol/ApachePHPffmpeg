@@ -125,7 +125,7 @@ ${NOCOLOR}";
      echo -n "Enter Mysql Password For user"
      read ups
      echo "GRANT ALL PRIVILEGES ON *.* TO '$uid'@'localhost' IDENTIFIED BY '$ups'" | mysql -u root 
-     #mysql -u root -e "create database testdb";
+     echo"";; #mysql -u root -e "create database testdb";
   7) echo -e "${GREEN}Bye $USER${NOCOLOR}";
      exit 1;;
   *) echo -e "${PURPLE}$opt is an invaild option. Please select option between 1-7 only${NOCOLOR}";
