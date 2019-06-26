@@ -4,7 +4,7 @@
 # djamolpatil@gmail.com
 
 
-
+mkdir -p /usr/local/apache2/conf/amolhost
 ## Make Public folder And enable php allow to access makefolder/create file and more
 mkdir /home; mkdir /home/www;
 mkdir -p /home/www/filemanager;
