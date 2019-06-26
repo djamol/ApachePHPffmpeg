@@ -99,26 +99,27 @@ ${NOCOLOR}";
  echo -e "${BLUE}1. Your VPS benchmark information"
  echo -e "${PURPLE}2. Add Domain in Apache server with Bind DNS"
  echo -e "${CYAN}3. ADD ftp account to access ftp service"
- echo -e "${DARKGRAY}4. Database Backup StructureWithDATA or Only Table Structure"
+ echo -e "${PURPLE}4. Database Backup StructureWithDATA or Only Table Structure"
  echo -e "${LIGHTGREEN}5. Restore database from sql"
- echo -e "${RED}6. Exit"
+ echo -e "${BLUE}6. Exit"
  ClearX="true"
- echo -n "${DARKGRAY}Please enter option [1 - 4]${NOCOLOR}"
+ echo -e "${ORANGE}";
+ echo -n "Please enter option [1 - 4]${NOCOLOR}"
  read opt
  case $opt in
   1) echo -e "${BLUE}************ sinfo Service *************${NOCOLOR}";
      sinfo;;
-  2) echo "${BLUE}*********** adddomain Service ***********${NOCOLOR}";
+  2) echo -e "${BLUE}*********** adddomain Service ***********${NOCOLOR}";
      adddomain;;
-  3) echo "${BLUE}*********** addftp Service [ftp://IP:1980]***********${NOCOLOR}";
+  3) echo -e "${BLUE}*********** addftp Service [ftp://IP:1980]***********${NOCOLOR}";
      addftp;
-     echo "Press [enter] key to continue. . .";
+     echo -e "Press [enter] key to continue. . .";
      read enterKey;;
-  2) echo "${BLUE}*********** dbbackup Service ***********${NOCOLOR}";
+  4) echo -e "${BLUE}*********** dbbackup Service ***********${NOCOLOR}";
      dbbackup;;
-  2) echo "${BLUE}*********** dbrestore Service ***********${NOCOLOR}";
+  5) echo -e "${BLUE}*********** dbrestore Service ***********${NOCOLOR}";
      dbrestore;;
-  4) echo "${GREEN}Bye $USER";
+  6) echo -e "${GREEN}Bye $USER${NOCOLOR}";
      exit 1;;
   *) echo "${PURPLE}$opt is an invaild option. Please select option between 1-4 only${NOCOLOR}";
      echo "${YELLOW}Press [enter] key to continue. . .{NOCOLOR}";
