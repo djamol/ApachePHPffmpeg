@@ -81,6 +81,18 @@ if [ $ClearX = "true" ]
 then
  clear
 fi
+echo -e '▒█░▒░▓█░█▒░▒▒█░█▓░▒░█▓   █████▒    ▓█ ▒█▓▓█▓ ██████ ▓████▒░█░      ░█████░▒████▓ ▓█████░ 
+ ░▓ █▓▓█ ▓ ██▒█░▓░▓█░█▓   ▓▒  █▓    ▒█ ▒▓▓▓█▓ ▓░█▓▒█░▓▒  █▓ ▓       ░█░  ▓ ▒▓  ▓█ ▓▒▓█▒█▒ 
+ ▒█▒█▓▓█░█▓▓█▒█▒█▓▓█▒█▓   █▓  █▓░▓░ ▓█ ██▒▒█▓░█▒█▓▒█░██  █▓░█▒  ░   ▒█▒ ░▓ ██  ██ █▓▓█░█▒ 
+ ░█████▓ ██████ ▓█████░▓█ █████░░█████ █▓  █▓░█▒░░▒█ ▓████▒░█████▒█▓ █████ ▒████▓ █▓░▒░█▒ ';
+echo -e "${GREEN}
+# Powered By DjA${ORANGE}mol Group Inc         #
+# Email : Support@dja${PURPLE}mol.com          #
+# Webs${CYAN}ite : www.dja${LIGHTPURPLE}mol.com            #
+# Copyright By PatilW${WHITE}eb.com           #
+# IG:P${YELLOW}atilWeb FB:Patil${LIGHTGREEN}Web TW:Pa${LIGHTPURPLE}tilWeb #
+${NOCOLOR}";
+
  echo -e "${ORANGE}########################"
  echo -e "${LIGHTRED}   M A I N - M E N U"
  echo -e "${ORANGE}########################"
@@ -90,7 +102,7 @@ fi
  echo -e "${DARKGRAY}4. Database Backup StructureWithDATA or Only Table Structure"
  echo -e "${LIGHTGREEN}5. Restore database from sql"
  echo -e "${RED}6. Exit"
- ClearX="false"
+ ClearX="true"
  echo -n "${DARKGRAY}Please enter option [1 - 4]${NOCOLOR}"
  read opt
  case $opt in
