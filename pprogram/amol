@@ -105,7 +105,7 @@ ${NOCOLOR}";
  echo -e "${BLUE}7. Exit"
  ClearX="true"
  echo -e "${NOCOLOR}";
- echo -n "Please enter option [1 - 4]"
+ echo -n "Please enter option [1 - 7]"
  read opt
  case $opt in
   1) echo -e "${BLUE}************ sinfo Service *************${NOCOLOR}";
