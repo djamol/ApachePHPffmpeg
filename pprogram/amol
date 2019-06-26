@@ -121,7 +121,7 @@ ${NOCOLOR}";
      dbrestore;;
   6) echo -e "${GREEN}Bye $USER${NOCOLOR}";
      exit 1;;
-  *) echo -e "${PURPLE}$opt is an invaild option. Please select option between 1-4 only${NOCOLOR}";
+  *) echo -e "${PURPLE}$opt is an invaild option. Please select option between 1-6 only${NOCOLOR}";
      echo -e "${YELLOW}Press [enter] key to continue. . .{NOCOLOR}";
      read enterKey;;
 esac
