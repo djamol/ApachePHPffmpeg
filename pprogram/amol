@@ -101,7 +101,8 @@ ${NOCOLOR}";
  echo -e "${CYAN}3. ADD ftp account to access ftp service"
  echo -e "${PURPLE}4. Database Backup StructureWithDATA or Only Table Structure"
  echo -e "${LIGHTGREEN}5. Restore database from sql"
- echo -e "${BLUE}6. Exit"
+ echo -e "${PURPLE}6. Create Mysql/MariaDB User"
+ echo -e "${BLUE}7. Exit"
  ClearX="true"
  echo -e "${NOCOLOR}";
  echo -n "Please enter option [1 - 4]"
@@ -119,9 +120,15 @@ ${NOCOLOR}";
      dbbackup;;
   5) echo -e "${BLUE}*********** dbrestore Service ***********${NOCOLOR}";
      dbrestore;;
-  6) echo -e "${GREEN}Bye $USER${NOCOLOR}";
+  6) echo -n "Enter Mysql New Username"
+     read uid
+     echo -n "Enter Mysql Password For user"
+     read ups
+     echo "GRANT ALL PRIVILEGES ON *.* TO '$uid'@'localhost' IDENTIFIED BY '$ups'" | mysql -u root 
+     #mysql -u root -e "create database testdb";
+  7) echo -e "${GREEN}Bye $USER${NOCOLOR}";
      exit 1;;
-  *) echo -e "${PURPLE}$opt is an invaild option. Please select option between 1-6 only${NOCOLOR}";
+  *) echo -e "${PURPLE}$opt is an invaild option. Please select option between 1-7 only${NOCOLOR}";
      echo -e "${YELLOW}Press [enter] key to continue. . .{NOCOLOR}";
      read enterKey;;
 esac
