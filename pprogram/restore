@@ -1,0 +1,33 @@
+echo -e "\e[32m########################################\n####  Restore With Config Server Files      #########\n########################################"
+while true; do
+    read -p "Do you wish to Restore config files httpd,proftd,bind dns  and other?" yn
+    case $yn in
+        [Yy]* ) SRVC="true"; break;;
+        [Nn]* ) echo "Service config file backup( Reject By You)  "; break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+if [ $SRVC = "true" ]
+then
+#BIND DNS
+cp -rf /etc/named.main.zones /home/conf/nmz
+cp -rf /etc/named.conf /home/conf/nc
+cp -rf /var/named/*.db /home/conf/
+#PROFTPD 
+cp -rf /etc/proftpd.conf /home/www/pc
+cp -rf /etc/proftpd/ftpd-rsa.pem /home/conf/fp
+cp -rf /etc/proftpd/passwd.vhosts /home/conf/vh
+cp -rf /etc/proftpd/ftpd-rsa-key.pem /home/conf/fk
+#PostFix
+cp -rf /etc/postfix/virtual-regexp /home/conf/vr
+cp -rf /etc/postfix/virtual /home/conf/v
+#Apache 
+cp -rf /usr/local/apache2/conf/httpd.conf /home/conf/hc
+cp -rf /usr/local/apache2/conf/amolhost/*.conf /home/conf/
+#Cron JOb
+cp -rf /var/spool/cron/root /home/conf/cr
+#PHP Config
+cp -rf /usr/local/lib/php.ini /home/conf/pin
+        else
+                echo "Reject By you server config file backup";
+fi
