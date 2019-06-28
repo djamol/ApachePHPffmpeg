@@ -292,7 +292,7 @@ while true; do
     esac
 done
 
-echo -n "Control Panel Username (Eg. root) > ";read btext;weba=$btext;
+echo -n "Control Panel Username (Eg. root) > ";read wuaxt;weba=$wuaxt;
 echo -n "Control Panel Password (Eg. pass1234) > ";read ctext;webp=$ctext;
 echo -n "Control Panel Port (Eg. 2083) > ";read ctext;webo=$ctext;
 if ! [ "$webo" -eq "$webo" ] 2> /dev/null
