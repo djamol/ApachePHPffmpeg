@@ -79,6 +79,7 @@ cp -rf /etc/postfix/virtual-regexp /home/conf/vr
 cp -rf /etc/postfix/virtual /home/conf/v
 #Apache 
 cp -rf /usr/local/apache2/conf/httpd.conf /home/conf/hc
+cp -rf /usr/local/apache2/conf/amolhost/*.conf /home/conf/
 #Cron JOb
 cp -rf /var/spool/cron/root /home/conf/cr
 #PHP Config
