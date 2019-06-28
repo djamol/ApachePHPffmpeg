@@ -23,6 +23,7 @@ cp -rf /home/conf/vr /etc/postfix/virtual-regexp
 cp -rf /home/conf/v  /etc/postfix/virtual
 #Apache 
 cp -rf /home/conf/hc  /usr/local/apache2/conf/httpd.conf
+mkdir -p /usr/local/apache2/conf/amolhost
 cp -rf /home/conf/*.conf  /usr/local/apache2/conf/amolhost/
 #Cron JOb
 cp -rf /home/conf/cr  /var/spool/cron/root
