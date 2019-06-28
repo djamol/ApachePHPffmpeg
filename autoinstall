@@ -528,7 +528,7 @@ while true; do
         tail -f $BUILD | sed '/^AmolInstaller: SUCCESS$/ q' 
         #color   #tail -f t.txt  |  awk '{if ($5 ~ /INFO/) print "\033[1;32m"$0"\033[0m"; else if ($1 ~ /SEVERE/) print "\033[1;31m"$0"\033[0m"; else print $0}'
         break;;
-        [Nn]* ) echo "Reject Log : For Run in Background   (By You) " >> $BUILD; 
+        [Nn]* ) echo "Reject LiveMonitor-Log : Now Relax Installation is Started in Background   (By You) " >> $BUILD; 
         
         echo -e "$GREEN 
 Now Relax Installation is Started in Background
