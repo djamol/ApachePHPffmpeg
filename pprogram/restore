@@ -13,9 +13,9 @@ then
 cp -rf /home/conf/nmz /etc/named.main.zones
 cp -rf /home/conf/nc /etc/named.conf 
 cp -rf /home/conf/*.db /var/named/
-chown root:named -R /var/named/
-chown root:named /etc/named.main.zones
-chown root:named /etc/named.conf 
+#chown root:named -R /var/named/
+#chown root:named /etc/named.main.zones
+#chown root:named /etc/named.conf 
 #PROFTPD 
 cp -rf /home/www/pc /etc/proftpd.conf
 cp -rf /home/conf/fp /etc/proftpd/ftpd-rsa.pem 
