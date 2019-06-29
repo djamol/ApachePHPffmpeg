@@ -1,0 +1,17 @@
+
+
+I use wget -rkpN -e robots=off http://www.example.com/
+
+-r means recursively
+
+-k means convert links. So links on the webpage will be localhost instead of example.com/bla
+
+-p means get all webpage resources so obtain images and javascript files to make website work properly.
+
+-N is to retrieve timestamps so if local files are newer than files on remote website skip them.
+
+-e is a flag option it needs to be there for the robots=off to work.
+
+robots=off means ignore robots file.
+
+I also had -c in this command so if they connection dropped if would continue where it left off from when i re-run the command. I figured -N would go well with -c
