@@ -92,9 +92,9 @@ cp -f $SCRIPTPATH/conf/php.ini /usr/local/lib/php.ini
           if[ $AW="true" ]
              then
           mkdir -p /var/logs/httpd/$element
-          LogFile="CustomLog /var/logs/httpd/$element/aclog.log \"combined\""
+          LogFile="CustomLog /var/logs/httpd/$MAINDOMAIN/aclog.log \"combined\""
           else
-          LogFile="#CustomLog /var/logs/httpd/$element/aclog.log \"combined\""
+          LogFile="#CustomLog /var/logs/httpd/$MAINDOMAIN/aclog.log \"combined\""
 fi
 
 echo -e '<VirtualHost '$MAINIP':80>\nServerName '$MAINDOMAIN'\nServerAlias www.'$MAINDOMAIN'\n'$LogFile'\nDocumentRoot /home/www\nServerAdmin webmaster@djamol.com\n</VirtualHost>' >> /usr/local/apache2/conf/amolhost/main.conf
