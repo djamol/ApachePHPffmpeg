@@ -84,7 +84,7 @@ SCRIPT=$(readlink -f "$0")
 SCRIPTPATH=$(dirname "$SCRIPT")
 #echo $SCRIPTPATH
 
-BIND="n"; CURL="n"; DB="n"; Apache="n";PHPe="n";CRON="n";CSSF="n";WCP="n";PFTP="n";PostFix="n";FF="n";PHPT="n";
+BIND="n"; CURL="n"; DB="n"; Apache="n";PHPe="n";CRON="n";CSSF="n";WCP="n";PFTP="n";PostFix="n";FF="n";PHPT="n";AW="n";
 #set timezone
 rm -rf /etc/localtime
 ln -s /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
