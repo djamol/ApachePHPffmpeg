@@ -370,6 +370,30 @@ while true; do
 done
 
 
+clear
+
+echo -e '▒█░▒░▓█░█▒░▒▒█░█▓░▒░█▓   █████▒    ▓█ ▒█▓▓█▓ ██████ ▓████▒░█░      ░█████░▒████▓ ▓█████░ 
+ ░▓ █▓▓█ ▓ ██▒█░▓░▓█░█▓   ▓▒  █▓    ▒█ ▒▓▓▓█▓ ▓░█▓▒█░▓▒  █▓ ▓       ░█░  ▓ ▒▓  ▓█ ▓▒▓█▒█▒ 
+ ▒█▒█▓▓█░█▓▓█▒█▒█▓▓█▒█▓   █▓  █▓░▓░ ▓█ ██▒▒█▓░█▒█▓▒█░██  █▓░█▒  ░   ▒█▒ ░▓ ██  ██ █▓▓█░█▒ 
+ ░█████▓ ██████ ▓█████░▓█ █████░░█████ █▓  █▓░█▒░░▒█ ▓████▒░█████▒█▓ █████ ▒████▓ █▓░▒░█▒ ';
+echo -e "$GREEN 
+# Powered By DjAmol Group Inc         #
+# Email : Support@djamol.com          #
+# Website : www.djamol.com            #
+# Copyright By PatilWeb.com           #
+# IG:PatilWeb FB:PatilWeb TW:PatilWeb #
+$RESET";
+echo -e "\e[34m########################################\n####  AWStats is Web analytics Software  ###########\n########################################"
+while true; do
+    read -p "Do you wish to install (AWStats )WebAnalytics program?" yn
+    case $yn in
+        [Yy]* ) AW="true"; break;;
+        [Nn]* ) echo "Reject Program : AWStats   (By You) " >> $BUILD; break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+
 
 clear
 echo -e '▒█░▒░▓█░█▒░▒▒█░█▓░▒░█▓   █████▒    ▓█ ▒█▓▓█▓ ██████ ▓████▒░█░      ░█████░▒████▓ ▓█████░ 
@@ -444,6 +468,7 @@ BIND=$BIND
 CURL=$CURL
 DB=$DB
 WCP=$WCP
+AW=$AW
 Apache=$Apache
 PHPe=$PHPe
 PHPT=$PHPT;
