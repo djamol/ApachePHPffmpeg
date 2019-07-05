@@ -2,6 +2,7 @@ prog="amol (Awstats)"
 case "$1" in
   start)
         start
+        mv /usr/local/apache2/conf/amolhost/awstats.bak /usr/local/apache2/conf/amolhost/awstats.conf
         for i in `find /usr/local/apache2/conf/amolhost/ -name "*.conf" -type f`; do
 echo "Path :$i"
 f="$(basename -- $i)"
@@ -11,6 +12,7 @@ done
         ;;
   stop)
         stop
+        mv /usr/local/apache2/conf/amolhost/awstats.conf /usr/local/apache2/conf/amolhost/awstats.bak
 for i in `find /usr/local/apache2/conf/amolhost/ -name "*.conf" -type f`; do
 echo "Path :$i"
 f="$(basename -- $i)"
@@ -22,7 +24,6 @@ done
 echo -e "${LIGHTGRAY}===================================="
 echo -e "${BLUE}AWStats is an open source Web analytics reporting tool${GREEN}"
 echo -e "${BLUE}You can start or stop${GREEN}"
-/usr/local/bin/ffmpeg -version
         RETVAL=$?
         ;;
   restart)
