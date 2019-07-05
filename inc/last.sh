@@ -88,9 +88,17 @@ cp -f $SCRIPTPATH/conf/apache.conf /etc/webmin/apache/config
 cp -f $SCRIPTPATH/conf/httpd.conf /usr/local/apache2/conf/httpd.conf
 sed -i "s/host.name.com/$MYHOST/g" /usr/local/apache2/conf/httpd.conf
 cp -f $SCRIPTPATH/conf/php.ini /usr/local/lib/php.ini
+          LogFile=""
+          if[ $AW="true" ]
+             then
+          mkdir -p /var/logs/httpd/$element
+          LogFile="CustomLog /var/logs/httpd/$element/aclog.log \"combined\""
+          else
+          LogFile="#CustomLog /var/logs/httpd/$element/aclog.log \"combined\""
+fi
 
-echo -e '<VirtualHost '$MAINIP':80>\nServerName '$MAINDOMAIN'\nServerAlias www.'$MAINDOMAIN'\nDocumentRoot /home/www\nServerAdmin webmaster@djamol.com\n</VirtualHost>' >> /usr/local/apache2/conf/amolhost/main.conf
-echo -e '<VirtualHost '$MAINIP':443>\nServerName '$MAINDOMAIN'\nServerAlias www.'$MAINDOMAIN'\nDocumentRoot /home/www\n<IfModule mod_ssl.c>\nSSLEngine on\n        SSLCertificateFile /usr/share/ssl/certs/ssl.crt\n        SSLCertificateKeyFile /usr/share/ssl/certs/ssl.crt\n    </IfModule>\n</VirtualHost>\n' >> /usr/local/apache2/conf/amolhost/main.conf
+echo -e '<VirtualHost '$MAINIP':80>\nServerName '$MAINDOMAIN'\nServerAlias www.'$MAINDOMAIN'\n'$LogFile'\nDocumentRoot /home/www\nServerAdmin webmaster@djamol.com\n</VirtualHost>' >> /usr/local/apache2/conf/amolhost/main.conf
+echo -e '<VirtualHost '$MAINIP':443>\nServerName '$MAINDOMAIN'\nServerAlias www.'$MAINDOMAIN'\n'$LogFile'\nDocumentRoot /home/www\n<IfModule mod_ssl.c>\nSSLEngine on\n        SSLCertificateFile /usr/share/ssl/certs/ssl.crt\n        SSLCertificateKeyFile /usr/share/ssl/certs/ssl.crt\n    </IfModule>\n</VirtualHost>\n' >> /usr/local/apache2/conf/amolhost/main.conf
 
 sed -i '/listen-on port/c\	listen-on port 53 { any; };' /etc/named.conf
 sed -i '/allow-query/c\	allow-query     { any; };' /etc/named.conf
