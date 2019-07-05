@@ -9,6 +9,9 @@ f="$(basename -- $i)"
 echo "File :$f"
 sed -i 's/#CustomLog/CustomLog/g' $f
 done
+echo "Service is Started Httpd Log File (its required for awstats)"
+service apache2 reload
+
         ;;
   stop)
         stop
@@ -19,6 +22,8 @@ f="$(basename -- $i)"
 echo "File :$f"
 sed -i 's/CustomLog/#CustomLog/g' $f
 done
+echo "Service is Stopped Log File (its required for awstats)"
+service apache2 reload
         ;;
   status)
 echo -e "${LIGHTGRAY}===================================="
