@@ -27,4 +27,5 @@ sed -i "s/^LogFile.*/LogFile=\"/usr/local/apache2/logs/access_log\"/" /etc/awsta
 sed -i "s/^HostAliases.*/HostAliases=\"localhost\ 127.0.0.1\ ${MAINDOMAIN}\"/" /etc/awstats/awstats.$MAINDOMAIN.conf
 /usr/share/awstats/wwwroot/cgi-bin/awstats.pl -config=$MAINDOMAIN -update
 ## cronjob update daily
-0 * * * * root /usr/share/awstats/wwwroot/cgi-bin/awstats.pl -config=$MAINDOMAIN -update
+
+echo "0 * * * * /usr/share/awstats/wwwroot/cgi-bin/awstats.pl -config=${MAINDOMAIN} -update" >> /var/spool/cron/root
