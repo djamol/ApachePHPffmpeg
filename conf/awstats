@@ -1,0 +1,42 @@
+prog="amol (Auto Installer)"
+case "$1" in
+  start)
+        start
+        ;;
+  stop)
+        stop
+        ;;
+  status)
+echo -e "${LIGHTGRAY}===================================="
+echo -e "${BLUE}AWStats is an open source Web analytics reporting tool${GREEN}"
+echo -e "${BLUE}You can start or stop${GREEN}"
+/usr/local/bin/ffmpeg -version
+        RETVAL=$?
+        ;;
+  restart)
+        stop
+        start
+        ;;
+  condrestart|try-restart)
+        if status -p ${pidfile} $httpd >&/dev/null; then
+                stop
+                start
+        fi
+        ;;
+  force-reload|reload)
+        reload
+        ;;
+  graceful|help|configtest|fullstatus)
+        $apachectl $@
+        RETVAL=$?
+        ;;
+  *)
+        echo -e "${RED}Usage: $prog {status,stop,start}${NOCOLOR}"
+ echo "Command :: service awstats status"
+esac
+
+$RETVAL
+echo -e "${GREEN}
+# AWStats is an open source Web analytics reporting tool         #
+${NOCOLOR}";
+exit
