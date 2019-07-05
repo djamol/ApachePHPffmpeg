@@ -6,3 +6,16 @@ yum --enablerepo=epel install awstats -y
 # htpasswd -c /etc/local/user amol
 
 cp -f $SCRIPTPATH/conf/awstats.conf /usr/local/apache2/conf/amolhost/awstats.conf
+
+#WEBA="test1"
+#WEBP="djamol007"
+SSLCERt=$(expect -c "
+set timeout 35
+  spawn htpasswd -c /etc/htpasswd/.htpasswd $WEBA
+  expect \"password*:\"
+  send \"$WEBP\r\"
+  expect \"password*:\"
+ send \"$WEBP\r\"
+expect eof
+")
+echo "$SSLCERt"
