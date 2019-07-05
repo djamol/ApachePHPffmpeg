@@ -1,10 +1,22 @@
-prog="amol (Auto Installer)"
+prog="amol (Awstats)"
 case "$1" in
   start)
         start
+        for i in `find /usr/local/apache2/conf/amolhost/ -name "*.conf" -type f`; do
+echo "Path :$i"
+f="$(basename -- $i)"
+echo "File :$f"
+sed -i 's/#CustomLog/CustomLog/g' $f
+done
         ;;
   stop)
         stop
+for i in `find /usr/local/apache2/conf/amolhost/ -name "*.conf" -type f`; do
+echo "Path :$i"
+f="$(basename -- $i)"
+echo "File :$f"
+sed -i 's/CustomLog/#CustomLog/g' $f
+done
         ;;
   status)
 echo -e "${LIGHTGRAY}===================================="
