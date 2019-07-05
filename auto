@@ -178,6 +178,15 @@ if [ $PostFix = "true" ]
         else
                 echo "Reject By USER PostFix INstall"
 fi
+echo -e "\e[32m########################################\n####   AWStats Software       #########\n########################################"
+if [ $AW = "true" ]
+        then
+                source "$SCRIPTPATH/inc/awstats.sh";
+        else
+                echo "Reject By USER AWStats INstall"
+fi
+date +"%r" >> $BUILD;echo "Status : Auto AWStats Web analytics Installation END" >> $BUILD
+
 date +"%r" >> $BUILD;echo "Status : Auto POSTFIX Installation END" >> $BUILD
 date +"%r" >> $BUILD;echo "Status : Generate SSL Certificate Files" >> $BUILD
 source "$SCRIPTPATH/inc/ssl.sh";
