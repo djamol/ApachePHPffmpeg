@@ -11,7 +11,7 @@ cp -f $SCRIPTPATH/conf/awstats.conf /usr/local/apache2/conf/amolhost/awstats.con
 #WEBP="djamol007"
 SSLCERt=$(expect -c "
 set timeout 35
-  spawn htpasswd -c /etc/htpasswd/.htpasswd $WEBA
+  spawn /usr/local/apache2/bin/htpasswd -c /etc/htpasswd/.htpasswd $WEBA
   expect \"password*:\"
   send \"$WEBP\r\"
   expect \"password*:\"
