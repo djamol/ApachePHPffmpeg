@@ -19,3 +19,6 @@ set timeout 35
 expect eof
 ")
 echo "$SSLCERt"
+
+
+cp /etc/awstats/awstats.localhost.localdomain.conf etc/awstats/awstats.$MAINDOMAIN.conf
