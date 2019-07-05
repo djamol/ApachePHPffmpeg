@@ -24,3 +24,4 @@ echo "$SSLCERt"
 cp /etc/awstats/awstats.localhost.localdomain.conf /etc/awstats/awstats.$MAINDOMAIN.conf
 sed -i 's/localhost.localdomain/$MAINDOMAIN/' /etc/awstats/awstats.$MAINDOMAIN.conf
  sed -i 's/^HostAliases.*/HostAliases="loalhost\ 127.0.0.1\ $MAINDOMAIN"/' /etc/awstats/awstats.$MAINDOMAIN.conf
+/usr/share/awstats/wwwroot/cgi-bin/awstats.pl -config=$MAINDOMAIN -update
