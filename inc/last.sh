@@ -7,9 +7,14 @@
 mkdir -p /usr/local/apache2/conf/amolhost
 ## Make Public folder And enable php allow to access makefolder/create file and more
 mkdir /home; mkdir /home/www;
-mkdir -p /home/www/filemanager;
-cp -f $SCRIPTPATH/conf/fm.php /home/www/filemanager/index.php
-cp -f $SCRIPTPATH/conf/fm.inc /home/www/filemanager/fm.inc
+#mkdir -p /home/www/filemanager;
+mkdir -p /usr/share/amolpanel/;
+chmod 755 /usr/share/amolpanel/;
+cp -f $SCRIPTPATH/conf/fm.php /usr/share/amolpanel/index.php
+cp -f $SCRIPTPATH/conf/fm.inc /usr/share/amolpanel/fm.inc
+chmod 644 /usr/share/amolpanel/index.php;
+chmod 644 /usr/share/amolpanel/fm.inc;
+
 cp -f $SCRIPTPATH/conf/ind /home/www//index.php
 #echo "<html><body>" >> /home/www/index.php
 #echo "<center><h1>It works Apache!<br></h1><br><br><h1><a href='filemanager/'>File Manager</a></h1></center><br><small>Change user name password for filemanager edit /home/www/filemanager/index.php </small><br> <?php phpinfo(); ?></body></html>" >> /home/www/index.php
