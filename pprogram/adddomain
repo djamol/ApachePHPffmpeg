@@ -67,9 +67,29 @@ echo -n "Enter Your Additional Domain seprate by comma(Eg. domain.com,domain.in,
 read dstring
 echo "Request By You Domains: $dstring (...Wait..)"
 
+AW="no"
+while true; do
+    read -p "Do you wish to Enable (httpd)AccessLog/Customlog (Its required for AWstats Analytics )?" yn
+    case $yn in
+        [Yy]* ) AW="true"; break;;
+        [Nn]* ) echo "Reject Program : httpd log (By You) " >> $BUILD; break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+
 IFS=', ' read -r -a array <<< "$dstring"
 for element in "${array[@]}"
 do
+
+               LogFile=""
+                  if[ $AW="true" ]
+                          then
+                         mkdir -p /var/logs/httpd/$element
+                         LogFile="CustomLog /var/logs/httpd/$element/aclog.log \"combined\""
+                          else
+                         LogFile="#CustomLog /var/logs/httpd/$element/aclog.log \"combined\""
+                  fi
     echo -e '<VirtualHost '$MAINIP':80>\nServerName '$element'\nServerAlias www.'$element'\nDocumentRoot /home/www/domain/'$element'\nServerAdmin webmaster@djamol.com\n</VirtualHost>' >> /usr/local/apache2/conf/httpd.conf
     echo -e '$TTL 14400\n@      86400	IN      SOA     ns1.'$MAINDOMAIN'. djamolpatil.gmail.com. (\n		2016033003	; serial, todays date+todays\n		3600		; refresh, seconds\n		7200		; retry, seconds\n		1209600		; expire, seconds\n		86400 )		; minimum, seconds\n\n'$element'. 86400 IN NS ns1.'$MAINDOMAIN'.\n'$element'. 86400 IN NS ns2.'$MAINDOMAIN'.\n\n\n'$element'. IN A '$MAINIP'\nmail.'$element'. IN A '$MAINIP'\nmail.'$element'. IN MX 5 mail.'$element'.\n\nwww IN CNAME '$element'.\nftp IN CNAME '$element'.\n' >> /var/named/$element.db
     echo -e '\nzone "'$element'" {	type master;	file "/var/named/'$element'.db";};' >> /etc/named.main.zones
