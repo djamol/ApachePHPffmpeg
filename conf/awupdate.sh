@@ -18,7 +18,7 @@ then
       echo "\$p_out is empty"
 else
       echo "\$p_out is NOT empty"
-      /usr/bin/tar -czvf /var/logs/httpd/apvideo.info/`(date +%Y%m%d)`.log.tar.gz /var/logs/httpd/$p_out/aclog.log
+      /usr/bin/tar -czvf /var/logs/httpd/$p_out/`(date +%Y%m%d)`.log.tar.gz /var/logs/httpd/$p_out/aclog.log
       rm -rf /var/logs/httpd/$p_out/aclog.log
       /usr/share/awstats/wwwroot/cgi-bin/awstats.pl -config=$p_out -update
 
@@ -35,7 +35,7 @@ echo "Found $f file..."
 domain=$( echo $f | sed "s/.*awstats.//;s/.conf.*//" )
 echo "Processing domain : $domain";
   # take action on each file. $f store current file name
-      /usr/bin/tar -czvf /var/logs/httpd/apvideo.info/`(date +%Y%m%d)`.log.tar.gz /var/logs/httpd/$domain/aclog.log
+      /usr/bin/tar -czvf /var/logs/httpd/$domain/`(date +%Y%m%d)`.log.tar.gz /var/logs/httpd/$domain/aclog.log
       rm -rf /var/logs/httpd/$domain/aclog.log
       /usr/share/awstats/wwwroot/cgi-bin/awstats.pl -config=$domain -update
 
