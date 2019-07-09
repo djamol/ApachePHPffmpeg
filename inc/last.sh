@@ -42,6 +42,10 @@ chkconfig --add amol
 chkconfig --list amol
 chkconfig amol on
 
+## awstats update  automatically
+mkdir -p /etc/awstats/
+cp -f $SCRIPTPATH/conf/awupdate.sh /etc/awstats/update.sh
+echo -e '55 23 * * * sh /etc/awstats/update.sh #update awstats' >> /var/spool/cron/root
 
 # sed '/pattern/a some text here\nNewline' filename
 #sed '/libphp5.so/a # grep PHP set php.ini file declare path\nPHPIniDir /usr/'
