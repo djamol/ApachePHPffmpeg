@@ -20,6 +20,8 @@ expect eof
 ")
 echo "$SSLCERt"
 
+#GeoIP
+# sh geoip.sh
 
 cp /etc/awstats/awstats.localhost.localdomain.conf /etc/awstats/awstats.$MAINDOMAIN.conf
 sed -i "s/localhost.localdomain/$MAINDOMAIN/" /etc/awstats/awstats.$MAINDOMAIN.conf
