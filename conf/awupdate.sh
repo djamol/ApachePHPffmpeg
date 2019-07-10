@@ -35,7 +35,7 @@ echo "Found $f file..."
 domain=$( echo $f | sed "s/.*awstats.//;s/.conf.*//" )
 echo "Processing domain : $domain";
 aclog = "/var/logs/httpd/$domain/aclog.log";
-if test -f "$aclog"; then
+if [ -f "$aclog" ]; then
     echo "$aclog exist"
   # take action on each file. $f store current file name
       /usr/bin/tar -czvf /var/logs/httpd/$domain/`(date +%Y%m%d)`.log.tar.gz /var/logs/httpd/$domain/aclog.log
