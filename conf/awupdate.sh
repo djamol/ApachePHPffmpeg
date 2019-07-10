@@ -38,8 +38,8 @@ aclog = "/var/logs/httpd/$domain/aclog.log";
 if [ -f "$aclog" ]; then
     echo "$aclog exist"
   # take action on each file. $f store current file name
-      /usr/bin/tar -czvf /var/logs/httpd/$domain/`(date +%Y%m%d)`.log.tar.gz /var/logs/httpd/$domain/aclog.log
-      #rm -rf /var/logs/httpd/$domain/aclog.log
+      /usr/bin/tar -czvf /var/logs/httpd/$domain/`(date +%Y%m%d)`.log.tar.gz $aclog
+      #rm -rf $aclog
       cat /dev/null > $aclog 
       /usr/share/awstats/wwwroot/cgi-bin/awstats.pl -config=$domain -update
 fi
