@@ -42,6 +42,21 @@ chkconfig --add amol
 chkconfig --list amol
 chkconfig amol on
 
+## proftpd quota limit
+## $ sudo ftpquota --add-record --type=limit --name=UserName --quota-type=user --bytes-upload=10485760
+## UserName : exist in passwd.vhosts file and 10485760 = 10MB on user UserName
+echo -e 'LoadModule mod_quotatab.c\nLoadModule mod_quotatab_file.c\n<IfModule mod_quotatab.c>\nQuotaEngine on\nQuotaLog /var/log/proftpd/quota.log\n#QuotaDefault is not supported on the proftp-version on CentOS 6\nQuotaDefault user false hard 5242880 0 0 0 0 0\nQuotaDisplayUnits Mb\nQuotaOptions ScanOnLogin\nQuotaDirectoryTally off\n<IfModule mod_quotatab_file.c>\n        QuotaLimitTable file:/etc/proftpd/ftpquota.limittab\n        QuotaTallyTable file:/etc/proftpd/ftpquota.tallytab\n</IfModule>\n</IfModule>' >> /etc/proftpd.conf
+ 
+cp -f $SCRIPTPATH/conf/ftpquota /usr/bin/
+chmod +x /usr/bin/ftpquota
+yum -y install perl
+cd /etc/proftpd
+ftpquota --create-table --type limit
+ftpquota --create-table --type tally
+
+
+
+
 ## awstats update  automatically
 mkdir -p /etc/awstats/
 cp -f $SCRIPTPATH/conf/awupdate.sh /etc/awstats/update.sh
