@@ -1,0 +1,16 @@
+#   This will mean that the domain is limited to 50mb bandwidth (52428800), 
+#   that it can only have 400 connections at once and 
+#   that any files over 1mb will be limited to 200kb/s (204800).
+#   For anyone reading this later you can also put an extension instead 
+#   of * to limit just zips,rars,avis or whatever.
+
+#<VirtualHost.....
+#<IfModule mod_bw.c>
+#BandwidthModule On
+#ForceBandWidthModule On
+#Bandwidth all "52428800"
+#MaxConnection all "400"
+#LargeFileLimit * 1024 204800
+#BandWidthError 510
+#</IfModule>
+#....</VirtualHost>
