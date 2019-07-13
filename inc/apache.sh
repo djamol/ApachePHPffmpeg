@@ -40,3 +40,14 @@ date +"%r" >> $BUILD;echo "Apache Program Complete" >> $BUILD
 #export PATH="$PATH:<Program File Folder Path>"
 #export PATH="$PATH:/usr/local/apache2/bin"
 ln -s /usr/local/apache2/bin/httpd /usr/local/bin
+
+## user account permission
+#usermod -a -G groupname username  #usermod -a -G group1,group2 username  /multiple group
+#groupadd groupname  #usermod -g groupname username   /primary group
+groupadd amolhttpd
+groupadd user
+useradd -g amolhttpd -G daemon,user server   # // primary group =amolhttpd ..add new user =server
+
+#chown server:amolhttpd -R /home/www
+
+
