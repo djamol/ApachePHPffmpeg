@@ -46,7 +46,7 @@ $RESET";
 
 echo -n "Enter Ftp User Name > ";read text;UIFTP=$text;
 echo -n "Enter Ftp Root Directory Path (Example:/root) > ";read text;PFTP=$text;
-echo -n "Enter System Username(Example: root,daemon) > ";read text;USER=$text;
+echo -n "Enter System Username(Example: root,daemon,server) > ";read text;USER=$text;
 
 u_gid=$(id -g $USER)
 u_uid=$(id -u $USER)
