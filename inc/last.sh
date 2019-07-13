@@ -19,10 +19,13 @@ cp -f $SCRIPTPATH/conf/ind /home/www//index.php
 #echo "<html><body>" >> /home/www/index.php
 #echo "<center><h1>It works Apache!<br></h1><br><br><h1><a href='filemanager/'>File Manager</a></h1></center><br><small>Change user name password for filemanager edit /home/www/filemanager/index.php </small><br> <?php phpinfo(); ?></body></html>" >> /home/www/index.php
 #First :We need to set the owner/group of the web root (and any directories/files therein):
-chown -R daemon:daemon /home/www
+#chown -R daemon:daemon /home/www
+chown server:amolhttpd -R /home
 #Second:We need to setup the proper permissions for users and groups.'go'-'group' and 'other'.rwx-Read,Write,execute
 chmod go-rwx /home/www/;chmod go+x /home/www/;chgrp -R www-data /home/www/;chmod -R go-rwx /home/www/
 chmod -R g+rx /home/www/;chmod -R g+rwx /home/www/
+
+chown server:amolhttpd -R /home
 
 #Auto Start Apache2 on boot/reboot server
 #touch /etc/init.d/apache2
