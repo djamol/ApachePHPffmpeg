@@ -67,7 +67,7 @@ $RESET";
 echo -n "Enter Your Main Domain(Eg. domain.com) >"
 read text
 echo "Main Domain: $text"
-MAINDOMAIN=$text
+MAINDOMAIN="demo.com"
 MAINIP=$(hostname --ip-address)
 MYHOST=$(hostname)
 echo "Main IP: $MAINIP";
