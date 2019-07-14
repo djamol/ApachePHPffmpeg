@@ -241,7 +241,7 @@ echo -e "\e[34m########################################\n####   Cron JOB Softwar
 while true; do
     read -p "Do you wish to install (Cron JOB) program?" yn
     case $yn in
-        [Yy]* ) CRON="n";="true"; break;;
+        [Yy]* ) CRON="true"; break;;
         [Nn]* ) echo "Reject Program : Cron JOB (By You) " >> $BUILD; break;;
         * ) echo "Please answer yes or no.";;
     esac
@@ -653,4 +653,6 @@ Check Installation is Completed By Command
 ffmpeg -v
 amol
 ######################################
+Live Track Status Run ssh Below command
+tail -f $BUILD | sed '/^AmolInstaller: SUCCESS$/ q' 
 $RESET";
