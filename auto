@@ -210,6 +210,7 @@ mkdir /amol
 #cp $SCRIPTPATH/pprogram/addftp /amol/addftp
 #chmod -R +x /amol
 
+service apache2 reload
 
 date +"%r" >> $BUILD;echo "Status : Auto FFMPEG  Installation Start" >> $BUILD
 echo -e "\e[32m###############################\n###FFMPEG SOFT #########\n#####################################"
