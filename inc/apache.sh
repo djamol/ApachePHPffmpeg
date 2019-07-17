@@ -49,5 +49,7 @@ groupadd user
 useradd -g amolhttpd -G daemon,user server   # // primary group =amolhttpd ..add new user =server
 
 #chown server:amolhttpd -R /home/www
+ mkdir -p /var/logs/httpd/
+ chown server:amolhttpd -R /var/logs/httpd/
 
 
