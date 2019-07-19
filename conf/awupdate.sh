@@ -45,9 +45,9 @@ echo "$aclog exist"
       /usr/bin/tar -czvf /var/logs/httpd/$domain/`(date +%Y%m%d)`.log.tar.gz $aclog
       #rm -rf /var/logs/httpd/$domain/aclog.log
       cat /dev/null > $aclog 
-              if [ $back_out = "true" ]
+              if [ "$back_out" = "true" ]
                 then
-                # files not remove tar.gz backup file
+               echo "files not remove tar.gz backup file";
                 else
                 rm -rf /var/logs/httpd/$domain/`(date +%Y%m%d)`.log.tar.gz
                 fi
