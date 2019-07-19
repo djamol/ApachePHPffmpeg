@@ -44,15 +44,15 @@ echo "$aclog exist"
   # take action on each file. $f store current file name
       /usr/bin/tar -czvf /var/logs/httpd/$domain/`(date +%Y%m%d)`.log.tar.gz $aclog
       #rm -rf /var/logs/httpd/$domain/aclog.log
-      cat /dev/null > $aclog 
+      cat /dev/null > $aclog       
+      /usr/share/awstats/wwwroot/cgi-bin/awstats.pl -config=$domain -update
               if [ "$back_out" = "true" ]
                 then
                echo "files not remove tar.gz backup file";
                 else
                 rm -rf /var/logs/httpd/$domain/`(date +%Y%m%d)`.log.tar.gz
                 fi
-      
-      /usr/share/awstats/wwwroot/cgi-bin/awstats.pl -config=$domain -update
+
 fi
 
 
