@@ -39,6 +39,6 @@ sudo make install
 #Step 4: Enable the GeoIP Plugin
 
 #Edit /etc/awstats/awstats.yourdomain.conf to add these lines:
-LoadPlugin="geoip GEOIP_STANDARD /usr/local/share/GeoIP/GeoIP.dat"
-LoadPlugin="geoip_city_maxmind GEOIP_STANDARD /usr/local/share/GeoIP/GeoLiteCity.dat"
-LoadPlugin="geoip_org_maxmind GEOIP_STANDARD /usr/local/share/GeoIP/GeoIPASNum.dat"
+#LoadPlugin="geoip GEOIP_STANDARD /usr/local/share/GeoIP/GeoIP.dat"
+#LoadPlugin="geoip_city_maxmind GEOIP_STANDARD /usr/local/share/GeoIP/GeoLiteCity.dat"
+#LoadPlugin="geoip_org_maxmind GEOIP_STANDARD /usr/local/share/GeoIP/GeoIPASNum.dat"
