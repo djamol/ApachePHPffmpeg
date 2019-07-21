@@ -3,7 +3,7 @@ cd /usr/local/share/GeoIP
 #wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz
 #wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz
 #wget http://geolite.maxmind.com/download/geoip/database/asnum/GeoIPASNum.dat.gz
-wget https://github.com/djamol/geoip/raw/master/GeoIP.dat.gz
+wget https://github.com/djamol/geoip/raw/master/GeoIP.dat
 wget https://github.com/djamol/geoip/raw/master/GeoLiteCity.dat.gz
 wget https://github.com/djamol/geoip/raw/master/GeoIPASNum.dat.gz
 gunzip *gz
