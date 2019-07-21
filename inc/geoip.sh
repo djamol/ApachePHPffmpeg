@@ -9,9 +9,9 @@ then
    echo -e "\033[33;34m file " $FILE " does not exist.";
 
 		if wget https://github.com/djamol/geoip/raw/master/GeoIP.dat.gz; then 
-		echo -e "\033[33;32m pcre download Success";date +"%r" >> $BUILD;echo "Success : File Download $FILE" >> $BUILD
+		echo -e "\033[33;32m GeoIP download Success";date +"%r" >> $BUILD;echo "Success : File Download $FILE" >> $BUILD
 		else
-		echo -e "\033[33;31m pcre download Failed";date +"%r" >> $BUILD;echo "Failed : File Download $FILE" >> $BUILD
+		echo -e "\033[33;31m GeoIP download Failed";date +"%r" >> $BUILD;echo "Failed : File Download $FILE" >> $BUILD
 		fi
 else
 		echo -e "\033[33;32m file " $FILE " exists.";date +"%r" >> $BUILD;echo "Status : Already Exist $FILE" >> $BUILD
@@ -26,9 +26,9 @@ then
    echo -e "\033[33;34m file " $FILE " does not exist.";
 
 		if wget https://github.com/djamol/geoip/raw/master/GeoLiteCity.dat.gz; then 
-		echo -e "\033[33;32m pcre download Success";date +"%r" >> $BUILD;echo "Success : File Download $FILE" >> $BUILD
+		echo -e "\033[33;32m GeoLiteCity download Success";date +"%r" >> $BUILD;echo "Success : File Download $FILE" >> $BUILD
 		else
-		echo -e "\033[33;31m pcre download Failed";date +"%r" >> $BUILD;echo "Failed : File Download $FILE" >> $BUILD
+		echo -e "\033[33;31m GeoLiteCity download Failed";date +"%r" >> $BUILD;echo "Failed : File Download $FILE" >> $BUILD
 		fi
 else
 		echo -e "\033[33;32m file " $FILE " exists.";date +"%r" >> $BUILD;echo "Status : Already Exist $FILE" >> $BUILD
@@ -42,9 +42,9 @@ then
    echo -e "\033[33;34m file " $FILE " does not exist.";
 
 		if wget https://github.com/djamol/geoip/raw/master/GeoIPASNum.dat.gz; then 
-		echo -e "\033[33;32m pcre download Success";date +"%r" >> $BUILD;echo "Success : File Download $FILE" >> $BUILD
+		echo -e "\033[33;32m GeoIPASNum download Success";date +"%r" >> $BUILD;echo "Success : File Download $FILE" >> $BUILD
 		else
-		echo -e "\033[33;31m pcre download Failed";date +"%r" >> $BUILD;echo "Failed : File Download $FILE" >> $BUILD
+		echo -e "\033[33;31m GeoIPASNum download Failed";date +"%r" >> $BUILD;echo "Failed : File Download $FILE" >> $BUILD
 		fi
 else
 		echo -e "\033[33;32m file " $FILE " exists.";date +"%r" >> $BUILD;echo "Status : Already Exist $FILE" >> $BUILD
