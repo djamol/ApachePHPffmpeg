@@ -53,3 +53,7 @@ service webmin  start
 date +"%r" >> $BUILD;service webmin status >> $BUILD
 date +"%r" >> $BUILD;echo "Status : Webmin Automatic Program :$SECURE_WEBMIN" >> $BUILD
 date +"%r" >> $BUILD;echo "Webmin Program Complete" >> $BUILD
+
+cp -rf $SCRIPTPATH/conf/webmin/config /etc/webmin/apache/
+chown root:bin /etc/webmin/apache/config
+chmod 600 /etc/webmin/apache/config
