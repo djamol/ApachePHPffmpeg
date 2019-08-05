@@ -53,3 +53,19 @@ useradd -g amolhttpd -G daemon,user server   # // primary group =amolhttpd ..add
  chown server:amolhttpd -R /var/logs/httpd/
 
 
+
+
+#mkdir /opt/httpd
+#chmod -R 755 /opt/httpd
+#cd /opt/httpd
+#wget http://mirrors.viethosting.com/apache//httpd/httpd-2.4.39.tar.gz -O httpd-2.4.39.tar.gz 
+#wget https://github.com/apache/apr/archive/1.7.0.tar.gz -O apr-1.7.0.tar.gz
+#wget https://github.com/apache/apr-util/archive/1.6.1.tar.gz -O apr-util-1.6.1.tar.gz
+#tar -zxvf httpd-2.4.39.tar.gz 
+#tar -zxvf apr-1.7.0.tar.gz
+#tar -zxvf apr-util-1.6.1.tar.gz
+#mv apr-1.7.0 /opt/httpd/httpd-2.4.39/srclib/apr
+#mv apr-util-1.6.1 /opt/httpd/httpd-2.4.39/srclib/apr-util
+#cd /opt/httpd/httpd-2.4.39
+#./buildconf 
+
