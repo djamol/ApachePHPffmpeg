@@ -1,3 +1,6 @@
+systemctl start httpd
+
+
 /etc/init.d/apache2 restart
 systemctl restart proftpd
 service named restart
