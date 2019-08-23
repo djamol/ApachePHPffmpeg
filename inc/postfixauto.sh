@@ -50,7 +50,8 @@ Another Domain (Entry)
 anotherdomain.com IN MX 5 mail.$MAINDOMAIN.
 google.com IN MX 5 mail.$MAINDOMAIN.
 yahoo.com IN MX 5 mail.$MAINDOMAIN.
-postmap /etc/postfix/virtual_domains
+And run below commands
+postmap /etc/postfix/virtual
 postmap /etc/postfix/virtual-regexp
 service postfix reload
 "
@@ -117,7 +118,7 @@ echo -e '\n#I want to forward an email from domain1.com to domain2.com using /et
 
 
 service postfix start
-postmap /etc/postfix/virtual_domains
+#postmap /etc/postfix/virtual_domains
 postmap /etc/postfix/virtual
 postmap /etc/postfix/virtual-regexp
 service postfix reload
