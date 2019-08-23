@@ -77,7 +77,7 @@ readme_directory = no
 \nsmtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination
 \nalias_maps = hash:/etc/aliases
 \nalias_database = hash:/etc/aliases
-\nvirtual_alias_domains = hash:/etc/postfix/virtual_domains
+\nvirtual_alias_domains = '$MAINDOMAIN' second.in thirddomain.com
 \nvirtual_alias_maps = hash:/etc/postfix/virtual, regexp:/etc/postfix/virtual-regexp
 \nmyorigin = /etc/mailname
 \nmydestination = mail.'$MAINDOMAIN', '$MAINDOMAIN', localhost.localdomain, localhost
@@ -87,10 +87,10 @@ readme_directory = no
 \ninet_interfaces = all
 ' >> /etc/postfix/main.cf
 
-touch /etc/postfix/virtual_domains
-echo -e ''$MAINDOMAIN'
-\nYOurAnotherDomain.com
-' >> /etc/postfix/virtual_domains
+
+##virtual_alias_domains = hash:/etc/postfix/virtual_domains
+#touch /etc/postfix/virtual_domains
+#echo -e ''$MAINDOMAIN'\nYOurAnotherDomain.com' >> /etc/postfix/virtual_domains
 
 
 
