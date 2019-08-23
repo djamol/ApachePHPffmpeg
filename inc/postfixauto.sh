@@ -45,7 +45,15 @@ echo "$SSLCERt"
 echo "And Please Create MX Entry in Your Domain DNS: \n
 Example : 
 mail.$MAINDOMAIN. IN A $MAINIP
-mail.$MAINDOMAIN. IN MX 5 mail.$MAINDOMAIN."
+mail.$MAINDOMAIN. IN MX 5 mail.$MAINDOMAIN.
+Another Domain (Entry)
+anotherdomain.com IN MX 5 mail.$MAINDOMAIN.
+google.com IN MX 5 mail.$MAINDOMAIN.
+yahoo.com IN MX 5 mail.$MAINDOMAIN.
+postmap /etc/postfix/virtual_domains
+postmap /etc/postfix/virtual-regexp
+service postfix reload
+"
 
 #
 #
@@ -69,7 +77,7 @@ readme_directory = no
 \nsmtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination
 \nalias_maps = hash:/etc/aliases
 \nalias_database = hash:/etc/aliases
-\nvirtual_alias_domains = '$MAINDOMAIN'
+\nvirtual_alias_domains = hash:/etc/postfix/virtual_domains
 \nvirtual_alias_maps = hash:/etc/postfix/virtual, regexp:/etc/postfix/virtual-regexp
 \nmyorigin = /etc/mailname
 \nmydestination = mail.'$MAINDOMAIN', '$MAINDOMAIN', localhost.localdomain, localhost
@@ -79,9 +87,10 @@ readme_directory = no
 \ninet_interfaces = all
 ' >> /etc/postfix/main.cf
 
-
-
-
+touch /etc/postfix/virtual_domains
+echo -e ''$MAINDOMAIN'
+\nYOurAnotherDomain.com
+' >> /etc/postfix/virtual_domains
 
 
 
@@ -108,8 +117,11 @@ echo -e '\n#I want to forward an email from domain1.com to domain2.com using /et
 
 
 service postfix start
+postmap /etc/postfix/virtual_domains
 postmap /etc/postfix/virtual
 postmap /etc/postfix/virtual-regexp
+service postfix reload
+
 service postfix reload
 
 
