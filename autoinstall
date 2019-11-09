@@ -64,6 +64,17 @@ echo -e "$GREEN
 # Copyright By PatilWeb.com           #
 # IG:PatilWeb FB:PatilWeb TW:PatilWeb #
 $RESET";
+
+full=`cat /etc/centos-release | tr -dc '0-9.'`
+major=$(cat /etc/centos-release | tr -dc '0-9.'|cut -d \. -f1)
+minor=$(cat /etc/centos-release | tr -dc '0-9.'|cut -d \. -f2)
+#asynchronous=$(cat /etc/centos-release | tr -dc '0-9.'|cut -d \. -f3)
+
+echo "OS Version: $full"
+echo "Major Relase: $major"
+echo "Minor Relase: $minor"
+#echo "Asynchronous Relase: $asynchronous"
+
 echo -n "Enter Your Main Domain(Eg. domain.com) >"
 read text
 echo "Main Domain: $text"
@@ -458,6 +469,9 @@ WEBO=$webo
 SCRIPTPATH=$SCRIPTPATH
 BUILD=$BUILD
 CAC=$ctrxx
+OS=$full
+OSV=$major
+OSM=$minor
 CAS=$statx
 CAL=$cityx
 CAO=$otext
