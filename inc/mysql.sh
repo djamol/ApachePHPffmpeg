@@ -9,7 +9,7 @@ cd $SCRIPTPATH/src
 #
 #  Mysql / Mariadb Installation
 touch /etc/yum.repos.d/MariaDB.repo
-echo -e '[mariadb]\nname = MariaDB\nbaseurl = http://yum.mariadb.org/10.2/rhel7-amd64\ngpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB\ngpgcheck=1' >> /etc/yum.repos.d/MariaDB.repo
+echo -e '[mariadb]\nname = MariaDB\nbaseurl = http://yum.mariadb.org/10.2/rhel$OSV-amd64\ngpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB\ngpgcheck=1' >> /etc/yum.repos.d/MariaDB.repo
 yum -y list|grep  MariaDB-server
 rpm --import https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
 if yum -y install MariaDB-server MariaDB-client MariaDB-devel MariaDB-shared; then 
