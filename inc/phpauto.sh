@@ -22,7 +22,7 @@ echo -e "\033[33;31m php extract Failed";date +"%r" >> $BUILD;echo "Failed : Ext
 tar -xzf php-*
 fi
 cd php-5.6.20
-if rpm -ivh http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm; then 
+if rpm -ivh http://dl.fedoraproject.org/pub/epel/epel-release-latest-$OSV.noarch.rpm; then 
 echo -e "\033[33;32m Epel Fedoraproject update Success";date +"%r" >> $BUILD;echo "Success : Epel RPM " >> $BUILD
 else
 	#if rpm -ivh $SCRIPTPATH/src/epel-release-7-6.noarch.rpm; then 
