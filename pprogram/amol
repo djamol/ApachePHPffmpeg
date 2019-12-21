@@ -102,10 +102,11 @@ ${NOCOLOR}";
  echo -e "${PURPLE}4. Database Backup StructureWithDATA or Only Table Structure"
  echo -e "${LIGHTGREEN}5. Restore database from sql"
  echo -e "${PURPLE}6. Create Mysql/MariaDB User"
- echo -e "${BLUE}7. Exit"
+ echo -e "${CYAN}7. Google Drive Download File"
+ echo -e "${BLUE}8. Exit"
  ClearX="true"
  echo -e "${NOCOLOR}";
- echo -n "Please enter option [1 - 7]"
+ echo -n "Please enter option [1 - 8]"
  read opt
  case $opt in
   1) echo -e "${BLUE}************ sinfo Service *************${NOCOLOR}";
@@ -126,7 +127,9 @@ ${NOCOLOR}";
      read ups
      echo "GRANT ALL PRIVILEGES ON *.* TO '$uid'@'localhost' IDENTIFIED BY '$ups'" | mysql -u root 
      echo"";; #mysql -u root -e "create database testdb";
-  7) echo -e "${GREEN}Bye $USER${NOCOLOR}";
+  7) echo -e "${BLUE}*********** Google Drive Service(gdrive command) ***********${NOCOLOR}";
+     gdrive;;
+  8) echo -e "${GREEN}Bye $USER${NOCOLOR}";
      exit 1;;
   *) echo -e "${PURPLE}$opt is an invaild option. Please select option between 1-7 only${NOCOLOR}";
      echo -e "${YELLOW}Press [enter] key to continue. . .{NOCOLOR}";
