@@ -1,0 +1,11 @@
+echo "--------------------Google Drive Download File---------------------"
+echo "*******************Enter GDrive File ID **************"
+echo "Example : https://drive.google.com/file/d/<File ID>/view?usp=sharing"
+echo "        :https://drive.google.com/open?id=<Google Drive ID>"
+read -p "Enter Google Drive File ID : "  fileid
+echo "Gdrive File: $fileid!"
+echo "*******************Enter File Name *******************"
+echo "eg.  /root/file.txt or file.txt";
+read -p "Enter Save As OR Path With Filename : "  filename
+curl -c ./cookie -s -L "https://drive.google.com/uc?export=download&id=${fileid}" > /dev/null
+curl -Lb ./cookie "https://drive.google.com/uc?export=download&confirm=`awk '/download/ {print $NF}' ./cookie`&id=${fileid}" -o ${filename}
