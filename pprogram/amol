@@ -137,3 +137,13 @@ ${NOCOLOR}";
 esac
 done
 
+#if [ -f /usr/bin/vnstat ] 
+#then
+#        for int in `vnstat --iflist| sed 's/Available interfaces://'` 
+#        do 
+#                echo " INFO: Initialising and update vnstat db for $int"
+#                vnstat -u -i $int
+#        done
+#        /usr/bin/vnstat
+#fi
+
