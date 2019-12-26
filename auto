@@ -185,6 +185,11 @@ if [ $AW = "true" ]
         else
                 echo "Reject By USER AWStats INstall"
 fi
+
+date +"%r" >> $BUILD;echo "Status : vnStat - Light Weight Console-based Network Monitor Start" >> $BUILD
+source "$SCRIPTPATH/inc/vnstat.sh";
+date +"%r" >> $BUILD;echo "Status : Auto vnStat Installation END" >> $BUILD
+
 date +"%r" >> $BUILD;echo "Status : Auto AWStats Web analytics Installation END" >> $BUILD
 
 date +"%r" >> $BUILD;echo "Status : Auto POSTFIX Installation END" >> $BUILD
