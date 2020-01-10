@@ -57,7 +57,7 @@ mysql -uroot -p < $FILEX
 #mysqldump db_name table_name | gzip > table_name.sql.gz
 #Restore table from gz file
 #gunzip < table_name.sql.gz | mysql -u username -p db_name
-
+mysqlcheck --repair --all-databases
                             break;;
                             [Nn]* )  break;;
                              * ) echo "Please answer yes or no.";;
