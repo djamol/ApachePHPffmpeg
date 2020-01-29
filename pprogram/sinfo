@@ -68,6 +68,12 @@ sysinfo () {
 	kern=$( uname -r )
 	# Date of benchmark
 	bdates=$( date )
+	#CPU_AES
+        CPU_AES=$(cat /proc/cpuinfo | grep aes)
+        [[ -z "$CPU_AES" ]] && CPU_AES="\xE2\x9D\x8C Disabled" || CPU_AES="\xE2\x9C\x94 Enabled"
+	# CPU_VIRT
+	CPU_VIRT=$(cat /proc/cpuinfo | grep 'vmx\|svm')
+	[[ -z "$CPU_VIRT" ]] && CPU_VIRT="\xE2\x9D\x8C Disabled" || CPU_VIRT="\xE2\x9C\x94 Enabled"
 	echo "Benchmark started on $bdates" | tee -a $HOME/bench.log
 	echo "Full benchmark log: $HOME/bench.log" | tee -a $HOME/bench.log
 	echo "" | tee -a $HOME/bench.log
@@ -78,6 +84,8 @@ sysinfo () {
 	echo "CPU Cores	: $cores" | tee -a $HOME/bench.log
 	echo "Frequency	: $freq MHz" | tee -a $HOME/bench.log
 	echo "Memory		: $tram MB" | tee -a $HOME/bench.log
+	echo "AES-NI     : $CPU_AES" | tee -a $HOME/bench.log
+	echo "VM-x/AMD-V : $CPU_VIRT" | tee -a $HOME/bench.log
 	echo "Swap		: $vram MB" | tee -a $HOME/bench.log
 	echo "Uptime		: $up" | tee -a $HOME/bench.log
 	echo "" | tee -a $HOME/bench.log
