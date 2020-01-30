@@ -277,5 +277,5 @@ case $1 in
 	'-h' )
 		hlp;;
 	*)
-		sysinfo; speedtest4; iotest;;
+		sysinfo; speedtest4; iotest; gbench;;
 esac
