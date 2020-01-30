@@ -191,48 +191,52 @@ iotest () {
 	echo "" | tee -a $HOME/bench.log
 }
 gbench () {
-	# Improved version of my code by thirthy_speed https://freevps.us/thread-16943-post-191398.html#pid191398
-	echo "" | tee -a $HOME/bench.log
-	echo "System Benchmark (Experimental)" | tee -a $HOME/bench.log
-	echo "-------------------------------" | tee -a $HOME/bench.log
-	echo "" | tee -a $HOME/bench.log
-	echo "Note: The benchmark might not always work (eg: missing dependencies)." | tee -a $HOME/bench.log
-	echo "Failures are highly possible. We're using Geekbench for this test." | tee -a $HOME/bench.log
-	echo "" | tee -a $HOME/bench.log
-        gb_page=http://www.primatelabs.com/geekbench/download/linux/
-        gb_dl=$(wget -qO - $gb_page | \
-                 sed -n 's/.*\(https\?:[^:]*\.tar\.gz\).*/\1/p')
-        gb_noext=${gb_dl##*/}
-        gb_noext=${gb_noext%.tar.gz} 
-        gb_name=${gb_noext//-/ }
-	echo "File is located at $gb_dl" | tee -a $HOME/bench.log
-	echo "Downloading and extracting $gb_name" | tee -a $HOME/bench.log
-        wget -qO - "$gb_dl" | tar xzv 2>&1 >/dev/null
-	echo "" | tee -a $HOME/bench.log
-	echo "Starting $gb_name" | tee -a $HOME/bench.log
-	echo "The system benchmark may take a while." | tee -a $HOME/bench.log
-	echo "Don't close your terminal/SSH session!" | tee -a $HOME/bench.log
-	echo "All output is redirected into a result file." | tee -a $HOME/bench.log
-	echo "" >> $HOME/bench.log
-	echo "--- Geekbench Results ---" >> $HOME/bench.log
-	sleep 2
-	$HOME/dist/$gb_noext/geekbench_x86_32 >> $HOME/bench.log
-	echo "--- Geekbench Results End ---" >> $HOME/bench.log
-	echo "" >> $HOME/bench.log
-	echo "Finished. Removing Geekbench files" | tee -a $HOME/bench.log
-	sleep 1
-	rm -rf $HOME/dist/
-	echo "" | tee -a $HOME/bench.log
-        gbl=$(sed -n '/following link/,/following link/ {/following link\|^$/b; p}' $HOME/bench.log | sed 's/^[ \t]*//;s/[ \t]*$//' )
-	echo "Benchmark Results: $gbl" | tee -a $HOME/bench.log
-	echo "Full report available at $HOME/bench.log" | tee -a $HOME/bench.log
-	echo "" | tee -a $HOME/bench.log
+echo -en "\nPerforming Geekbench 4 benchmark test. This may take a couple minutes to complete..."
+
+	# create a temp directory to house all geekbench files
+	GEEKBENCH_PATH=$YABS_PATH/geekbench
+	mkdir -p $GEEKBENCH_PATH
+	# download the latest Geekbench 4 tarball and extract to geekbench temp directory
+	curl -s http://cdn.geekbench.com/Geekbench-4.3.3-Linux.tar.gz  | tar xz --strip-components=1 -C $GEEKBENCH_PATH &>/dev/null
+	# run the Geekbench 4 test and grep the test results URL given at the end of the test
+	GEEKBENCH_TEST=$($GEEKBENCH_PATH/geekbench4 2>/dev/null | grep "https://browser")
+
+	# ensure the test ran successfully
+	if [ -z "$GEEKBENCH_TEST" ]; then
+		# if the Geekbench 4 test failed for any reason, exit cleanly and print error message
+		echo -e "\r\033[0KGeekbench 4 test failed. Run manually to determine cause."
+	else
+		# if the Geekbench 4 test succeeded, parse the test results URL
+		GEEKBENCH_URL=$(echo -e $GEEKBENCH_TEST | head -1)
+		GEEKBENCH_URL_CLAIM=$(echo $GEEKBENCH_URL | awk '{ print $2 }')
+		GEEKBENCH_URL=$(echo $GEEKBENCH_URL | awk '{ print $1 }')
+		# sleep a bit to wait for results to be made available on the geekbench website
+		sleep 10
+		# parse the public results page for the single and multi core geekench scores
+		GEEKBENCH_SCORES=$(curl -s $GEEKBENCH_URL | grep "class='score' rowspan")
+		GEEKBENCH_SCORES_SINGLE=$(echo $GEEKBENCH_SCORES | awk -v FS="(>|<)" '{ print $3 }')
+		GEEKBENCH_SCORES_MULTI=$(echo $GEEKBENCH_SCORES | awk -v FS="(<|>)" '{ print $7 }')
+	
+		# print the Geekbench 4 results
+		echo -en "\r\033[0K"
+		echo -e "Geekbench 4 Benchmark Test:"
+		echo -e "---------------------------------"
+		printf "%-15s | %-30s\n" "Test" "Value"
+		printf "%-15s | %-30s\n"
+		printf "%-15s | %-30s\n" "Single Core" "$GEEKBENCH_SCORES_SINGLE"
+		printf "%-15s | %-30s\n" "Multi Core" "$GEEKBENCH_SCORES_MULTI"
+		printf "%-15s | %-30s\n" "Full Test" "$GEEKBENCH_URL"
+
+		# write the geekbench 4 claim URL to a file so the user can add the results to their profile (if desired)
+		[ ! -z "$GEEKBENCH_URL_CLAIM" ] && echo -e "$GEEKBENCH_URL_CLAIM" > geekbench4_claim.url 2> /dev/null
+	fi
+echo "" | tee -a $HOME/bench.log
 }
 hlp () {
 	echo ""
-	echo "(C) Bench.sh 2 by Hidden Refuge <me at hiddenrefuge got eu dot org>"
+	echo "(C) DjAmol Group Inc Benchmark MENU"
 	echo ""
-	echo "Usage: bench.sh <option>"
+	echo "Usage: sinfo <option>"
 	echo ""
 	echo "Available options:"
 	echo "No option	: System information, IPv4 only speedtest and disk speed & IOPing benchmark will be run."
@@ -248,7 +252,7 @@ hlp () {
 	echo "-b64		: Same as above."
 	echo "-h		: This help page."
 	echo ""
-	echo "The Geekbench system benchmark is experimental. So beware of failure!"
+	echo "Powered By DjAmol Group INC"
 	echo ""
 }
 case $1 in
