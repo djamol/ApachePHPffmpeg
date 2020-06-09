@@ -4,6 +4,9 @@ systemctl start httpd
 /etc/init.d/apache2 restart
 systemctl restart proftpd
 service named restart
+chkconfig --add apache2
+chkconfig apache2 on
+chkconfig --level 345 apache2 on
 
 
 date +"%r" >> $BUILD;/usr/local/apache2/bin/httpd -v >> $BUILD;openssl version >> $BUILD;
