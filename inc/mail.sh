@@ -7,7 +7,11 @@
 #     mail.mobiletel.com. IN A 001.10.011.123
 #     mail.mobiletel.com. IN MX 5 mail.mobiletel.com.
 
-
+##
+# POSTFIX LOG check #
+#journalctl -u postfix
+# for save logs  need in the main.cf for postfix -> syslog_name = postfix
+##
 # INSTALL postfix(Mail Service/server)
 yum -y install postfix sendmail
 service sendmail start
