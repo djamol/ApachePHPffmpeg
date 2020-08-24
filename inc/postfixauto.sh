@@ -13,6 +13,8 @@ yum -y install sendmail
 service sendmail start
 yum -y install postfix mailx
 mkdir /etc;mkdir /etc/ssl;mkdir /etc/ssl/certs;mkdir /etc/ssl/private;
+
+mails="mail.$MAINDOMAIN"
 #openssl req -new -x509 -days 3650 -nodes -out /etc/ssl/certs/postfix.pem -keyout /etc/ssl/private/postfix.pem
 SSLCERt=$(expect -c "
 set timeout 35
@@ -28,7 +30,7 @@ set timeout 35
   expect \"Organizational Unit*:\"
   send \"$CAU\r\"
   expect \"Common Name*:\"
-  send \"$CACM\r\"
+  send \"$mails\r\"
   expect \"Email*:\"
   send \"$CAM\r\"
 
