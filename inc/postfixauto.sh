@@ -71,7 +71,7 @@ echo -e 'myhostname = mail.'$MAINDOMAIN'\nsmtpd_banner = $myhostname ESMTP $mail
 \n
 readme_directory = no
 \nsmtpd_tls_cert_file=/etc/ssl/certs/postfix.pem
-\nsmtpd_tls_key_file=/etc/ssl/private/postfix.key
+\nsmtpd_tls_key_file=/etc/ssl/private/postfix.pem
 \nsmtpd_use_tls=yes
 \nsmtpd_tls_session_cache_database = btree:${data_directory}/smtpd_scache
 \nsmtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
