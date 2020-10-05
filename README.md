@@ -15,3 +15,9 @@ FFMPEG Customization Auto Installation Maximum Time ->> Time 19-25  minutes
 #Current Total Request With IP on 80 port means httpd server
 #yum install net-tools -y
  netstat -tn 2>/dev/null | grep :80 | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -nr | head
+ 
+# Disable SELinux on CentOS 7 / RHEL 7 / Fedora Linux 
+
+check ->: sestatus
+vi /etc/selinux/config    > change : SELINUX=disabled
+sudo shutdown -r now
