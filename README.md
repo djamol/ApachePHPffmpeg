@@ -19,5 +19,7 @@ FFMPEG Customization Auto Installation Maximum Time ->> Time 19-25  minutes
 # Disable SELinux on CentOS 7 / RHEL 7 / Fedora Linux 
 
 check ->: sestatus
+
 vi /etc/selinux/config    > change : SELINUX=disabled
+
 sudo shutdown -r now
