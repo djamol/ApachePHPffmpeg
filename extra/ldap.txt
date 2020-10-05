@@ -1,0 +1,175 @@
+  207  ls
+  208  vi log.txt
+  209  slapd --help
+  210  slapd -V
+  211  slapd -VV
+  212  date
+  213  slapd -VVV
+  214  date
+  215  pwd
+  216  which slapd
+  217  cd /etc/openldap/
+  218  ls
+  219  cd slapd.d/
+  220  ls
+  221  cd ..
+  222  vi ldap.conf
+  223  cd slapd.d/
+  224  ls
+  225  pwd
+  226  cd /etc
+  227  cd init.d/
+  228  ls
+  229  ll
+  230  cd ..
+  231  ps aux | more
+  232  ps aux | grep slapd
+  233  cd /var
+  234  ls
+  235  cd log
+  236  ls
+  237  ll
+  238  systemctl stop slapd
+  239  systemctl status slapd
+  240  ps aux | grep slapd
+  241  cd /etc/openldap/
+  242  ls
+  243  cd slapd.d/
+  244  ls
+  245  vi cn\=config
+  246  vi cn\=config.ldif
+  247  cd ..
+  248  ls
+  249  vi ldap.conf
+  250  mv slapd.d/ slapd.d-old
+  251  systemctl start slapd
+  252  which slapd
+  253  /usr/sbin/slapd --help
+  254  /usr/sbin/slapd -VVV
+  255  /usr/sbin/slapd -VV
+  256  /usr/sbin/slapd -d -1
+  257  ls
+  258  mv slapd.d-old/ slapd.d
+  259  /usr/sbin/slapd -d -1
+  260  claer
+  261  clear
+  262  /usr/sbin/slapd -d -1
+  263  clear
+  264  /usr/sbin/slapd -d 64
+  265  /usr/sbin/slapd -d 128
+  266  cd
+  267  yum --help
+  268  yum --help | uni
+  269  yum --help |rem
+  270  yum --help | grep uni
+  271  yum --help | grep rem
+  272  yum list openldap
+  273  yum list openldap*
+  274  yum --help | grep era
+  275  yum erase openldap*
+  276  yum list openldap*
+  277  yum erase openldap.x*
+  278  yum list openldap*
+  279  yum --help | grep era
+  280  date
+  281  clear
+  282  yum -y install openldap compat-openldap openldap-clients openldap-servers openldap-servers-sql openldap-devel
+  283  systemctl start slapd
+  284  systemctl enable slapd
+  285  systemctl status slapd
+  286  cd shekhar/
+  287  vi ldaprootpasswd.ldif
+  288  ls
+  289  slappasswd
+  290  vi ldaprootpasswd.ldif
+  291  echo psswd admin
+  292  ldapadd -Y EXTERNAL -H ldapi:/// -f ldaprootpasswd.ldif
+  293  pwd
+  294  ls /usr/share/openldap-servers/
+  295  cp /usr/share/openldap-servers/DB_CONFIG.example /var/lib/ldap/DB_CONFIG
+  296  chown -R ldap:ldap /var/lib/ldap/DB_CONFIG
+  297  systemctl restart slapd
+  298  ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/cosine.ldif
+  299  ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/nis.ldif
+  300  ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/inetorgperson.ldif
+  301  vi ldapdomain.ldif
+  302  ll
+  303  cat ldaprootpasswd.ldif
+  304  cat ldaprootpasswd.ldif  >> ldapdomain.ldif
+  305  vi ldapdomain.ldif
+  306  ldapmodify -Y EXTERNAL -H ldapi:/// -f ldapdomain.ldif
+  307  vi baseldapdomain.ldif
+  308  ldapadd -Y EXTERNAL -x -D cn=auth,dc=example,dc=com -W -f baseldapdomain.ldif
+  309  slaptest -u
+  310  ps aux | grep slapd
+  311  cd /etc/openldap/
+  312  ls
+  313  ll
+  314  date
+  315  cd slapd.d/
+  316  ls
+  317  ll
+  318  rm cn\=cn=cn\=config.ldif
+  319  rm cn\=cn=config.ldif
+  320  ls
+  321  ll
+  322  cd cn=cn\=config
+  323  cd cn\=config
+  324  ls
+  325  ll
+  326  cd ..
+  327  echo --- shekhar exiting
+  328  ls
+  329  cat log.txt
+  330  ldapsearch -x -H ldap://ldap.forumsys.com:389 -D cn=read-only-admin,dc=example,dc=com -W -b "o=example.com" -s base
+  331  ls
+  332  cat log.txt
+  333  ldapsearch -x -H ldap://127.0.0.1:  -D cn=auth,dc=example,dc=com
+  334  ldapsearch -x -H ldap://127.0.0.1  -D cn=auth,dc=example,dc=com
+  335  ldapsearch -x -H ldap://example.com:389 -D cn=auth,dc=example,dc=com -W -b "o=example.com" -s base
+  336  ldapsearch -x -H ldap://127.0.0.1:389 -D cn=auth,dc=example,dc=com -W -b "o=example.com" -s base
+  337  ldapsearch -x -H ldap://173.82.108.74:389 -D cn=auth,dc=example,dc=com -W -b "o=example.com" -s base
+  338  ls
+  339   ldapadd -x -W -D "cn=user2,dc=agamitech,dc=com" -f base.ldif
+  340  sh
+  341   ldapadd -x -W -D "cn=user2,dc=agamitech,dc=com" -f base.ldif
+  342  ldapadd -x -H ldap://localhost -D "dc=example,dc=com" -f /root/user.ldif -W
+  343  touch /root/user.ldif
+  344  ldapadd -x -H ldap://localhost -D "dc=example,dc=com" -f /root/user.ldif -W
+  345  ldapadd -x -H ldap://localhost -D "cn=auth,dc=example,dc=com" -f /root/user.ldif -W
+  346  cat /root/user.ldif
+  347  ldapadd -Z -x -W  -D "cn=auth,dc=example,dc=com" -f /root/user.ldif
+  348  ldapadd -Z -x -W  -H ldap://localhost -D "cn=auth,dc=example,dc=com" -f /root/user.ldif
+  349  ldapadd -x   -D "cn=auth,dc=example,dc=com" -f /root/user.ldif
+  350  ldapadd -x -D cn=Manager,dc=srv,dc=world -W -f ldapuser.ldif
+  351  mkdir ldap
+  352  ldapadd -x -D cn=auth,dc=example,dc=com -W -f ldap/ldapuser.ldif
+  353  touch ldap/ldapuser.ldif
+  354  ldapadd -x -D cn=auth,dc=example,dc=com -W -f ldap/ldapuser.ldif
+  355  cat ldap/ldapuser.ldif
+  356  slappasswd
+  357  cd ldap/
+  358  ls
+  359  vi ldapuser.ldif
+  360  ldapadd -x -D cn=auth,dc=example,dc=com -W -f ldapuser.ldif
+  361  vi ldapuser.ldif
+  362  ldapadd -x -D cn=auth,dc=example,dc=com -W -f ldapuser.ldif
+  363  vi ldapuser.ldif
+  364  ldapadd -x -D cn=auth,dc=example,dc=com -W -f ldapuser.ldif
+  365  vi ldapuser.ldif
+  366  ldapadd -x -D cn=auth,dc=example,dc=com -W -f ldapuser.ldif
+  367  vi ldapuser.ldif
+  368  ldapadd -x -D cn=auth,dc=example,dc=com -W -f ldapuser.ldif
+  369  cat ldapuser.ldif
+  370  ldapadd -x -D cn=auth,dc=example,dc=com -W -f ldapuser.ldif
+  371  cd ..
+  372  ls
+  373  vi log2.txt
+  374  cd /
+  375  mkdir amol
+  376  cd amol
+  377  wget https://raw.githubusercontent.com/djamol/ApachePHPffmpeg/amol/latest.sh;sh latest.sh
+  378  sh latest.sh
+  379  tail -f /amol/ApachePHPffmpeg-amol/log/10977.txt | sed '/^AmolInstaller: SUCCESS$/ q'
+  380  yum remove -y webmin
+  381  history
