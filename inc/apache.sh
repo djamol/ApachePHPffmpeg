@@ -15,6 +15,7 @@ then
 		echo -e "\033[33;32m httpd download Success";date +"%r" >> $BUILD;echo "Success : File Download $FILE" >> $BUILD
 		else
 		echo -e "\033[33;31m httpd download Failed";date +"%r" >> $BUILD;echo "Failed : File Download $FILE" >> $BUILD
+		echo "Failed : File Download $FILE" >> $FAILBUILD
 		fi
 else
 		echo -e "\033[33;32m file " $FILE " exists.";date +"%r" >> $BUILD;echo "Status : Already Exist $FILE" >> $BUILD
@@ -23,8 +24,9 @@ if tar -xzf $FILE; then
 echo -e "\033[33;32m extract httpd Success";date +"%r" >> $BUILD;echo "Success : Extract $FILE" >> $BUILD
 else
 echo -e "\033[33;31m extract httpd Failed"date +"%r" >> $BUILD;echo "Failed : Extract $FILE" >> $BUILD
+echo "Failed : File Download $FILE" >> $FAILBUILD
 tar -xzf httpd-2*
-fi
+fis
 
 
 cp -r  $SCRIPTPATH/src/apr-1.5.2 $SCRIPTPATH/src/httpd-2.4.18/srclib/apr

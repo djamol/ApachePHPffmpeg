@@ -12,4 +12,6 @@ service named start
 
 else
 echo -e "\033[33;31m yum -y BIND DNS Failed";date +"%r" >> $BUILD;echo "Failed : BIND DNS Install" >> $BUILD
+		echo "Failed : BIND DNS INSTALL" >> $FAILBUILD
+
 fi
