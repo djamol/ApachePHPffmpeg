@@ -34,7 +34,7 @@ then
 		if wget -O  $_package $SOURCE_URL/$_package; then 
 		date +"%r" >> $BUILD;echo "Success : File Download $_package" >> $BUILD
 		else
-		date +"%r" >> $BUILD;echo "Failed : File Download $_package" >> $BUILD
+		date +"%r" >> $BUILD;echo "Failed : File Download $_package" >> $BUILD;echo "Failed : File Download $_package" >> $FAILBUILD
 		fi
 else
 		cp $SCRIPTPATH/src/ffmpeg/$_package $INSTALL_SDIR/
@@ -51,7 +51,7 @@ date +"%r" >> $BUILD;echo "Succcess :lame Installled" >> $BUILD;
 echo -e $RED" lame Installed Success ......"$RESET
 ln -sf $INSTALL_DDIR/bin/lame /usr/local/bin
 else
-date +"%r" >> $BUILD;echo "Failed :lame Installation Failed" >> $BUILD;
+date +"%r" >> $BUILD;echo "Failed :lame Installation Failed" >> $BUILD;echo "Failed :lame Installation Failed" >> $FAILBUILD;
 echo -e $RED"Failed :lame Installation Failed ......"$RESET
 fi
 echo -e $RED"

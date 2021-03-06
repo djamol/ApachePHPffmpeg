@@ -33,7 +33,7 @@ then
    echo -e "\033[33;34m file " $_package " does not exist.";
 
 		if wget -O  $_package $SOURCE_URL/$_package; then 
-		date +"%r" >> $BUILD;echo "Success : File Download $_package" >> $BUILD
+		date +"%r" >> $BUILD;echo "Success : File Download $_package" >> $BUILD;echo "Success : File Download $_package" >> $FAILBUILD
 		else
 		date +"%r" >> $BUILD;echo "Failed : File Download $_package" >> $BUILD
 		fi

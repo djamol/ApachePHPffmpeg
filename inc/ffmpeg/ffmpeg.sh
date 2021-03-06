@@ -60,7 +60,7 @@ then
 		if wget -O  $_package $SOURCE_URL/$_package; then 
 		date +"%r" >> $BUILD;echo "Success : File Download $_package" >> $BUILD
 		else
-		date +"%r" >> $BUILD;echo "Failed : File Download $_package" >> $BUILD
+		date +"%r" >> $BUILD;echo "Failed : File Download $_package" >> $BUILD;echo "Failed : File Download $_package" >> $FAILBUILD
 		fi
 else
 		cp $SCRIPTPATH/src/ffmpeg/$_package $INSTALL_SDIR/
@@ -89,7 +89,7 @@ fi
 date +"%r" >> $BUILD;echo "Succcess :FFMPEG-FrameWork Installled" >> $BUILD;
 echo -e $RED" FreeType FFMPEG-FrameWork Success ......"$RESET
 else
-date +"%r" >> $BUILD;echo "Failed :FFMPEG-FrameWork Installation Failed" >> $BUILD;
+date +"%r" >> $BUILD;echo "Failed :FFMPEG-FrameWork Installation Failed" >> $BUILD;echo "Failed :FFMPEG-FrameWork Installation Failed" >> $FAILBUILD;
 echo -e $RED"Failed :FFMPEG-FrameWork Installation Failed ......"$RESET
 fi
 

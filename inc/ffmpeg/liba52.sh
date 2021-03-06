@@ -31,7 +31,7 @@ then
 		if wget -O  $_package $SOURCE_URL/$_package; then 
 		date +"%r" >> $BUILD;echo "Success : File Download $_package" >> $BUILD
 		else
-		date +"%r" >> $BUILD;echo "Failed : File Download $_package" >> $BUILD
+		date +"%r" >> $BUILD;echo "Failed : File Download $_package" >> $BUILD;echo "Failed : File Download $_package" >> $FAILBUILD
 		fi
 else
 		cp $SCRIPTPATH/src/ffmpeg/$_package $INSTALL_SDIR/
@@ -55,7 +55,7 @@ if   make install; then
 date +"%r" >> $BUILD;echo "Succcess :liba52 Installled" >> $BUILD;
 echo -e $RED" liba52 Installed Success ......"$RESET
 else
-date +"%r" >> $BUILD;echo "Failed :liba52 Installation Failed" >> $BUILD;
+date +"%r" >> $BUILD;echo "Failed :liba52 Installation Failed" >> $BUILD;echo "Failed :liba52 Installation Failed" >> $FAILBUILD;
 echo -e $RED"Failed :liba52 Installation Failed ......"$RESET
 fi
 echo -e $RED"
