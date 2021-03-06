@@ -131,6 +131,8 @@ do
                          LogFile="#CustomLog /var/logs/httpd/$element/aclog.log \"combined\""
                   fi
 touch /usr/local/apache2/conf/amolhost/$element.conf
+mkdir -p /home/www/domain/$element
+chown server:amolhttpd -R /home/www/domain/$element
 echo -e '<VirtualHost '$MAINIP':443>\nServerName '$element'\nServerAlias www.'$element'\n'$LogFile'\nDocumentRoot /home/www/domain/'$element'\n<IfModule mod_ssl.c>\nSSLEngine on\n        SSLCertificateFile /usr/share/ssl/certs/ssl.crt\n        SSLCertificateKeyFile /usr/share/ssl/certs/ssl.crt\n    </IfModule>\n</VirtualHost>\n' >> /usr/local/apache2/conf/amolhost/$element.conf
     echo "Domain HTTPS enable :$element Done"
 done
