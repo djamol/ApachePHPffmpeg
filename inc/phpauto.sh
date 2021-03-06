@@ -22,18 +22,22 @@ echo -e "\033[33;31m php extract Failed";date +"%r" >> $BUILD;echo "Failed : Ext
 tar -xzf php-*
 fi
 cd php-5.6.20
-if rpm -ivh http://dl.fedoraproject.org/pub/epel/epel-release-latest-$OSV.noarch.rpm; then 
-echo -e "\033[33;32m Epel Fedoraproject update Success";date +"%r" >> $BUILD;echo "Success : Epel RPM " >> $BUILD
-else
-	#if rpm -ivh $SCRIPTPATH/src/epel-release-7-6.noarch.rpm; then 
-	# Remove Epel if error Error: xz compression not available in yum install package command
-	#yum remove epel-release;rm -rf /var/cache/yum/x86_64/6/epel
-	wget http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-	rpm -ivh epel-release-latest-7.noarch.rpm
-	echo -e "\033[33;31m Epel Feoraproject update Failed";date +"%r" >> $BUILD;echo "Failed : Epel RPM " >> $BUILD
-	#fi
-fi
 
+if [ "$ARCH" = "x86_64" ]; then
+	if rpm -ivh http://dl.fedoraproject.org/pub/epel/epel-release-latest-$OSV.noarch.rpm; then 
+		echo -e "\033[33;32m Epel Fedoraproject update Success";date +"%r" >> $BUILD;echo "Success : Epel RPM " >> $BUILD
+	else
+		#if rpm -ivh $SCRIPTPATH/src/epel-release-7-6.noarch.rpm; then 
+		# Remove Epel if error Error: xz compression not available in yum install package command
+		#yum remove epel-release;rm -rf /var/cache/yum/x86_64/6/epel
+		wget http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+		rpm -ivh epel-release-latest-7.noarch.rpm
+		echo -e "\033[33;31m Epel Feoraproject update Failed";date +"%r" >> $BUILD;echo "Failed : Epel RPM " >> $BUILD
+		#fi
+	fi
+  else
+echo "Success : 32 bit " >> $BUILD
+fi
 if yum -y install perl; then 
 echo -e "\033[33;32m perl Success";date +"%r" >> $BUILD;echo "Success : Perl Install" >> $BUILD
 else
