@@ -79,6 +79,7 @@ echo -n "Enter Your Main Domain(Eg. domain.com) >"
 read text
 echo "Main Domain: $text"
 MAINDOMAIN=$text
+ARCH=$(uname -m)
 MAINIP=$(hostname --ip-address)
 MYHOST=$(hostname)
 while true; do
@@ -491,6 +492,7 @@ CSSF=$CSSF
 PFTP=$PFTP
 PostFix=$PostFix
 MAINDOMAIN=$MAINDOMAIN
+ARCH=$ARCH
 MAINIP=$MAINIP
 MYHOST=$MYHOST
 EXTRAD=$EXTRAD
