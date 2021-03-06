@@ -141,3 +141,5 @@ break;;
         * ) echo "Please answer yes or no.";;
     esac
 done
+service apache2 graceful
+service apache2 reload
