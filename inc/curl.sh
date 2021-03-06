@@ -52,7 +52,7 @@ then
 		if wget http://curl.haxx.se/download/curl-7.48.0.tar.gz; then 
 		echo -e "\033[33;32m curl download Success";date +"%r" >> $BUILD;echo "Success : File Download $FILE" >> $BUILD
 		else
-		echo -e "\033[33;31m curl download Failed";date +"%r" >> $BUILD;echo "Failed : File Download $FILE" >> $BUILD
+		echo -e "\033[33;31m curl download Failed";date +"%r" >> $BUILD;echo "Failed : File Download $FILE" >> $BUILD;echo "Failed : File Download $FILE" >> $FAILBUILD
 		fi
 else
 		echo -e "\033[33;32m file " $FILE " exists.";date +"%r" >> $BUILD;echo "Status : Already Exist $FILE" >> $BUILD
@@ -62,12 +62,12 @@ fi
 if tar -xzf curl-7.48.0.tar.gz; then 
 echo -e "\033[33;32m extract curl Success";date +"%r" >> $BUILD;echo "Success : Extract $FILE" >> $BUILD
 else
-echo -e "\033[33;31m extract curl Failed";date +"%r" >> $BUILD;echo "Failed : Extract $FILE" >> $BUILD
+echo -e "\033[33;31m extract curl Failed";date +"%r" >> $BUILD;echo "Failed : Extract $FILE" >> $BUILD;echo "Failed : Extract $FILE" >> $FAILBUILD
 fi
 if cd curl-7.48.0; then 
 echo -e "\033[33;32m curl goto Success";date +"%r" >> $BUILD;echo "Success : goto curl folder" >> $BUILD
 else
-echo -e "\033[33;31m curl goto Failed";date +"%r" >> $BUILD;echo "Failed : goto curl folder" >> $BUILD
+echo -e "\033[33;31m curl goto Failed";date +"%r" >> $BUILD;echo "Failed : goto curl folder" >> $BUILD;echo "Failed : goto curl folder" >> $FAILBUILD
 fi
 ./configure --prefix=/opt/curl-ssl --with-ssl=/opt/ssl --enable-http --enable-ftp LDFLAGS=-L/opt/ssl/lib CPPFLAGS=-I/opt/ssl/include
 make

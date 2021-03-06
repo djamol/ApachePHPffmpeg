@@ -16,7 +16,7 @@ if yum -y install MariaDB-server MariaDB-client MariaDB-devel MariaDB-shared; th
 echo -e "\033[33;32m extract MariaDB Success";date +"%r" >> $BUILD;echo "Success : Install MariaDB" >> $BUILD
 yum -y remove postfix
 else
-echo -e "\033[33;31m extract MariaDB Failed";date +"%r" >> $BUILD;echo "Failed : Install MariadB" >> $BUILD
+echo -e "\033[33;31m extract MariaDB Failed";date +"%r" >> $BUILD;echo "Failed : Install MariadB" >> $BUILD;
 fi
 if mysql -V; then 
 echo -e "\033[33;32m Mariadb is Installed";
@@ -26,7 +26,7 @@ fi
 if mysql -V; then 
 echo -e "\033[33;32m Mariadb is Installed";
 else
-echo -e "\033[33;32m Mariadb is Failed";
+echo -e "\033[33;32m Mariadb is Failed";echo "Failed : Install MariadB" >> $FAILBUILD
 fi
 
 systemctl start mysql.service

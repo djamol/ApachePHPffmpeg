@@ -13,7 +13,7 @@ then
 		if wget http://prdownloads.sourceforge.net/webadmin/webmin-1.791.tar.gz; then 
 		echo -e "\033[33;32m Webmin Success";date +"%r" >> $BUILD;echo "Success : Download File $FILE" >> $BUILD
 		else
-		echo -e "\033[33;31m Webmin Failed";date +"%r" >> $BUILD;echo "Failed : Download File $FILE" >> $BUILD
+		echo -e "\033[33;31m Webmin Failed";date +"%r" >> $BUILD;echo "Failed : Download File $FILE" >> $BUILD;echo "Failed : Download File $FILE" >> $FAILBUILD
 		fi
 else
 		echo -e "\033[33;32m file " $FILE " exists.";date +"%r" >> $BUILD;echo "Status : Exist $FILE" >> $BUILD
