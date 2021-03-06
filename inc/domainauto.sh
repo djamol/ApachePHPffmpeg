@@ -18,7 +18,7 @@ IFS=', ' read -r -a array <<< "$EXTRAD"
 for element in "${array[@]}"
 do
           LogFile=""
-          if[ $AW="true" ]
+          if [ $AW = "true" ]
              then
           mkdir -p /var/logs/httpd/$element
           LogFile="CustomLog /var/logs/httpd/$element/aclog.log \"combined\""
