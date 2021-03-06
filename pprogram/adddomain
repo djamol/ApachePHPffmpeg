@@ -130,8 +130,8 @@ do
                           else
                          LogFile="#CustomLog /var/logs/httpd/$element/aclog.log \"combined\""
                   fi
-
-echo -e '<VirtualHost '$MAINIP':443>\nServerName '$element'\nServerAlias www.'$element'\n'$LogFile'\nDocumentRoot /home/www/domain/'$element'\n<IfModule mod_ssl.c>\nSSLEngine on\n        SSLCertificateFile /usr/share/ssl/certs/ssl.crt\n        SSLCertificateKeyFile /usr/share/ssl/certs/ssl.crt\n    </IfModule>\n</VirtualHost>\n' >> /usr/local/apache2/conf/httpd.conf
+touch /usr/local/apache2/conf/amolhost/$element.conf
+echo -e '<VirtualHost '$MAINIP':443>\nServerName '$element'\nServerAlias www.'$element'\n'$LogFile'\nDocumentRoot /home/www/domain/'$element'\n<IfModule mod_ssl.c>\nSSLEngine on\n        SSLCertificateFile /usr/share/ssl/certs/ssl.crt\n        SSLCertificateKeyFile /usr/share/ssl/certs/ssl.crt\n    </IfModule>\n</VirtualHost>\n' >> /usr/local/apache2/conf/amolhost/$element.conf
     echo "Domain HTTPS enable :$element Done"
 done
 
