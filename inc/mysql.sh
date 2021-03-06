@@ -18,6 +18,17 @@ yum -y remove postfix
 else
 echo -e "\033[33;31m extract MariaDB Failed";date +"%r" >> $BUILD;echo "Failed : Install MariadB" >> $BUILD
 fi
+if mysql -V; then 
+echo -e "\033[33;32m Mariadb is Installed";
+else
+yum -y install mariadb-*;
+fi
+if mysql -V; then 
+echo -e "\033[33;32m Mariadb is Installed";
+else
+echo -e "\033[33;32m Mariadb is Failed";
+fi
+
 systemctl start mysql.service
 ##mysql_secure_installation
 ## MYSQL SECURE INSTALLATION Start
