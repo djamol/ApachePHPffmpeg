@@ -13,6 +13,7 @@ then
 		echo -e "\033[33;32m openssl download Success";date +"%r" >> $BUILD;echo "Success : File Download $FILE" >> $BUILD
 		else
 		echo -e "\033[33;31m openssl download Failed";date +"%r" >> $BUILD;echo "Failed : File Download $FILE" >> $BUILD
+		echo "Failed : File Download $FILE" >> $FAILBUILD
 		fi
 else
 		echo -e "\033[33;32m file " $FILE " exists.";date +"%r" >> $BUILD;echo "Status : Already Exist $FILE" >> $BUILD
@@ -22,17 +23,17 @@ fi
 if tar -zxf openssl-1.0.1s.tar.gz; then 
 echo -e "\033[33;32m extract openssl Success";date +"%r" >> $BUILD;echo "Success : $FILE Extract" >> $BUILD
 else
-echo -e "\033[33;31m extract openssl Failed";date +"%r" >> $BUILD;echo "Failed : $FILE Extract" >> $BUILD
+echo -e "\033[33;31m extract openssl Failed";date +"%r" >> $BUILD;echo "Failed : $FILE Extract" >> $BUILD;echo "Failed : $FILE Extract" >> $FAILBUILD
 fi
 if yum -y install zlib-devel; then 
 echo -e "\033[33;32m zlib install Success";date +"%r" >> $BUILD;echo "Success : Install zlib devel" >> $BUILD
 else
-echo -e "\033[33;31m zlib install Failed";date +"%r" >> $BUILD;echo "Failed : Install zlib devel" >> $BUILD
+echo -e "\033[33;31m zlib install Failed";date +"%r" >> $BUILD;echo "Failed : Install zlib devel" >> $BUILD;echo "Failed : Install zlib devel" >> $FAILBUILD
 fi
 if cd openssl-1.0.1s; then 
 echo -e "\033[33;32m goto openssl Success";date +"%r" >> $BUILD;echo "Success : goto dir openssl" >> $BUILD
 else
-echo -e "\033[33;31m goto openssl Failed";date +"%r" >> $BUILD;echo "Failed : goto dir openssl" >> $BUILD
+echo -e "\033[33;31m goto openssl Failed";date +"%r" >> $BUILD;echo "Failed : goto dir openssl" >> $BUILD;echo "Failed : goto dir openssl" >> $FAILBUILD
 fi
 ./config shared -fPIC --prefix=/opt/ssl --openssldir=/etc/pki/tls zlib-dynamic shared
 make

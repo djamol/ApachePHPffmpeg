@@ -10,6 +10,7 @@ if cp cacert.pem /usr/local/ssl/cert.pem; then
 echo -e "\033[33;32m cronie For Cert.pem Success";date +"%r" >> $BUILD;echo "Success : cert.pem devel Install" >> $BUILD
 else
 cp $SCRIPTPATH/src/cacert.pem /usr/local/ssl/cert.pem; echo -e "\033[33;31m cronie For Cert.pem Failed";date +"%r" >> $BUILD;echo "Failed : cert.pem Certification from curl.haxx.se website Install" >> $BUILD
+echo -e "\033[33;31m cronie For Cert.pem Failed";date +"%r" >> $FAILBUILD;echo "Failed : cert.pem Certification from curl.haxx.se website Install" >> $FAILBUILD
 fi
 cp php.ini-production /usr/local/lib/php.ini
 # openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /usr/share/ssl/certs/test.pem -out /usr/share/ssl/certs/test.pem
@@ -35,6 +36,7 @@ if yum -y install cronie; then
 echo -e "\033[33;32m cronie For CronJOB Success";date +"%r" >> $BUILD;echo "Success : Cronie for cronjob Install" >> $BUILD
 else
 echo -e "\033[33;31m cronie For CronJoB Failed";date +"%r" >> $BUILD;echo "Failed : cronie for CronJOB Install" >> $BUILD
+echo "Failed : cronie for CronJOB Install" >> $FAILBUILD
 fi
 chkconfig crond on
 service crond start
