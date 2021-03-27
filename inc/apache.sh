@@ -26,7 +26,7 @@ else
 echo -e "\033[33;31m extract httpd Failed"date +"%r" >> $BUILD;echo "Failed : Extract $FILE" >> $BUILD
 echo "Failed : File Download $FILE" >> $FAILBUILD
 tar -xzf httpd-2*
-fis
+fi
 
 
 cp -r  $SCRIPTPATH/src/apr-1.5.2 $SCRIPTPATH/src/httpd-2.4.18/srclib/apr
