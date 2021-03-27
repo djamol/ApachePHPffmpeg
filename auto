@@ -217,6 +217,18 @@ mkdir /amol
 
 service apache2 reload
 
+date +"%r" >> $BUILD;echo "Status : Auto NGINX Installation Start" >> $BUILD
+echo -e "\e[32m########################################\n####   NGINX Reverse Proxy Server Soft       #########\n#####################################"
+if [ $NGINX = "true" ]
+        then
+             source "$SCRIPTPATH/inc/nginx.sh"; 
+        else
+                echo "Reject By USER NGINX INstall"
+fi
+date +"%r" >> $BUILD;echo "Status : Auto NGINX Installation END" >> $BUILD
+
+
+
 date +"%r" >> $BUILD;echo "Status : Auto FFMPEG  Installation Start" >> $BUILD
 echo -e "\e[32m###############################\n###FFMPEG SOFT #########\n#####################################"
 if [ $FF = "true" ]
