@@ -9,10 +9,23 @@ adduser  --no-create-home  --system  --user-group --shell /bin/false   www
 
 
 ##REQUIRED 
-wget -c https://github.com/djamol/centos-INSTALLER/raw/master/src/openlite/jemalloc-3.6.0.tar.bz2 -O jemalloc-3.6.0.tar.bz2
+FILE=jemalloc-3.6.0.tar.bz2
+if [ ! -f $FILE ]
+then
+   echo -e "\033[33;34m file " $FILE " does not exist.";
+		if wget https://github.com/djamol/centos-INSTALLER/raw/master/src/openlite/jemalloc-3.6.0.tar.bz2 -O $FILE; then 
+		echo -e "\033[33;32m jemalloc download Success";date +"%r" >> $BUILD;echo "Success : File Download $FILE" >> $BUILD
+		else
+		echo -e "\033[33;31m jemalloc download Failed";date +"%r" >> $BUILD;echo "Failed : File Download $FILE" >> $BUILD
+		echo "Failed : File Download $FILE" >> $FAILBUILD
+		fi
+else
+		echo -e "\033[33;32m file " $FILE " exists.";date +"%r" >> $BUILD;echo "Status : Already Exist $FILE" >> $BUILD
+fi
 tar xjf jemalloc-3.6.0.tar.bz2
 cd jemalloc*
 ./configure 
+cpu_num=`cat /proc/cpuinfo | grep processor | wc -l`
 make -j $cpu_num 
 make install
 echo '/usr/local/lib' > /etc/ld.so.conf.d/local.conf
@@ -28,18 +41,18 @@ if [ ! -f $FILE ]
 then
    echo -e "\033[33;34m file " $FILE " does not exist.";
 		if wget https://github.com/djamol/centos-INSTALLER/raw/master/src/openlite/nginx-1.9.9.tar.gz -O $FILE; then 
-		echo -e "\033[33;32m httpd download Success";date +"%r" >> $BUILD;echo "Success : File Download $FILE" >> $BUILD
+		echo -e "\033[33;32m nginx download Success";date +"%r" >> $BUILD;echo "Success : File Download $FILE" >> $BUILD
 		else
-		echo -e "\033[33;31m httpd download Failed";date +"%r" >> $BUILD;echo "Failed : File Download $FILE" >> $BUILD
+		echo -e "\033[33;31m nginx download Failed";date +"%r" >> $BUILD;echo "Failed : File Download $FILE" >> $BUILD
 		echo "Failed : File Download $FILE" >> $FAILBUILD
 		fi
 else
 		echo -e "\033[33;32m file " $FILE " exists.";date +"%r" >> $BUILD;echo "Status : Already Exist $FILE" >> $BUILD
 fi
 if tar -zxf $FILE; then 
-echo -e "\033[33;32m extract httpd Success";date +"%r" >> $BUILD;echo "Success : Extract $FILE" >> $BUILD
+echo -e "\033[33;32m extract nginx Success";date +"%r" >> $BUILD;echo "Success : Extract $FILE" >> $BUILD
 else
-echo -e "\033[33;31m extract httpd Failed"date +"%r" >> $BUILD;echo "Failed : Extract $FILE" >> $BUILD
+echo -e "\033[33;31m extract nginx Failed"date +"%r" >> $BUILD;echo "Failed : Extract $FILE" >> $BUILD
 echo "Failed : File Download $FILE" >> $FAILBUILD
 fi
 cd nginx-*
