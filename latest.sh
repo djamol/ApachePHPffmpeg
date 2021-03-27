@@ -6,7 +6,8 @@ if [[ ${EUID} -ne 0 ]]; then
   else
   echo -e "PASS: ROOT!"
 fi
-ssh_port=`grep ^Port /etc/ssh/sshd_config | awk '{print $2}'
+ssh_port=`grep ^Port /etc/ssh/sshd_config | awk '{print $2}'`
+
   echo -e "SSH: Run On PORT $ssh_port "
 
 # do we have CentOS 7?
