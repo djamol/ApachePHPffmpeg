@@ -96,7 +96,7 @@ SCRIPT=$(readlink -f "$0")
 SCRIPTPATH=$(dirname "$SCRIPT")
 #echo $SCRIPTPATH
 
-BIND="n"; CURL="n"; DB="n"; Apache="n";PHPe="n";CRON="n";CSSF="n";WCP="n";PFTP="n";PostFix="n";FF="n";PHPT="n";AW="n";
+BIND="n"; CURL="n"; DB="n"; Apache="n";NGINX="n";PHPe="n";CRON="n";CSSF="n";WCP="n";PFTP="n";PostFix="n";FF="n";PHPT="n";AW="n";
 #set timezone
 rm -rf /etc/localtime
 ln -s /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
@@ -209,6 +209,36 @@ echo -n "Enter Your Organization  > ";read otext;
 echo -n "Enter Your Organization  Unit > ";read outext;
 echo -n "Enter Your Server Name > ";read srvtext;
 echo -n "Enter Your Email ID > ";read etext;
+
+
+
+
+
+
+
+
+echo -e '▒█░▒░▓█░█▒░▒▒█░█▓░▒░█▓   █████▒    ▓█ ▒█▓▓█▓ ██████ ▓████▒░█░      ░█████░▒████▓ ▓█████░ 
+ ░▓ █▓▓█ ▓ ██▒█░▓░▓█░█▓   ▓▒  █▓    ▒█ ▒▓▓▓█▓ ▓░█▓▒█░▓▒  █▓ ▓       ░█░  ▓ ▒▓  ▓█ ▓▒▓█▒█▒ 
+ ▒█▒█▓▓█░█▓▓█▒█▒█▓▓█▒█▓   █▓  █▓░▓░ ▓█ ██▒▒█▓░█▒█▓▒█░██  █▓░█▒  ░   ▒█▒ ░▓ ██  ██ █▓▓█░█▒ 
+ ░█████▓ ██████ ▓█████░▓█ █████░░█████ █▓  █▓░█▒░░▒█ ▓████▒░█████▒█▓ █████ ▒████▓ █▓░▒░█▒ ';
+echo -e "$GREEN 
+# Powered By DjAmol Group Inc         #
+# Email : Support@djamol.com          #
+# Website : www.djamol.com            #
+# Copyright By PatilWeb.com           #
+# IG:PatilWeb FB:PatilWeb TW:PatilWeb #
+$RESET";
+echo -e "\e[32m########################################\n####   Nginx (as Reverse Server Proxy) Soft.  #########\n########################################"
+while true; do
+    read -p "Do you wish to install (Nginx Server as Reverse Proxy) program?" yn
+    case $yn in
+        [Yy]* ) NGINX="true";break;;
+        [Nn]* ) echo "Reject Program : Nginx Server as Reverse Proxy (By You) " >> $BUILD; break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+
 
 
 echo -e '▒█░▒░▓█░█▒░▒▒█░█▓░▒░█▓   █████▒    ▓█ ▒█▓▓█▓ ██████ ▓████▒░█░      ░█████░▒████▓ ▓█████░ 
@@ -488,6 +518,7 @@ CURL=$CURL
 DB=$DB
 WCP=$WCP
 AW=$AW
+NGINX=$NGINX
 Apache=$Apache
 PHPe=$PHPe
 PHPT=$PHPT;
