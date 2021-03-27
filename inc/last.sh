@@ -2,6 +2,14 @@
 # DjAmol Group Pvt Ltd.
 # WWW.DjAmol.Com
 # djamolpatil@gmail.com
+PORTX = 80
+if [ $NGINX = "true" ]
+        then
+            PORTX=8088 
+            echo "Default PORT $PORTX"
+        else
+                echo "Default PORT 80"
+fi
 
 
 mkdir -p /usr/local/apache2/conf/amolhost
@@ -124,7 +132,7 @@ cp -f $SCRIPTPATH/conf/php.ini /usr/local/lib/php.ini
           LogFile="#CustomLog /var/logs/httpd/$MAINDOMAIN/aclog.log \"combined\""
 fi
 
-echo -e '<VirtualHost '$MAINIP':80>\nServerName '$MAINDOMAIN'\nServerAlias www.'$MAINDOMAIN'\n'$LogFile'\nDocumentRoot /home/www\nServerAdmin webmaster@djamol.com\n</VirtualHost>' >> /usr/local/apache2/conf/amolhost/main.conf
+echo -e '<VirtualHost '$MAINIP':'$PORTX'>\nServerName '$MAINDOMAIN'\nServerAlias www.'$MAINDOMAIN'\n'$LogFile'\nDocumentRoot /home/www\nServerAdmin webmaster@djamol.com\n</VirtualHost>' >> /usr/local/apache2/conf/amolhost/main.conf
 echo -e '<VirtualHost '$MAINIP':443>\nServerName '$MAINDOMAIN'\nServerAlias www.'$MAINDOMAIN'\n'$LogFile'\nDocumentRoot /home/www\n<IfModule mod_ssl.c>\nSSLEngine on\n        SSLCertificateFile /usr/share/ssl/certs/ssl.crt\n        SSLCertificateKeyFile /usr/share/ssl/certs/ssl.crt\n    </IfModule>\n</VirtualHost>\n' >> /usr/local/apache2/conf/amolhost/main.conf
 
 sed -i '/listen-on port/c\	listen-on port 53 { any; };' /etc/named.conf
