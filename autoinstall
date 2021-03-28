@@ -232,7 +232,7 @@ echo -e "\e[32m########################################\n####   Nginx (as Revers
 while true; do
     read -p "Do you wish to install (Nginx Server as Reverse Proxy) program?" yn
     case $yn in
-        [Yy]* ) NGINX="true";break;;
+        [Yy]* ) NGINX="true";sed -i 's/:80/:8088/' $SCRIPTPATH/pprogram/adddomain;break;;
         [Nn]* ) echo "Reject Program : Nginx Server as Reverse Proxy (By You) " >> $BUILD; break;;
         * ) echo "Please answer yes or no.";;
     esac
