@@ -183,7 +183,8 @@ service nginx start
 	if [ $Apache  = "true" ]
         then
 	    sed -i 's/Listen 0.0.0.0:80/Listen 0.0.0.0:8088/g' /usr/local/apache2/conf/httpd.conf
-	    sed -i 's/Listen [::]:80/Listen [::]:8088/g' /usr/local/apache2/conf/httpd.conf
+	    #sed -i 's/Listen [::]:80/Listen [::]:8088/g' /usr/local/apache2/conf/httpd.conf
+	    sed -i 's/Listen \[::\]:80/Listen [::]:8088/'  /usr/local/apache2/conf/httpd.conf
         else
 	                echo "Reject By USER Apache INstall for nginx"
         fi
