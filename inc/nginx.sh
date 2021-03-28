@@ -177,8 +177,8 @@ cpu_num=`cat /proc/cpuinfo | grep processor | wc -l`
     chkconfig --add nginx
 chkconfig nginx on
 service nginx start
-    sed -i 's/Listen 0.0.0.0:80/Listen 0.0.0.0:8088/g' /usr/local/apache2/conf/httpd.conf
-	sed -i 's/Listen [::]:80/Listen [::]:8088/g' /usr/local/apache2/conf/httpd.conf
+   # sed -i 's/Listen 0.0.0.0:80/Listen 0.0.0.0:8088/g' /usr/local/apache2/conf/httpd.conf
+#	sed -i 's/Listen [::]:80/Listen [::]:8088/g' /usr/local/apache2/conf/httpd.conf
 
 	if [ $Apache  = "true" ]
         then
