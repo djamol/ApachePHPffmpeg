@@ -112,6 +112,9 @@ make
 #./configure --prefix=/usr/local/lsws/lsphp5 --disable-fileinfo --disable-opcache --enable-bcmath --enable-calendar --enable-ftp --enable-mbstring --enable-soap --enable-zip --enable-gd-native-ttf --enable-libxml --enable-pdo --enable-sockets --with-gettext --with-curl=/opt/curl-ssl --with-freetype-dir=/usr --with-gd --with-jpeg-dir==/usr --with-kerberos --with-libxml-dir=/opt/libmcrypt/ --with-mysql --with-mysqli --with-mysql-sock=/var/lib/mysql/mysql.sock --with-openssl  --with-pdo-mysql --with-pdo-sqlite --with-pic --with-png-dir=/usr --with-xpm-dir=/usr --with-zlib --with-zlib-dir=/usr --with-libdir=lib64 --enable-shmop --enable-sysvsem --enable-sysvshm --with-iconv --enable-inline-optimization --with-mhash --enable-xml --disable-rpath --enable-mbregex --enable-pcntl --with-ldap-sasl --with-xmlrpc --disable-debug --with-apxs2=/usr/local/apache2/bin/apxs; #--with-ldap
 ####
 
+#for php7.4 version
+yum install krb5-devel -y
+
 
 echo -e "
   █    █ █    █ ▓    █    █████      █  █▓▓█  ▓█████  ████  █        ▓████  ████▒  █████  
