@@ -166,7 +166,7 @@ echo -e "\033[33;31m php7 extract Failed";date +"%r" >> $BUILD;echo "Failed : Ex
 tar -xzf php-*
 fi
 cd php-7.2.34
-./configure --prefix=/usr/local/php7/74/usr --with-config-file-path=/usr/local/php7/74/usr/etc --with-openssl=/usr/local/ssl   --disable-fileinfo --disable-opcache --enable-bcmath --enable-calendar --enable-ftp --enable-mbstring --enable-soap --enable-zip --enable-gd-native-ttf --enable-libxml --enable-pdo --enable-sockets --with-gettext --with-apxs2=/usr/local/apache2/bin/apxs --with-curl=/opt/curl-ssl --with-freetype-dir=/usr --with-gd --with-jpeg-dir==/usr --with-kerberos --with-libxml-dir=/opt/libmcrypt/  --with-mysqli --with-mysql-sock=/var/lib/mysql/mysql.sock   --with-pcre-regex=/usr/local/pcre --with-pdo-mysql --with-pdo-sqlite --with-pic --with-png-dir=/usr --with-xpm-dir=/usr --with-zlib --with-zlib-dir=/usr 
+./configure --prefix=/usr/local/php7/72/usr --with-config-file-path=/usr/local/php7/72/usr/etc --with-openssl=/usr/local/ssl   --disable-fileinfo --disable-opcache --enable-bcmath --enable-calendar --enable-ftp --enable-mbstring --enable-soap --enable-zip --enable-gd-native-ttf --enable-libxml --enable-pdo --enable-sockets --with-gettext --with-apxs2=/usr/local/apache2/bin/apxs --with-curl=/opt/curl-ssl --with-freetype-dir=/usr --with-gd --with-jpeg-dir==/usr --with-kerberos --with-libxml-dir=/opt/libmcrypt/  --with-mysqli --with-mysql-sock=/var/lib/mysql/mysql.sock   --with-pcre-regex=/usr/local/pcre --with-pdo-mysql --with-pdo-sqlite --with-pic --with-png-dir=/usr --with-xpm-dir=/usr --with-zlib --with-zlib-dir=/usr 
 
 PHPINSTALL=$(expect -c "
 spawn make install
