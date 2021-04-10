@@ -1,0 +1,70 @@
+yum -y install dovecot dovecot-mysql dovecot-pigeonhole
+touch /etc/dovecot/dovecot-sql.conf
+ln -s /etc/dovecot/dovecot-sql.conf /etc/dovecot-sql.conf
+ln -s /etc/dovecot/dovecot.conf /etc/dovecot.conf
+systemctl enable dovecot
+systemctl start dovecot
+
+
+
+yum -y install amavisd-new spamassassin clamav-server clamav-data clamav-update clamav-filesystem clamav clamav-scanner-systemd clamav-devel clamav-lib clamav-server-systemd unzip bzip2 perl-DBD-mysql postgrey re2c
+
+sa-update
+freshclam
+systemctl enable amavisd.service
+systemctl start amavisd.service
+systemctl start clamd@amavisd.service
+systemctl enable postgrey.service
+systemctl start postgrey.service
+
+
+
+
+        Configuring Postfix by edit /etc/postfix/main.cf file:
+
+home_mailbox = Maildir/    # Line 421 - Uncomment
+systemctl enable postfix
+systemctl restart postfix
+
+
+useradd amolmail
+passwd amolmail
+
+telnet localhost smtp
+ehlo localhost             # Type this line
+mail from:<amolmail@localhost>        # Mail sender address
+rcpt to:<amolmail@localhost>          # Mail receiver address
+data                       # To input body of Email
+Welcome to TheSkillPedia mail server     # Body of the Email
+.                          # After you finished with content
+quit                       # Exit from mail
+
+
+
+cd /home/amolmail/Maildir/new/
+Read mail
+cat /home/sangwan/Maildir/new/*****
+
+
+vi /etc/dovecot/dovecot.conf
+protocols = imap pop3 lmtp             # Line 24 - umcomment
+vi /etc/dovecot/conf.d/10-mail.conf
+mail_location = maildir:~/Maildir      # Line 24 - uncomment
+vi /etc/dovecot/conf.d/10-auth.conf
+disable_plaintext_auth = yes           #line 10 - uncomment
+auth_mechanisms = plain login          #Line 100 - Add the word: "login"
+vi /etc/dovecot/conf.d/10-master.conf
+#Line 91, 92 - Uncomment and add "postfix"
+#mode = 0600
+  user = postfix
+  group = postfix
+  
+  
+  systemctl enable dovecot
+systemctl start dovecot
+
+Sequence 5. Testing Dovecot
+telnet localhost pop3
+user amolmail               #Enter the mail user name
+pass centos                #Enter the password
+retr 1                     #Type this command to view mail
