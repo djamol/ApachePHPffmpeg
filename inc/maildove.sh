@@ -95,6 +95,19 @@ INSERT INTO users (email, password) VALUES ('amol@woho.co.in', ENCRYPT('amol'));
 
 sudo postmap -q woho.co.in  mysql:/etc/postfix/mysql-virtual_domains.cf
 sudo postmap -q amol@woho.co.in  mysql:/etc/postfix/mysql-virtual_mailboxes.cf
+echo "And Please Create MX Entry in Your Domain DNS: \n
+Example : 
+mail.$MAINDOMAIN. IN A $MAINIP
+mail.$MAINDOMAIN. IN MX 5 mail.$MAINDOMAIN.
+Another Domain (Entry)
+anotherdomain.com IN MX 5 mail.$MAINDOMAIN.
+google.com IN MX 5 mail.$MAINDOMAIN.
+yahoo.com IN MX 5 mail.$MAINDOMAIN.
+And run below commands
+sudo postmap -q woho.co.in  mysql:/etc/postfix/mysql-virtual_domains.cf
+sudo postmap -q amol@woho.co.in  mysql:/etc/postfix/mysql-virtual_mailboxes.cf
+service postfix reload
+"
 
 service postfix restart
 service dovecot restart
