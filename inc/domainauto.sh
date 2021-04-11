@@ -5,6 +5,14 @@ mkdir -p /usr/local/apache2/conf/amolhost
 touch /usr/local/apache2/conf/amolhost/main.conf
 touch /usr/local/apache2/conf/amolhost/domain.conf
 #touch /usr/local/apache2/conf/amolhost/global.conf
+PORTX = 80
+if [ $NGINX = "true" ]
+        then
+            PORTX=8088 
+            echo "Default PORT $PORTX"
+        else
+                echo "Default PORT 80"
+fi
 
 echo "Domain Added (MAIN):$MAINDOMAIN (Domain Directory:/home/www)"
 
@@ -25,7 +33,7 @@ do
           else
           LogFile="#CustomLog /var/logs/httpd/$element/aclog.log \"combined\""
           fi
-    echo -e '<VirtualHost '$MAINIP':80>\nServerName '$element'\nServerAlias www.'$element'\n'$LogFile'\nDocumentRoot /home/www/domain/'$element'\nServerAdmin webmaster@djamol.com\n</VirtualHost>' >> /usr/local/apache2/conf/amolhost/domain.conf
+    echo -e '<VirtualHost '$MAINIP':'$PORTX'>\nServerName '$element'\nServerAlias www.'$element'\n'$LogFile'\nDocumentRoot /home/www/domain/'$element'\nServerAdmin webmaster@djamol.com\n</VirtualHost>' >> /usr/local/apache2/conf/amolhost/domain.conf
     echo -e '$TTL 14400\n@      86400	IN      SOA     ns1.'$MAINDOMAIN'. djamolpatil.gmail.com. (\n		2016033003	; serial, todays date+todays\n		3600		; refresh, seconds\n		7200		; retry, seconds\n		1209600		; expire, seconds\n		86400 )		; minimum, seconds\n\n'$element'. 86400 IN NS ns1.'$MAINDOMAIN'.\n'$element'. 86400 IN NS ns2.'$MAINDOMAIN'.\n\n\n'$element'. IN A '$MAINIP'\nmail.'$element'. IN A '$MAINIP'\nmail.'$element'. IN MX 5 mail.'$element'.\n\nwww IN CNAME '$element'.\nftp IN CNAME '$element'.\n' >> /var/named/$element.db
     echo -e '\nzone "'$element'" {	type master;	file "/var/named/'$element'.db";};' >> /etc/named.main.zones
     echo "Domain Added :$element (Domain Directory:/home/www/domain/$element)"
