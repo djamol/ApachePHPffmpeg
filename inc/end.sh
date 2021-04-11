@@ -16,6 +16,7 @@ sed -i '/#Port/c\Port 55' /etc/ssh/sshd_config
 semanage port -l | grep ssh
 ##enable 55 port for ssh in semanage linux
 semanage port -a -t ssh_port_t -p tcp 55
+service sshd restart
 
 
 date +"%r" >> $BUILD;/usr/local/apache2/bin/httpd -v >> $BUILD;openssl version >> $BUILD;
