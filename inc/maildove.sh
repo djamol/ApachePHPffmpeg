@@ -4,8 +4,7 @@ cp -rf /etc/postfix/* /backup/postfix/
 mkdir -p /backup/dovecot
 cp -rf /etc/dovecot/*.conf /backup/dovecot/
 
-
-cp $BASE_DIR/postfix/mysql* /etc/postfix/
+cp $SCRIPTPATH/conf/mail2/mysql* /etc/postfix/
 chown root:postfix /etc/postfix/mysql-virtual_*.cf
 chmod 644 /etc/postfix/mysql-virtual_*.cf
 groupadd -g 5000 vmail
@@ -65,12 +64,12 @@ echo 'dovecot   unix  -       n       n       -       -       pipe	flags=DRhu us
 
 
 
-cp $BASE_DIR/dovecot/dovecot.conf /etc/dovecot/dovecot.conf
-cp $BASE_DIR/dovecot/dovecot-sql.conf /etc/dovecot/dovecot-sql.conf
+cp $SCRIPTPATH/conf/mail2/dovecot.conf /etc/dovecot/dovecot.conf
+cp $SCRIPTPATH/conf/mail2/dovecot-sql.conf /etc/dovecot/dovecot-sql.conf
 chgrp dovecot /etc/dovecot/dovecot-sql.conf
 chmod o= /etc/dovecot/dovecot-sql.conf
 
-cp $BASE_DIR/postfix/aliases /etc/aliases
+cp $SCRIPTPATH/conf/mail2/aliases /etc/aliases
 chown root:root /etc/aliases
 newaliases
 
@@ -78,23 +77,23 @@ newaliases
 ##mysql -u root -p '' < $BASE_DIR/sql/mail.sql 
 ##mysql -u root -p '' < $BASE_DIR/sql/setmailbox.sql 
 
-CREATE DATABASE mail;
-USE mail;
+#CREATE DATABASE mail;
+#USE mail;
 
-GRANT SELECT, INSERT, UPDATE, DELETE ON mail.* TO 'mail_admin'@'localhost' IDENTIFIED BY 'whynotchangeme';
-GRANT SELECT, INSERT, UPDATE, DELETE ON mail.* TO 'mail_admin'@'localhost.localdomain' IDENTIFIED BY 'whynotchangeme';
-FLUSH PRIVILEGES;
+#GRANT SELECT, INSERT, UPDATE, DELETE ON mail.* TO 'mail_admin'@'localhost' IDENTIFIED BY 'whynotchangeme';
+#GRANT SELECT, INSERT, UPDATE, DELETE ON mail.* TO 'mail_admin'@'localhost.localdomain' IDENTIFIED BY 'whynotchangeme';
+#FLUSH PRIVILEGES;
 
-CREATE TABLE domains (domain varchar(50) NOT NULL, PRIMARY KEY (domain) );
-CREATE TABLE forwardings (source varchar(80) NOT NULL, destination TEXT NOT NULL, PRIMARY KEY (source) );
-CREATE TABLE users (email varchar(80) NOT NULL, password varchar(20) NOT NULL, PRIMARY KEY (email) );
-CREATE TABLE transport ( domain varchar(128) NOT NULL default '', transport varchar(128) NOT NULL default '', UNIQUE KEY domain (domain) );
-USE mail;
-INSERT INTO domains (domain) VALUES ('woho.co.in');
-INSERT INTO users (email, password) VALUES ('amol@woho.co.in', ENCRYPT('amol'));
+#CREATE TABLE domains (domain varchar(50) NOT NULL, PRIMARY KEY (domain) );
+#CREATE TABLE forwardings (source varchar(80) NOT NULL, destination TEXT NOT NULL, PRIMARY KEY (source) );
+#CREATE TABLE users (email varchar(80) NOT NULL, password varchar(20) NOT NULL, PRIMARY KEY (email) );
+#CREATE TABLE transport ( domain varchar(128) NOT NULL default '', transport varchar(128) NOT NULL default '', UNIQUE KEY domain (domain) );
+#USE mail;
+#INSERT INTO domains (domain) VALUES ('woho.co.in');
+#INSERT INTO users (email, password) VALUES ('amol@woho.co.in', ENCRYPT('amol'));
 
-sudo postmap -q woho.co.in  mysql:/etc/postfix/mysql-virtual_domains.cf
-sudo postmap -q amol@woho.co.in  mysql:/etc/postfix/mysql-virtual_mailboxes.cf
+postmap -q woho.co.in  mysql:/etc/postfix/mysql-virtual_domains.cf
+postmap -q amol@woho.co.in  mysql:/etc/postfix/mysql-virtual_mailboxes.cf
 echo "And Please Create MX Entry in Your Domain DNS: \n
 Example : 
 mail.$MAINDOMAIN. IN A $MAINIP
@@ -104,8 +103,8 @@ anotherdomain.com IN MX 5 mail.$MAINDOMAIN.
 google.com IN MX 5 mail.$MAINDOMAIN.
 yahoo.com IN MX 5 mail.$MAINDOMAIN.
 And run below commands
-sudo postmap -q woho.co.in  mysql:/etc/postfix/mysql-virtual_domains.cf
-sudo postmap -q amol@woho.co.in  mysql:/etc/postfix/mysql-virtual_mailboxes.cf
+sudo postmap -q example.com  mysql:/etc/postfix/mysql-virtual_domains.cf
+sudo postmap -q amol@example.com   mysql:/etc/postfix/mysql-virtual_mailboxes.cf
 service postfix reload
 "
 
