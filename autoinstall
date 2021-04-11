@@ -96,7 +96,7 @@ SCRIPT=$(readlink -f "$0")
 SCRIPTPATH=$(dirname "$SCRIPT")
 #echo $SCRIPTPATH
 
-BIND="n"; CURL="n"; DB="n"; Apache="n";NGINX="n";PHPe="n";CRON="n";CSSF="n";WCP="n";PFTP="n";PostFix="n";FF="n";PHPT="n";AW="n";
+BIND="n"; CURL="n"; DB="n"; Apache="n";NGINX="n";PHPe="n";CRON="n";CSSF="n";WCP="n";PFTP="n";PostFix="n";PostDove="n";FF="n";PHPT="n";AW="n";
 #set timezone
 rm -rf /etc/localtime
 ln -s /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
@@ -382,14 +382,29 @@ echo -e "$GREEN
 # IG:PatilWeb FB:PatilWeb TW:PatilWeb #
 $RESET";
 echo -e "\e[34m########################################\n####  PostFix Mail Solution  ###########\n########################################"
-while true; do
-    read -p "Do you wish to install (Mail Forward And Sendmail )Postfix program?" yn
-    case $yn in
-        [Yy]* ) PostFix="true"; break;;
-        [Nn]* ) echo "Reject Program : PostFix   (By You) " >> $BUILD; break;;
-        * ) echo "Please answer yes or no.";;
-    esac
-done
+ echo -e "########################"
+ echo -e "OPTION - MAIL SERVER"
+ echo -e "########################"
+ echo -e "1. POSTFIX MAIL SERVER"
+ echo -e "2. POSTFIX+Dovecot(POP3,IMAP) MAIL SERVER with Config mysqlDB"
+ echo -e "3. NO MAIL SERVER(NONE)"
+ echo -n "Please enter option [1 - 3]"
+ read opt
+ case $opt in
+  1) echo -e "************ POSTFIX ONLY *************";
+     PostFix="true";
+     echo "MAIL Program : POSTFIX ONLY with sendmail server (By You) " >> $BUILD;;
+  2) echo -e "************ POSTFIX+Dovecot *************";
+     PostDove="true";
+     echo "MAIL Program : POSTFIX+Dovecot(POP3,IMAP) MAIL SERVER with Config mysqlDB (By You) " >> $BUILD;;
+  2) echo -e "************ NO MAIL SERVER *************";
+     echo "MAIL Program : NO MAIL SERVER (By You) " >> $BUILD;;
+  *) echo -e "$opt is an invaild option. Please select option between 1-3 only";
+     echo -e "Press [enter] key to continue. . .";
+     read enterKey;;
+esac
+done     
+
 
 clear
 
@@ -526,6 +541,7 @@ CRON=$CRON
 CSSF=$CSSF
 PFTP=$PFTP
 PostFix=$PostFix
+PostDove=$PostDove
 MAINDOMAIN=$MAINDOMAIN
 ARCH=$ARCH
 MAINIP=$MAINIP
