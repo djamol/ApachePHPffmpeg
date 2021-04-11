@@ -12,6 +12,27 @@ groupadd -g 5000 vmail
 useradd -g vmail -u 5000 vmail -d /home/vmail -m
 
 
+#openssl req -new -x509 -days 3650 -nodes -out /etc/ssl/certs/postfix.pem -keyout /etc/ssl/private/postfix.pem
+SSLCERt=$(expect -c "
+set timeout 35
+  spawn openssl req -new -x509 -days 3650 -nodes -out /etc/ssl/certs/postfix2.pem -keyout /etc/ssl/private/postfix2.pem
+  expect \"Country Name*:\"
+  send \"$CAC\r\"
+  expect \"State*:\"
+  send \"$CAS\r\"
+  expect \"Locality*:\"
+  send \"$CAL\r\"
+  expect \"Organization Name*:\"
+  send \"$CAO\r\"
+  expect \"Organizational Unit*:\"
+  send \"$CAU\r\"
+  expect \"Common Name*:\"
+  send \"$mails\r\"
+  expect \"Email*:\"
+  send \"$CAM\r\"
+expect eof
+")
+echo "$SSLCERt"
 
 postconf -e 'myhostname =  woho.co.in'
 postconf -e 'mydestination = localhost, localhost.localdomain, mail.woho.co.in'
@@ -32,8 +53,8 @@ postconf -e 'broken_sasl_auth_clients = yes'
 postconf -e 'smtpd_sasl_authenticated_header = yes'
 postconf -e 'smtpd_recipient_restrictions = permit_mynetworks, permit_sasl_authenticated, reject_unauth_destination'
 postconf -e 'smtpd_use_tls = yes'
-postconf -e 'smtpd_tls_cert_file = /etc/ssl/certs/postfix.pem'
-postconf -e 'smtpd_tls_key_file = /etc/ssl/private/postfix.pem'
+postconf -e 'smtpd_tls_cert_file = /etc/ssl/certs/postfix2.pem'
+postconf -e 'smtpd_tls_key_file = /etc/ssl/private/postfix2.pem'
 postconf -e 'virtual_create_maildirsize = yes'
 postconf -e 'virtual_maildir_extended = yes'
 postconf -e 'proxy_read_maps = $local_recipient_maps $mydestination $virtual_alias_maps $virtual_alias_domains $virtual_mailbox_maps $virtual_mailbox_domains $relay_recipient_maps $relay_domains $canonical_maps $sender_canonical_maps $recipient_canonical_maps $relocated_maps $transport_maps $mynetworks $virtual_mailbox_limit_maps'
