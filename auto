@@ -178,6 +178,14 @@ if [ $PostFix = "true" ]
         else
                 echo "Reject By USER PostFix INstall"
 fi
+echo -e "\e[32m###############################\n###Postfix-dovecot Mail Software #########\n#####################################"
+if [ $PostDove = "true" ]
+        then
+                source "$SCRIPTPATH/inc/maildove.sh"; 
+        else
+                echo "Reject By USER Postfix-dovecot INstall"
+fi
+
 echo -e "\e[32m########################################\n####   AWStats Software       #########\n########################################"
 if [ $AW = "true" ]
         then
