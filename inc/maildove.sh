@@ -75,7 +75,7 @@ newaliases
 
 
 ##mysql -u root -p '' < $BASE_DIR/sql/mail.sql 
-##mysql -u root -p '' < $BASE_DIR/sql/setmailbox.sql 
+mysql -u root  < $SCRIPTPATH/conf/mail2/mail.sql 
 
 #CREATE DATABASE mail;
 #USE mail;
