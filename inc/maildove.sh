@@ -10,7 +10,8 @@ chmod 644 /etc/postfix/mysql-virtual_*.cf
 groupadd -g 5000 vmail
 useradd -g vmail -u 5000 vmail -d /home/vmail -m
 
-
+mkdir -p /etc/ssl/private;
+mkdir -p  /etc/ssl/certs;
 #openssl req -new -x509 -days 3650 -nodes -out /etc/ssl/certs/postfix.pem -keyout /etc/ssl/private/postfix.pem
 SSLCERt=$(expect -c "
 set timeout 35
