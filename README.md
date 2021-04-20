@@ -23,3 +23,8 @@ check ->: sestatus
 vi /etc/selinux/config    > change : SELINUX=disabled
 
 sudo shutdown -r now
+
+
+TEST ONLINE SERVER TOOLS
+SMTP (Sendmail/SMTP Mail Server)   https://www.gmass.co/smtp-test
+DNS : network-tools.com , https://mxtoolbox.com/ ,https://api.hackertarget.com/zonetransfer/?q=example.com
