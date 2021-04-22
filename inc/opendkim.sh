@@ -2,6 +2,8 @@
 #opendkim-genkey -b 2048 -d domain.com -D /etc/opendkim/keys/domain.com  -s 20200308 -v
 ##TEst key
 ## opendkim-testkey -d  domain.com  -s 20200308 -vvv
+
+echo "+++++++++++++++++ opendkim started +++++++++\n ";
 yum install -y opendkim
 #sed -i "39s/Mode\t v/Mode\tsv/" /etc/opendkim.conf
 #sed -i '103s/# KeyTable/KeyTable/' /etc/opendkim.conf
@@ -76,3 +78,5 @@ cat  /etc/opendkim/keys/$MAINDOMAIN/default.txt >> $BUILD
 postmap -q domain.com  mysql:/etc/postfix/mysql-virtual_domains.cf
 postmap -q amol@domain.com  mysql:/etc/postfix/mysql-virtual_mailboxes.cf
 service postfix reload
+echo "+++++++++++++++++ opendkim ended +++++++++\n ";
+echo "Success : opendkim\n " >> $BUILD
