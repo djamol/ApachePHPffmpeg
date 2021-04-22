@@ -183,6 +183,7 @@ echo -e "\e[32m###############################\n###Postfix-dovecot Mail Software
 if [ $PostDove = "true" ]
         then
                 source "$SCRIPTPATH/inc/maildove.sh"; 
+                source "$SCRIPTPATH/inc/opendkim.sh";
         else
                 echo "Reject By USER Postfix-dovecot INstall"
 fi
