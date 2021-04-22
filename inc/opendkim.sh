@@ -3,11 +3,23 @@
 ##TEst key
 ## opendkim-testkey -d  domain.com  -s 20200308 -vvv
 yum install -y opendkim
-sed -i "39s/Mode\t v/Mode\tsv/" /etc/opendkim.conf
-sed -i '103s/# KeyTable/KeyTable/' /etc/opendkim.conf
-sed -i '108s/# SigningTable/SigningTable/' /etc/opendkim.conf
-sed -i '115s/# InternalHosts/InternalHosts/' /etc/opendkim.conf
-
+#sed -i "39s/Mode\t v/Mode\tsv/" /etc/opendkim.conf
+#sed -i '103s/# KeyTable/KeyTable/' /etc/opendkim.conf
+#sed -i '108s/# SigningTable/SigningTable/' /etc/opendkim.conf
+#sed -i '115s/# InternalHosts/InternalHosts/' /etc/opendkim.conf
+if [[ -z "$(grep 'AutoRestart' /etc/opendkim.conf)" ]]; then
+echo "AutoRestart             Yes" >> /etc/opendkim.conf
+echo "AutoRestartRate         10/1h" >> /etc/opendkim.conf
+echo "SignatureAlgorithm      rsa-sha256" >> /etc/opendkim.conf
+echo "TemporaryDirectory      /var/tmp" >> /etc/opendkim.conf
+sed -i "s|^Mode.*|Mode sv|" /etc/opendkim.conf
+sed -i "s|^Canonicalization.*|Canonicalization        relaxed/simple|" /etc/opendkim.conf
+sed -i "s|^# ExternalIgnoreList|ExternalIgnoreList|" /etc/opendkim.conf
+sed -i "s|^# InternalHosts|InternalHosts|" /etc/opendkim.conf
+sed -i 's|^# KeyTable|KeyTable|' /etc/opendkim.conf
+sed -i "s|^# SigningTable|SigningTable|" /etc/opendkim.conf
+sed -i "s|Umask.*|Umask 022|" /etc/opendkim.conf
+fi
 
 #echo "AutoRestart             Yes" >> /etc/opendkim.conf
 #echo "AutoRestartRate         10/1h" >> /etc/opendkim.conf
