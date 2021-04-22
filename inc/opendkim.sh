@@ -1,4 +1,3 @@
-DOMAIN=example.com
 # $SCRIPTPATH/conf/awstats.conf /usr/local/apache2/conf/amolhost/awstats.conf
 #opendkim-genkey -b 2048 -d domain.com -D /etc/opendkim/keys/domain.com  -s 20200308 -v
 ##TEst key
@@ -35,13 +34,13 @@ sed -i '115s/# InternalHosts/InternalHosts/' /etc/opendkim.conf
 #EOF
 
 iptables -A INPUT -p tcp --dport 465 -j ACCEPT
-mkdir -p /etc/opendkim/keys/$DOMAIN
-opendkim-genkey -D /etc/opendkim/keys/$DOMAIN/ -d $DOMAIN -s default
-echo -e  '*@$DOMAIN $DOMAIN'>>  /etc/opendkim/SigningTable
-echo -e '$DOMAIN $DOMAIN:default:/etc/opendkim/keys/$DOMAIN/default.private' >>   /etc/opendkim/KeyTable
+mkdir -p /etc/opendkim/keys/$MAINDOMAIN
+opendkim-genkey -D /etc/opendkim/keys/$MAINDOMAIN/ -d $MAINDOMAIN -s default
+echo -e  '*@$MAINDOMAIN $MAINDOMAIN'>>  /etc/opendkim/SigningTable
+echo -e '$MAINDOMAIN $MAINDOMAIN:default:/etc/opendkim/keys/$MAINDOMAIN/default.private' >>   /etc/opendkim/KeyTable
 echo "127.0.0.1" > /etc/opendkim/TrustedHosts
 echo "localhost" >> /etc/opendkim/TrustedHosts
-echo -e '*.$DOMAIN'  >> /etc/opendkim/TrustedHosts
+echo -e '*.$MAINDOMAIN'  >> /etc/opendkim/TrustedHosts
 chown opendkim:opendkim /etc/opendkim/keys/ -R
  
 systemctl start opendkim
@@ -58,9 +57,9 @@ EOF
 
 systemctl restart postfix
 
-echo "Success : ADD TXT Record $DOMAIN \n " >> $BUILD
+echo "Success : ADD TXT Record $MAINDOMAIN \n " >> $BUILD
 
-cat  /etc/opendkim/keys/$DOMAIN/default.txt >> $BUILD
+cat  /etc/opendkim/keys/$MAINDOMAIN/default.txt >> $BUILD
 
 postmap -q domain.com  mysql:/etc/postfix/mysql-virtual_domains.cf
 postmap -q amol@domain.com  mysql:/etc/postfix/mysql-virtual_mailboxes.cf
