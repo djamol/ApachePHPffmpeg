@@ -40,6 +40,7 @@ postconf -e 'mynetworks = 127.0.0.0/8'
 postconf -e 'inet_interfaces = all'
 postconf -e 'message_size_limit = 30720000'
 postconf -e 'virtual_alias_domains ='
+postconf -e 'smtp_recipient_restrictions =hash:/etc/postfix/recipient_access'
 postconf -e 'virtual_alias_maps = proxy:mysql:/etc/postfix/mysql-virtual_forwardings.cf, mysql:/etc/postfix/mysql-virtual_email2email.cf'
 postconf -e 'virtual_mailbox_domains = proxy:mysql:/etc/postfix/mysql-virtual_domains.cf'
 postconf -e 'virtual_mailbox_maps = proxy:mysql:/etc/postfix/mysql-virtual_mailboxes.cf'
@@ -61,6 +62,9 @@ postconf -e 'proxy_read_maps = $local_recipient_maps $mydestination $virtual_ali
 postconf -e 'virtual_transport = dovecot'
 postconf -e 'dovecot_destination_recipient_limit = 1'
 echo 'dovecot   unix  -       n       n       -       -       pipe	flags=DRhu user=vmail:vmail argv=/usr/libexec/dovecot/deliver -f ${sender} -d ${recipient}' >> /etc/postfix/master.cf
+touch /etc/postfix/recipient_access
+echo 'root@localhost REJECT \n root@$MAINDOMAIN REJECT' >> /etc/postfix/recipient_access
+chown root:postfix /etc/postfix/recipient_access
 
 
 
