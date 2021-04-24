@@ -1,0 +1,10 @@
+read -p "Enter Domain : "  MAINDOMAIN
+mkdir -p /etc/opendkim/keys/$MAINDOMAIN
+opendkim-genkey -D /etc/opendkim/keys/$MAINDOMAIN/ -d $MAINDOMAIN -s default
+echo -e  '*@$MAINDOMAIN $MAINDOMAIN'>>  /etc/opendkim/SigningTable
+echo -e '$MAINDOMAIN $MAINDOMAIN:default:/etc/opendkim/keys/$MAINDOMAIN/default.private' >>   /etc/opendkim/KeyTable
+echo "127.0.0.1" > /etc/opendkim/TrustedHosts
+echo "localhost" >> /etc/opendkim/TrustedHosts
+echo -e '*.$MAINDOMAIN'  >> /etc/opendkim/TrustedHosts
+chown opendkim:opendkim /etc/opendkim/keys/ -R
+cat  /etc/opendkim/keys/$MAINDOMAIN/default.txt
