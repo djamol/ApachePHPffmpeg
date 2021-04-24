@@ -96,9 +96,9 @@ mysql -u root  < $SCRIPTPATH/conf/mail2/mail.sql
 #USE mail;
 #INSERT INTO domains (domain) VALUES ('woho.co.in');
 #INSERT INTO users (email, password) VALUES ('amol@woho.co.in', ENCRYPT('amol'));
-
-postmap -q woho.co.in  mysql:/etc/postfix/mysql-virtual_domains.cf
-postmap -q amol@woho.co.in  mysql:/etc/postfix/mysql-virtual_mailboxes.cf
+postmap /etc/postfix/recipient_access
+postmap -q $MAINDOMAIN  mysql:/etc/postfix/mysql-virtual_domains.cf
+postmap -q amol@MAINDOMAIN  mysql:/etc/postfix/mysql-virtual_mailboxes.cf
 echo "And Please Create MX Entry in Your Domain DNS: \n
 Example : 
 mail.$MAINDOMAIN. IN A $MAINIP
@@ -108,8 +108,9 @@ anotherdomain.com IN MX 5 mail.$MAINDOMAIN.
 google.com IN MX 5 mail.$MAINDOMAIN.
 yahoo.com IN MX 5 mail.$MAINDOMAIN.
 And run below commands
-sudo postmap -q example.com  mysql:/etc/postfix/mysql-virtual_domains.cf
-sudo postmap -q amol@example.com   mysql:/etc/postfix/mysql-virtual_mailboxes.cf
+postmap -q example.com  mysql:/etc/postfix/mysql-virtual_domains.cf
+postmap -q amol@example.com   mysql:/etc/postfix/mysql-virtual_mailboxes.cf
+postmap -q admin@example.com mysql:/etc/postfix/mysql-virtual_forwardings.cf;
 service postfix reload
 "
 
