@@ -8,3 +8,4 @@ echo "localhost" >> /etc/opendkim/TrustedHosts
 echo -e '*.$MAINDOMAIN'  >> /etc/opendkim/TrustedHosts
 chown opendkim:opendkim /etc/opendkim/keys/ -R
 cat  /etc/opendkim/keys/$MAINDOMAIN/default.txt
+echo "validate dkim key tool https://www.dmarcanalyzer.com/dkim/dkim-checker"
