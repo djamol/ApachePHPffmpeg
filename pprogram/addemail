@@ -7,5 +7,6 @@ echo "127.0.0.1" > /etc/opendkim/TrustedHosts
 echo "localhost" >> /etc/opendkim/TrustedHosts
 echo -e '*.$MAINDOMAIN'  >> /etc/opendkim/TrustedHosts
 chown opendkim:opendkim /etc/opendkim/keys/ -R
+echo "Add below TXT DNS Entry in your domain dns file"
 cat  /etc/opendkim/keys/$MAINDOMAIN/default.txt
 echo "validate dkim key tool https://www.dmarcanalyzer.com/dkim/dkim-checker"
