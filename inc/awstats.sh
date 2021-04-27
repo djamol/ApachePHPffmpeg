@@ -1,3 +1,6 @@
+##access asstats GUI WEB PAGE
+##http://example.com/awstats/?config=example.com
+##http://example.com/awstats/?config=domain.in
 mkdir /etc/htpasswd
 
 rpm -ivh http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
