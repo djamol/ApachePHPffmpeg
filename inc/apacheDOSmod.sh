@@ -24,4 +24,5 @@ chown –R daemon:amolhttpd /var/log/apache/mod_evasive
 
 #test mod
 #perl test.pl
+# if above command return "HTTP/1.1 302 Found" multiple times then its work
 date +"%r" >> $BUILD;echo "mod_evasive DOS Apache Program Complete" >> $BUILD
