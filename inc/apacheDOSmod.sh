@@ -16,7 +16,7 @@ tar -xzf mod_evasive.tar.gz
 cd mod_evasive*
 /usr/local/apache2/bin/apxs -i -a -c mod_evasive24.c
 echo -e '\n<IfModule mod_evasive24.c>\nDOSHashTableSize 3097\nDOSPageCount 2\nDOSSiteCount 50\nDOSPageInterval 1\nDOSSiteInterval 1\nDOSBlockingPeriod 60\nDOSEmailNotify mramolpatil1@gmail.com\n</IfModule>' >> /usr/local/apache2/conf/httpd.conf
-service apache2 restart
+#service apache2 restart
 ## LOG TRACK
 mkdir -p /var/log/apache/mod_evasive
 chown –R daemon:amolhttpd /var/log/apache/mod_evasive
