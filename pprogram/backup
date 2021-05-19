@@ -96,7 +96,7 @@ fi
 rm -rf /home/www/conf.tar.gz
 tar -czf /home/www/conf.tar.gz /home/conf/*
 
-
+chown  daemon:amolhttpd /home/www/conf.tar.gz;
 
 Path="/home/www"
 exclude="--exclude='*.mp3' --exclude='*.mp4' --exclude='*.gz'"
