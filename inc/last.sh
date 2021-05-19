@@ -142,6 +142,10 @@ sed -i '/listen-on port/c\	listen-on port 53 { any; };' /etc/named.conf
 sed -i '/allow-query/c\	allow-query     { any; };' /etc/named.conf
 sed -i '/recursion /c\recursion no;\n  additional-from-cache no;\n rate-limit {\n    responses-per-second 5;\n  };' /etc/named.conf
 
+
+echo -e '\n include "/etc/named.main.zones";' >> /etc/named.conf
+
+
 touch /etc/named.main.zones; chmod 640 /etc/named.main.zones; chown -R root:named /etc/named.main.zones
 echo -e 'include "/etc/named.main.zones";' >> /etc/named.conf
 echo -e '$TTL 14400\n@      86400	IN      SOA     ns1.'$MAINDOMAIN'. djamolpatil.gmail.com. (\n		2016033001	; serial, todays date+todays\n		3600		; refresh, seconds\n		7200		; retry, seconds\n		1209600		; expire, seconds\n		86400 )		; minimum, seconds\n\nns1.'$MAINDOMAIN'. 86400 IN NS ns1.'$MAINDOMAIN'.\nns1.'$MAINDOMAIN'. 86400 IN NS ns2.'$MAINDOMAIN'.\n\n\nns1.'$MAINDOMAIN'. IN A '$MAINIP'\n\nns1.'$MAINDOMAIN'. IN MX 0 ns1.'$MAINDOMAIN'.\n\nmail IN CNAME ns1.'$MAINDOMAIN'.\nwww IN CNAME ns1.'$MAINDOMAIN'.\nftp IN CNAME ns1.'$MAINDOMAIN'.\n' >> /var/named/ns1.$MAINDOMAIN.db
