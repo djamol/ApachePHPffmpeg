@@ -19,7 +19,7 @@ echo -e '\n<IfModule mod_evasive24.c>\nDOSHashTableSize 3097\nDOSPageCount 2\nDO
 #service apache2 restart
 ## LOG TRACK
 mkdir -p /var/log/apache/mod_evasive
-chown –R daemon:amolhttpd /var/log/apache/mod_evasive
+chown daemon:amolhttpd –R /var/log/apache/mod_evasive
 # httpd.conf file DOSLogDir "/var/log/apache/mod_evasive"
 
 #test mod
