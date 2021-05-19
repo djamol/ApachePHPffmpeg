@@ -70,6 +70,7 @@ mkdir -p /home/conf/etc/postfix
 mkdir -p /home/conf/usr/local/apache2/conf/amolhost/
 mkdir -p /home/conf/var/spool/cron/root
 mkdir -p /home/conf/usr/local/lib/
+mkdir -p /home/conf/var/named/
 
 #BIND DNS
 cp -rf /etc/named.main.zones /home/conf/etc/named.main.zones
