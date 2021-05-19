@@ -75,7 +75,7 @@ mkdir -p /home/conf/var/named/
 #BIND DNS
 cp -rf /etc/named.main.zones /home/conf/etc/named.main.zones
 cp -rf /etc/named.conf /home/conf/etc/named.conf
-cp -rf /var/named/*.db /home/conf/var/named/*.db
+cp -rf /var/named/*.db /home/conf/var/named/
 #PROFTPD 
 cp -rf /etc/proftpd.conf /home/www/conf/etc/proftpd.conf
 cp -rf /etc/proftpd/ftpd-rsa.pem /home/conf/etc/proftpd/ftpd-rsa.pem
@@ -86,7 +86,7 @@ cp -rf /etc/postfix/virtual-regexp /home/conf/etc/postfix/virtual-regexp
 cp -rf /etc/postfix/virtual /home/conf/etc/postfix/virtual
 #Apache 
 cp -rf /usr/local/apache2/conf/httpd.conf /home/conf/usr/local/apache2/conf/
-cp -rf /usr/local/apache2/conf/amolhost/*.conf /home/conf/usr/local/apache2/conf/amolhost/*.conf
+cp -rf /usr/local/apache2/conf/amolhost/*.conf /home/conf/usr/local/apache2/conf/amolhost/
 #Cron JOb
 cp -rf /var/spool/cron/root /home/conf/var/spool/cron/root
 #PHP Config
