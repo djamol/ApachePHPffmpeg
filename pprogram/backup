@@ -93,7 +93,8 @@ cp -rf /usr/local/lib/php.ini /home/conf/usr/local/lib/php.ini
         else
                 echo "Reject By you server config file backup";
 fi
-
+rm -rf /home/www/conf.tar.gz
+tar -czf /home/www/conf.tar.gz /home/conf/*
 
 
 
@@ -101,7 +102,19 @@ Path="/home/www"
 exclude="--exclude='*.mp3' --exclude='*.mp4' --exclude='*.gz'"
 output="$file.tar.gz"
 #tar cvf - $Path $exclude | gzip -9 - > $output
-tar cvf - $Path --exclude='*.mp3' --exclude='*.mp4' --exclude='*error_log' --exclude='*.gz' | gzip -9 - > $output &</dev/null &
+
+echo -e "\e[32m########################################\n####  Backup Compress File       #########\n########################################"
+while true; do
+    read -p "Do you wish to Backup $Path Directory?" yn
+    case $yn in
+        [Yy]* ) tar cvf - $Path --exclude='*.mp3' --exclude='*.mp4' --exclude='*error_log' --exclude='*.gz' | gzip -9 - > $output &</dev/null &; break;;
+        [Nn]* ) echo "( Reject By You)  Backup"; break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+
+
 #Encrypt with password/key
 echo -e "\e[32m########################################\n####  Encrypt Compress File       #########\n########################################"
 while true; do
