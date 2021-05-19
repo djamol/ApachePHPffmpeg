@@ -107,13 +107,13 @@ echo -e "\e[32m########################################\n####  Backup Compress F
 while true; do
     read -p "Do you wish to Backup $Path Directory?" yn
     case $yn in
-        [Yy]* ) tar cvf - $Path --exclude='*.mp3' --exclude='*.mp4' --exclude='*error_log' --exclude='*.gz' | gzip -9 - > $output &</dev/null &; break;;
-        [Nn]* ) echo "( Reject By You)  Backup"; break;;
+        [Yy]* ) start; break;;
+        [Nn]* ) echo "( Reject By You)  Backup";exit; break;;
         * ) echo "Please answer yes or no.";;
     esac
 done
 
-
+tar cvf - $Path --exclude='*.mp3' --exclude='*.mp4' --exclude='*error_log' --exclude='*.gz' | gzip -9 - > $output &</dev/null &
 
 #Encrypt with password/key
 echo -e "\e[32m########################################\n####  Encrypt Compress File       #########\n########################################"
