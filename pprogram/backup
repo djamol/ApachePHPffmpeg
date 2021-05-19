@@ -68,7 +68,7 @@ mkdir -p /home/conf
 mkdir -p /home/conf/etc/proftpd
 mkdir -p /home/conf/etc/postfix
 mkdir -p /home/conf/usr/local/apache2/conf/amolhost/
-mkdir -p /home/conf/usr/var/spool/cron/root
+mkdir -p /home/conf/var/spool/cron/root
 mkdir -p /home/conf/usr/local/lib/
 
 #BIND DNS
