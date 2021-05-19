@@ -103,7 +103,9 @@ ${NOCOLOR}";
  echo -e "${LIGHTGREEN}5. Restore database from sql"
  echo -e "${PURPLE}6. Create Mysql/MariaDB User"
  echo -e "${CYAN}7. Google Drive Download File"
- echo -e "${BLUE}8. Exit"
+ echo -e "${BLUE}8. Enable PHP 7 Apache"
+ echo -e "${BLUE}9. Enable PHP 5.6 Apache"
+ echo -e "${BLUE}10. Exit"
  ClearX="true"
  echo -e "${NOCOLOR}";
  echo -n "Please enter option [1 - 8]"
@@ -129,7 +131,17 @@ ${NOCOLOR}";
      echo"";; #mysql -u root -e "create database testdb";
   7) echo -e "${BLUE}*********** Google Drive Service(gdrive command) ***********${NOCOLOR}";
      gdrive;;
-  8) echo -e "${GREEN}Bye $USER${NOCOLOR}";
+  8) echo -e "${BLUE}*********** Apache Enable PHP 7  ***********${NOCOLOR}";
+     sed -i '/LoadModule php5_module/c\#LoadModule php5_module modules/libphp5.so' /usr/local/apache2/conf/httpd.conf
+     sed -i '/LoadModule php7_module/c\LoadModule php7_module modules/libphp7.so' /usr/local/apache2/conf/httpd.conf
+     service apache2 restart
+     echo"Enable php7";;
+  9) echo -e "${BLUE}*********** Apache Enable PHP 5.6  ***********${NOCOLOR}";
+     sed -i '/LoadModule php5_module/c\LoadModule php5_module modules/libphp5.so' /usr/local/apache2/conf/httpd.conf
+     sed -i '/LoadModule php7_module/c\#LoadModule php7_module modules/libphp7.so' /usr/local/apache2/conf/httpd.conf
+     service apache2 restart
+     echo"Enable php5";;     
+  10) echo -e "${GREEN}Bye $USER${NOCOLOR}";
      exit 1;;
   *) echo -e "${PURPLE}$opt is an invaild option. Please select option between 1-7 only${NOCOLOR}";
      echo -e "${YELLOW}Press [enter] key to continue. . .{NOCOLOR}";
