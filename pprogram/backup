@@ -65,25 +65,31 @@ done
 if [ $SRVC = "true" ]
         then
 mkdir -p /home/conf
+mkdir -p /home/conf/etc/proftpd
+mkdir -p /home/conf/etc/postfix
+mkdir -p /home/conf/usr/local/apache2/conf/amolhost/
+mkdir -p /home/conf/usr/var/spool/cron/root
+mkdir -p /home/conf/usr/local/lib/
+
 #BIND DNS
-cp -rf /etc/named.main.zones /home/conf/nmz
-cp -rf /etc/named.conf /home/conf/nc
-cp -rf /var/named/*.db /home/conf/
+cp -rf /etc/named.main.zones /home/conf/etc/named.main.zones
+cp -rf /etc/named.conf /home/conf/etc/named.conf
+cp -rf /var/named/*.db /home/conf/var/named/*.db
 #PROFTPD 
-cp -rf /etc/proftpd.conf /home/www/pc
-cp -rf /etc/proftpd/ftpd-rsa.pem /home/conf/fp
-cp -rf /etc/proftpd/passwd.vhosts /home/conf/vh
-cp -rf /etc/proftpd/ftpd-rsa-key.pem /home/conf/fk
+cp -rf /etc/proftpd.conf /home/www/conf/etc/proftpd.conf
+cp -rf /etc/proftpd/ftpd-rsa.pem /home/conf/etc/proftpd/ftpd-rsa.pem
+cp -rf /etc/proftpd/passwd.vhosts /home/conf/etc/proftpd/passwd.vhosts
+cp -rf /etc/proftpd/ftpd-rsa-key.pem /home/conf/etc/proftpd/ftpd-rsa-key.pem
 #PostFix
-cp -rf /etc/postfix/virtual-regexp /home/conf/vr
-cp -rf /etc/postfix/virtual /home/conf/v
+cp -rf /etc/postfix/virtual-regexp /home/conf/etc/postfix/virtual-regexp
+cp -rf /etc/postfix/virtual /home/conf/etc/postfix/virtual
 #Apache 
-cp -rf /usr/local/apache2/conf/httpd.conf /home/conf/hc
-cp -rf /usr/local/apache2/conf/amolhost/*.conf /home/conf/
+cp -rf /usr/local/apache2/conf/httpd.conf /home/conf/usr/local/apache2/conf/
+cp -rf /usr/local/apache2/conf/amolhost/*.conf /home/conf/usr/local/apache2/conf/amolhost/*.conf
 #Cron JOb
-cp -rf /var/spool/cron/root /home/conf/cr
+cp -rf /var/spool/cron/root /home/conf/var/spool/cron/root
 #PHP Config
-cp -rf /usr/local/lib/php.ini /home/conf/pin
+cp -rf /usr/local/lib/php.ini /home/conf/usr/local/lib/php.ini
         else
                 echo "Reject By you server config file backup";
 fi
