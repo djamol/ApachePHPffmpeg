@@ -1,6 +1,7 @@
 # HIDE Apache Version,PHP,Openssl details on http 
 #Example : Apache/2.4.18 (Unix) OpenSSL/1.0.2g PHP/5.6.20 To only Show ("apache")
 echo -e '\nServerSignature Off\nServerTokens Prod\n Include conf/amolhost/*.conf\n' >> /usr/local/apache2/conf/httpd.conf
+echo -e '\n<IfModule mod_evasive24.c>\nDOSHashTableSize 3097\nDOSPageCount 2\nDOSSiteCount 50\nDOSPageInterval 1\nDOSSiteInterval 1\nDOSBlockingPeriod 60\nDOSEmailNotify mramolpatil1@gmail.com\n</IfModule>' >> /usr/local/apache2/conf/httpd.conf
 mkdir -p /usr/local/apache2/conf/amolhost
 touch /usr/local/apache2/conf/amolhost/main.conf
 touch /usr/local/apache2/conf/amolhost/domain.conf
