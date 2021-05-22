@@ -121,7 +121,7 @@ ${iptables} -A LOGGING -j DROP
 
 
 # Accept any related or established connections
-${iptables}-I INPUT  1 -m state --state RELATED,ESTABLISHED -j ACCEPT
+${iptables} -I INPUT  1 -m state --state RELATED,ESTABLISHED -j ACCEPT
 ${iptables} -I OUTPUT 1 -m state --state RELATED,ESTABLISHED -j ACCEPT
 
 # Allow all traffic on the loopback interface
