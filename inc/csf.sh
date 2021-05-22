@@ -36,5 +36,5 @@ sh /usr/local/csf/bin/remove_apf_bfd.sh
  sed -i '/CT_PERMANENT =/c\CT_PERMANENT = "1"' /etc/csf/csf.conf
  sed -i '/CT_INTERVAL =/c\CT_INTERVAL = "60"' /etc/csf/csf.conf
  sed -i '/CT_BLOCK_TIME =/c\CT_BLOCK_TIME = "3600"' /etc/csf/csf.conf
-   csf -r
+  # csf -r
   
