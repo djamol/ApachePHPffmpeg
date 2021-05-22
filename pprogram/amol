@@ -1,4 +1,4 @@
-
+#!/bin/bash
 RESET='\033[0m'
 NOCOLOR='\033[0m'
 RED='\033[0;31m'
@@ -48,6 +48,34 @@ iZdKKXqSX5X1qd5i::i::.PbKIS5SIKSPvirv77r7r7iiS5UIUIU225bX  .............  YX1jXs
           .qBQDZDEggMgRMQQBQBDZEQRs7Jv7sEqUvssJJuuIIPPZEdSJi.
         .:irrrrvus1vJJjjsLsvL77ii..
 ${NOCOLOR}";
+
+my_iptable () {
+echo -n "Max connection in seconds(if=100 connection attempts to port within 100 seconds) >"
+read ipsecond
+
+echo -n "Max connections per IP >"
+read ipcon
+
+echo -n "PORT Number (80 port for http connection) >"
+read ipport
+
+while true; do
+    read -p "You want drop incoming connections if IP make more than $ipcon connection attempts to port $ipport within $ipsecond seconds (add rules to your iptables) ?" yn
+    case $yn in
+        [Yy]* )  
+        IPT=/sbin/iptables 
+        DACTION="DROP"
+        $IPT -A INPUT -p tcp --dport ${ipport} -i eth0 -m state --state NEW -m recent --set
+        $IPT -A INPUT -p tcp --dport ${ipport} -i eth0 -m state --state NEW -m recent --update --seconds ${ipsecond} --hitcount ${ipcon} -j ${DACTION}        
+        echo "Process Done Port ${ipport}, Seconds ${ipsecond} and Max ${ipcon}"; break;;
+        [Nn]* ) echo -n "Cancel by you ";break;;#exit;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
+
+return 1
+}
+
 
 echo -e '▒█░▒░▓█░█▒░▒▒█░█▓░▒░█▓   █████▒    ▓█ ▒█▓▓█▓ ██████ ▓████▒░█░      ░█████░▒████▓ ▓█████░ 
  ░▓ █▓▓█ ▓ ██▒█░▓░▓█░█▓   ▓▒  █▓    ▒█ ▒▓▓▓█▓ ▓░█▓▒█░▓▒  █▓ ▓       ░█░  ▓ ▒▓  ▓█ ▓▒▓█▒█▒ 
@@ -106,7 +134,8 @@ ${NOCOLOR}";
  echo -e "${BLUE}8. Enable PHP 7 Apache"
  echo -e "${BLUE}9. Enable PHP 5.6 Apache"
  echo -e "${BLUE}10. Stop NGINX PROXY SERVER"
- echo -e "${BLUE}11. Exit"
+ echo -e "${BLUE}11. Limit Connections Per Second"
+ echo -e "${BLUE}12. Exit"
  ClearX="true"
  echo -e "${NOCOLOR}";
  echo -n "Please enter option [1 - 11]"
@@ -148,7 +177,11 @@ ${NOCOLOR}";
      chkconfig nginx off
      service apache2 restart
      echo"done off nginx";;              
-  11) echo -e "${GREEN}Bye $USER${NOCOLOR}";
+  11) echo -e "${GREEN} You need to use the connlimit modules which allows you to restrict the number of parallel TCP connections to a server per client IP address (or address block). $USER${NOCOLOR}";
+      my_iptable
+      echo $?
+     echo "";;
+  12) echo -e "${GREEN}Bye $USER${NOCOLOR}";
      exit 1;;
   *) echo -e "${PURPLE}$opt is an invaild option. Please select option between 1-7 only${NOCOLOR}";
      echo -e "${YELLOW}Press [enter] key to continue. . .{NOCOLOR}";
