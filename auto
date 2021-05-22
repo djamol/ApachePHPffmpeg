@@ -255,3 +255,8 @@ chkconfig apache2 on
 chkconfig named on
 chkconfig sshd on
 ###service iptables restart
+iptables="iptables"
+${iptables} -F
+#iptables -P INPUT ACCEPT
+#iptables -P FORWARD ACCEPT
+#iptables -P OUTPUT ACCEPT
