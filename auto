@@ -250,3 +250,4 @@ fi
 date +"%r" >> $BUILD;echo "Status : Auto FFMPEG Installation END" >> $BUILD
 date +"%r" >> $BUILD;echo "Status : SSH PORT CHANGE 55 " >> $BUILD
 service sshd restart
+service iptables restart
