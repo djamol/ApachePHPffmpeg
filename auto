@@ -250,4 +250,8 @@ fi
 date +"%r" >> $BUILD;echo "Status : Auto FFMPEG Installation END" >> $BUILD
 date +"%r" >> $BUILD;echo "Status : SSH PORT CHANGE 55 " >> $BUILD
 service sshd restart
+chkconfig mysql on
+chkconfig apache2 on
+chkconfig named on
+chkconfig sshd on
 ###service iptables restart
