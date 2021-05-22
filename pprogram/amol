@@ -132,13 +132,13 @@ ${NOCOLOR}";
  echo -e "${PURPLE}6. Create Mysql/MariaDB User"
  echo -e "${CYAN}7. Google Drive Download File"
  echo -e "${BLUE}8. Enable PHP 7 Apache"
- echo -e "${BLUE}9. Enable PHP 5.6 Apache"
- echo -e "${BLUE}10. Stop NGINX PROXY SERVER"
- echo -e "${BLUE}11. Limit Connections Per Second"
+ echo -e "${PURPLE}9. Enable PHP 5.6 Apache"
+ echo -e "${CYAN}10. Stop NGINX PROXY SERVER"
+ echo -e "${LIGHTGREEN}11. Limit Connections Per Second"
  echo -e "${BLUE}12. Exit"
  ClearX="true"
  echo -e "${NOCOLOR}";
- echo -n "Please enter option [1 - 11]"
+ echo -n "Please enter option [1 - 12]"
  read opt
  case $opt in
   1) echo -e "${BLUE}************ sinfo Service *************${NOCOLOR}";
