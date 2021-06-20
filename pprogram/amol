@@ -141,7 +141,9 @@ ${NOCOLOR}";
  echo -n "Please enter option [1 - 12]"
  read opt
  case $opt in
-  1) echo -e "${BLUE}************ sinfo Service *************${NOCOLOR}";
+  1) echo -e "${BLUE}************ Check Which IPs are Connecting to Your Server *************${NOCOLOR}"; 
+     netstat -ntu|awk '{print $5}'|cut -d: -f1 -s|sort|uniq -c|sort -nk1 -r;
+     echo -e "${BLUE}************ sinfo Service *************${NOCOLOR}";
      sinfo;;
   2) echo -e "${BLUE}*********** adddomain Service ***********${NOCOLOR}";
      adddomain;;
