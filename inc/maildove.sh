@@ -113,6 +113,7 @@ postmap -q amol@example.com   mysql:/etc/postfix/mysql-virtual_mailboxes.cf
 postmap -q admin@example.com mysql:/etc/postfix/mysql-virtual_forwardings.cf;
 service postfix reload
 "
+chown vmail :vmail -R  /home/vmail
 
 service postfix restart
 service dovecot restart
