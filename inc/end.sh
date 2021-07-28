@@ -12,6 +12,9 @@ chkconfig --level 345 apache2 on
 
 ### SSH Secure PORT
 sed -i '/#Port/c\Port 55' /etc/ssh/sshd_config
+
+echo -e 'Ciphers aes128-ctr,aes192-ctr,aes256-ctr,arcfour256,arcfour128\nMACs hmac-sha1,umac-64@openssh.com,hmac-ripemd160' >> /etc/ssh/sshd_config
+
 ##check port ssh
 semanage port -l | grep ssh
 ##enable 55 port for ssh in semanage linux
