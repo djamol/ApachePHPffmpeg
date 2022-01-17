@@ -1,5 +1,5 @@
 
-
+# GET ALL PHP Version Files from http://ftp.ntu.edu.tw/pub/php/distributions/
 cd $SCRIPTPATH/src
 FILE=php.tar.gz
 if [ ! -f $FILE ]
