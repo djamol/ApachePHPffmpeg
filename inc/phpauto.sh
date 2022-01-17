@@ -146,13 +146,13 @@ echo "$PHPINSTALL"
 date +"%r" >> $BUILD;echo "PHP Program Complete" >> $BUILD
 
 
-#PHP 7.2
+#PHP 7.4
 cd $SCRIPTPATH/src/upgrade/php7
-FILE=php-7.2.34.tar.gz
+FILE=php-7.4.27.tar.gz
 if [ ! -f $FILE ]
 then
    echo -e "\033[33;34m file " $FILE " does not exist.";
-		if wget http://us2.php.net/get/php-7.2.34.tar.gz/from/this/mirror -O $FILE; then 
+		if wget http://ftp.ntu.edu.tw/pub/php/distributions/php-7.4.27.tar.gz -O $FILE; then 
 		echo -e "\033[33;32m php7 download Success";date +"%r" >> $BUILD;echo "Success : Download7 File $FILE" >> $BUILD
 		else
 		echo -e "\033[33;31m php7 download Failed";date +"%r" >> $BUILD;echo "Failed : Download7 File $FILE" >> $BUILD;echo "Failed : Download7 File $FILE" >> $FAILBUILD
@@ -168,8 +168,8 @@ else
 echo -e "\033[33;31m php7 extract Failed";date +"%r" >> $BUILD;echo "Failed : Extract $FILE" >> $BUILD;echo "Failed : Extract $FILE" >> $FAILBUILD
 tar -xzf php-*
 fi
-cd php-7.2.34
-./configure --prefix=/usr/local/php7/72/usr --with-config-file-path=/usr/local/php7/72/usr/etc --with-openssl=/usr/local/ssl   --disable-fileinfo --disable-opcache --enable-bcmath --enable-calendar --enable-ftp --enable-mbstring --enable-soap --enable-zip --enable-gd-native-ttf --enable-libxml --enable-pdo --enable-sockets --with-gettext --with-apxs2=/usr/local/apache2/bin/apxs --with-curl=/opt/curl-ssl --with-freetype-dir=/usr --with-gd --with-jpeg-dir==/usr --with-kerberos --with-libxml-dir=/opt/libmcrypt/  --with-mysqli --with-mysql-sock=/var/lib/mysql/mysql.sock   --with-pcre-regex=/usr/local/pcre --with-pdo-mysql --with-pdo-sqlite --with-pic --with-png-dir=/usr --with-xpm-dir=/usr --with-zlib --with-zlib-dir=/usr 
+cd php-7.4.27
+./configure --prefix=/usr/local/php7/74/usr --with-config-file-path=/usr/local/php7/74/usr/etc --with-openssl=/usr/local/ssl   --disable-fileinfo --disable-opcache --enable-bcmath --enable-calendar --enable-ftp --enable-mbstring --enable-soap --enable-zip --enable-gd-native-ttf --enable-libxml --enable-pdo --enable-sockets --with-gettext --with-apxs2=/usr/local/apache2/bin/apxs --with-curl=/opt/curl-ssl --with-freetype-dir=/usr --with-gd --with-jpeg-dir==/usr --with-kerberos --with-libxml-dir=/opt/libmcrypt/  --with-mysqli --with-mysql-sock=/var/lib/mysql/mysql.sock   --with-pcre-regex=/usr/local/pcre --with-pdo-mysql --with-pdo-sqlite --with-pic --with-png-dir=/usr --with-xpm-dir=/usr --with-zlib --with-zlib-dir=/usr 
 
 PHPINSTALL=$(expect -c "
 spawn make install
