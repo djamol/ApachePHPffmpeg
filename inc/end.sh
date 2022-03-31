@@ -23,6 +23,11 @@ semanage port -a -t ssh_port_t -p tcp 55
 #service sshd restart
 
 
+#default enable php 7
+     sed -i '/LoadModule php5_module/c\#LoadModule php5_module modules/libphp5.so' /usr/local/apache2/conf/httpd.conf
+     sed -i '/LoadModule php7_module/c\LoadModule php7_module modules/libphp7.so' /usr/local/apache2/conf/httpd.conf
+     service apache2 restart
+
 date +"%r" >> $BUILD;/usr/local/apache2/bin/httpd -v >> $BUILD;openssl version >> $BUILD;
 /usr/local/bin/php -v >> $BUILD;mysql -V >> $BUILD;named -v >> $BUILD;curl -V >> $BUILD;
 clear
