@@ -125,15 +125,15 @@ echo "$SSLHTTPS"
 
 
 date +"%r" >> $BUILD;echo "Status : Auto Apache SSL Cert END" >> $BUILD
-date +"%r" >> $BUILD;echo "Status : Auto PHP 5 Installation Start" >> $BUILD
-echo -e "\e[32m########################################\n####    PHP 5 Package/Software     #########\n#####################################"
+date +"%r" >> $BUILD;echo "Status : Auto PHP  Installation Start" >> $BUILD
+echo -e "\e[32m########################################\n####    PHP Multiple Version Package/Software     #########\n#####################################"
 if [ $PHPe = "true" ]
         then
                 source "$SCRIPTPATH/inc/phpauto.sh"; 
         else
-                echo "Reject By USER PHP 5 INstall"
+                echo "Reject By USER PHP  INstall"
 fi
-date +"%r" >> $BUILD;echo "Status : Auto PHP 5 Installation END" >> $BUILD
+date +"%r" >> $BUILD;echo "Status : Auto PHP Multiple Version Installation END" >> $BUILD
 date +"%r" >> $BUILD;echo "Status : Auto Cron JOB Installation Start" >> $BUILD
 echo -e "\e[32m########################################\n####   Cron JOB Software     #########\n#####################################"
 if [ $CRON = "true" ]
