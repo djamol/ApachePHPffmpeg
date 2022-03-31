@@ -19,6 +19,7 @@ echo -e 'Ciphers aes128-ctr,aes192-ctr,aes256-ctr,arcfour256,arcfour128\nMACs hm
 semanage port -l | grep ssh
 ##enable 55 port for ssh in semanage linux
 semanage port -a -t ssh_port_t -p tcp 55
+semanage port -a -t ssh_port_t -p tcp 55
 #service sshd restart
 
 
