@@ -17,7 +17,7 @@ else
 		echo -e "\033[33;32m file " $FILE " exists.";date +"%r" >> $BUILD;echo "Status : Exist $FILE" >> $BUILD
 fi
 
-tar xf bind-9.18.1.tar.xz
+# tar xf bind-9.18.1.tar.xz
 cd bind-9.18.1
 ./configure --with-openssl --enable-threads --with-libxml2 --prefix=/usr/local/named
 make 
