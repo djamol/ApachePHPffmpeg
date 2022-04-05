@@ -19,6 +19,16 @@ yum install iptables-services -y
     chkconfig ip6tables off
     #### END ###
 
+OSN="n";
+OSNAME=$(awk -F= '$1=="ID" { print $2 ;}' /etc/os-release)
+if [ "$OSNAME" = "debian" ]; then
+    OSN="debian";
+    echo "Detected OS Debian.";
+else
+    OSN="other";
+    echo "OS Detected:$OSNAME";
+fi
+
 
 RED='\033[01;31m'
 RESET='\033[0m'
@@ -529,6 +539,7 @@ CAU=$outext
 CACM=$srvtext
 CAM=$etext
 BIND=$BIND
+OSN=$OSN
 CURL=$CURL
 DB=$DB
 WCP=$WCP
