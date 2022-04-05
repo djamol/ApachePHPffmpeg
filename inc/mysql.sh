@@ -6,6 +6,10 @@
 
 
 cd $SCRIPTPATH/src
+if [ $OSN = "debian" ]
+        then
+
+
 #
 #  Mysql / Mariadb Installation
 touch /etc/yum.repos.d/MariaDB.repo
@@ -23,6 +27,21 @@ echo -e "\033[33;32m Mariadb is Installed";
 else
 yum -y install mariadb-*;
 fi
+
+yum -y install expect
+
+
+        else
+                echo "Debian MariaDB ";date +"%r" >> $BUILD;
+                apt-get install expect mariadb-*
+                curl -LsS -O https://downloads.mariadb.com/MariaDB/mariadb_repo_setup
+                bash mariadb_repo_setup --mariadb-server-version=10.6
+                sudo apt-get update
+                sudo apt-get install mariadb-server mariadb-client  mariadb-devel mariadb-shared
+                echo "Status : OK Debian-Maria DB" >> $BUILD
+fi
+
+
 if mysql -V; then 
 echo -e "\033[33;32m Mariadb is Installed";
 else
@@ -32,7 +51,6 @@ fi
 systemctl start mysql.service
 ##mysql_secure_installation
 ## MYSQL SECURE INSTALLATION Start
-yum -y install expect
 
 # Not required in actual script
 
