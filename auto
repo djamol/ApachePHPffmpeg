@@ -21,11 +21,19 @@ if [ $BIND = "true" ]
 fi
 date +"%r" >> $BUILD;echo "Status : Auto Bind Installation END" >> $BUILD
 date +"%r" >> $BUILD;echo "Status : Auto Development Tool" >> $BUILD
-if yum -y groupinstall "Development Tools"; then 
-echo -e "\033[33;32m yum -y groupinstall ----Development Tools Success ";date +"%r" >> $BUILD;echo "Success : Development Tools Install" >> $BUILD
-else
-echo -e "\033[33;31m yum -y groupinstall ----Development Tools Failed";date +"%r" >> $BUILD;echo "Failed : Development Tools Install" >> $BUILD
+if [ $OSN = "debian" ]
+        then
+                apt update
+                apt install build-essential
+                echo "Debian groupinstall ----Development Tools Success";date +"%r" >> $BUILD;
+ else
+       if yum -y groupinstall "Development Tools"; then 
+       echo -e "\033[33;32m yum -y groupinstall ----Development Tools Success ";date +"%r" >> $BUILD;echo "Success : Development Tools Install" >> $BUILD
+       else
+       echo -e "\033[33;31m yum -y groupinstall ----Development Tools Failed";date +"%r" >> $BUILD;echo "Failed : Development Tools Install" >> $BUILD
+       fi
 fi
+
 if yum -y install sudo; then 
 echo -e "\033[33;32m Sudo Success";date +"%r" >> $BUILD;echo "Success : Sudo Install" >> $BUILD
 else
