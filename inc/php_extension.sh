@@ -8,9 +8,9 @@ cd $SCRIPTPATH/src/openlite
 
 tar zxf redis-2.2.5.tgz
 cd redis-2.2.5
-/usr/local/lsws/lsphp5/bin/phpize
-./configure --with-php-config=/usr/local/lsws/lsphp5/bin/php-config
-make -j $cpu_num && make install
+/usr/local/php7/72/usr/bin/phpize
+./configure --with-php-config=/usr/local/php7/72/usr/bin/php-config
+make  && make install
 
 
 if [ -f "/usr/local/lsws/lsphp5/lib/php/extensions/`ls /usr/local/lsws/lsphp5/lib/php/extensions`/redis.so" ];then
