@@ -26,7 +26,7 @@ fi
 if [ `getconf LONG_BIT` = 32 ]; then
     sed -i '1i\CFLAGS= -march=i686' src/Makefile
     sed -i 's@^OPT=.*@OPT=-O2 -march=i686@' src/.make-settings
-    
+    fi
 make
 
 
