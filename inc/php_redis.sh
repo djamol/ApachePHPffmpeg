@@ -1,5 +1,5 @@
 #Install php-redis
-cd $SCRIPTPATH/src
+cd $SCRIPTPATH/src/openlite
 FILE=redis-2.8.11.tar.gz
 if [ ! -f $FILE ]
 then
