@@ -1,7 +1,7 @@
 ##[ "$jemalloc_install" = "y" ] && COMMAND="--with-ld-opt='-ljemalloc'"
 ##[ ! -s $SRC_DIR/nginx-1.6.0.tar.gz ] && wget -c http://nginx.org/download/nginx-1.6.0.tar.gz -O $SRC_DIR/nginx-1.6.0.tar.gz
 #wget http://nginx.org/download/nginx-1.6.0.tar.gz -O nginx-1.6.0.tar.gz
-cd $SCRIPTPATH/src
+cd $SCRIPTPATH/src/openlite
 
 ## REquired 
 yum  -y install openssl-devel
@@ -34,7 +34,7 @@ ldconfig
 
 COMMAND="--with-ld-opt='-ljemalloc'"
 
-cd $SCRIPTPATH/src
+cd $SCRIPTPATH/src/openlite
 
 FILE=nginx.tar.gz
 if [ ! -f $FILE ]
