@@ -1,4 +1,5 @@
 #Install php-redis
+yum install redis
 cd $SCRIPTPATH/src/openlite
 FILE=redis-2.8.11.tar.gz
 if [ ! -f $FILE ]
@@ -57,12 +58,21 @@ if [ -f src/redis-server ]; then
     fi
 fi
 
-
-   cp $SCRIPTPATH/inc/openlitespeed/conf/redis-centos /etc/init.d/redis
+if [ -f /etc/redhat-release ]; then
+    cp $SCRIPTPATH/inc/openlitespeed/conf/redis-centos /etc/init.d/redis
     chmod +x /etc/init.d/redis
     chkconfig --add redis
-chkconfig redis on
+    chkconfig redis on
+else
+    useradd -M -s /sbin/nologin redis
+    chown -R redis:redis /usr/local/redis/var
+    cp $SCRIPTPATH/inc/openlitespeed/conf/redis-debian /etc/init.d/redis
+    chmod +x /etc/init.d/redis
+    update-rc.d redis defaults
+fi
+
 service redis start
+
 
 cp $SCRIPTPATH/inc/openlitespeed/conf/redis.php /home/www
 
