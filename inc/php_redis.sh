@@ -1,9 +1,9 @@
 #Install php-redis
 yum install redis
 cd $SCRIPTPATH/src/openlite
-[ ! -s $SCRIPTPATH/src/openlite/redis-2.8.11.tar.gz ] && wget -c http://download.redis.io/releases/redis-2.8.11.tar.gz -O $SCRIPTPATH/src/openlite/redis-2.8.11.tar.gz
+[ ! -s $SCRIPTPATH/src/openlite/redis-2.8.11.tar.gz ] && wget -c https://github.com/djamol/centos-INSTALLER/raw/master/src/openlite/redis-2.8.11.tar.gz -O $SCRIPTPATH/src/openlite/redis-2.8.11.tar.gz
 
-[ ! -s $SCRIPTPATH/src/openlite/redis-2.2.5.tgz ] && wget -c http://pecl.php.net/get/redis-2.2.5.tgz -O $SCRIPTPATH/src/openlite/redis-2.2.5.tgz
+[ ! -s $SCRIPTPATH/src/openlite/redis-2.2.5.tgz ] && wget -c https://github.com/djamol/centos-INSTALLER/raw/master/src/openlite/redis-2.2.5.tgz -O $SCRIPTPATH/src/openlite/redis-2.2.5.tgz
 
 
 tar zxf redis-2.2.5.tgz
