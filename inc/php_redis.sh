@@ -1,22 +1,16 @@
 #Install php-redis
 yum install redis
 cd $SCRIPTPATH/src/openlite
-FILE=redis-2.8.11.tar.gz
-if [ ! -f $FILE ]
-then
-    wget https://github.com/djamol/centos-INSTALLER/raw/master/src/openlite/redis-2.8.11.tar.gz -O redis-2.8.11.tar.gz
-		echo -e "\033[33;34m file " $FILE " does not exist.";date +"%r" >> $BUILD;echo "Status : Downloading $FILE" >> $BUILD
-		###
-else
-		echo -e "\033[33;32m file " $FILE " exists.";date +"%r" >> $BUILD;echo "Status : Exist $FILE" >> $BUILD
-fi
+[ ! -s $SCRIPTPATH/src/openlite/redis-2.8.11.tar.gz ] && wget -c http://download.redis.io/releases/redis-2.8.11.tar.gz -O $SCRIPTPATH/src/openlite/redis-2.8.11.tar.gz
 
-tar zxf redis-2.8.11.tar.gz
-cd mod_evasive*
-cd redis-2.8.11
+[ ! -s $SCRIPTPATH/src/openlite/redis-2.2.5.tgz ] && wget -c http://pecl.php.net/get/redis-2.2.5.tgz -O $SCRIPTPATH/src/openlite/redis-2.2.5.tgz
+
+
+tar zxf redis-2.2.5.tgz
+cd redis-2.2.5
 /usr/local/lsws/lsphp5/bin/phpize
 ./configure --with-php-config=/usr/local/lsws/lsphp5/bin/php-config
-make  && make install
+make -j $cpu_num && make install
 
 
 if [ -f "/usr/local/lsws/lsphp5/lib/php/extensions/`ls /usr/local/lsws/lsphp5/lib/php/extensions`/redis.so" ];then
@@ -24,6 +18,11 @@ if [ -f "/usr/local/lsws/lsphp5/lib/php/extensions/`ls /usr/local/lsws/lsphp5/li
     [ ! -z "`cat /usr/local/lsws/lsphp5/lib/php.ini | grep '^extension_dir'`" ] && sed -i "s@extension_dir = \".*\"@extension_dir = \"/usr/local/lsws/lsphp5/lib/php/extensions/`ls /usr/local/lsws/lsphp5/lib/php/extensions/`\"@" /usr/local/lsws/lsphp5/lib/php.ini
     sed -i 's@^extension_dir\(.*\)@extension_dir\1\nextension = "redis.so"@' /usr/local/lsws/lsphp5/lib/php.ini
 fi
+
+cd $SCRIPTPATH/src/openlite
+tar zxf redis-2.8.11.tar.gz
+cd redis-2.8.11
+
 if [ `getconf LONG_BIT` = 32 ]; then
     sed -i '1i\CFLAGS= -march=i686' src/Makefile
     sed -i 's@^OPT=.*@OPT=-O2 -march=i686@' src/.make-settings
