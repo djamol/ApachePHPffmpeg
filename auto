@@ -34,7 +34,7 @@ if [ $OSN = "debian" ]
        fi
 fi
 
-if yum -y install sudo; then 
+if yum -y install sudo expect; then 
 echo -e "\033[33;32m Sudo Success";date +"%r" >> $BUILD;echo "Success : Sudo Install" >> $BUILD
 else
 echo -e "\033[33;31m Sudo Failed";date +"%r" >> $BUILD;echo "Failed : Sudo Install" >> $BUILD
