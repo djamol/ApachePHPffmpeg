@@ -6,8 +6,8 @@
 
 
 cd $SCRIPTPATH/src
-if [ $OSN = "debian" ]
-        then
+#if [ $OSN = "debian" ]
+#        then
 
 
 #
@@ -31,15 +31,15 @@ fi
 yum -y install expect
 
 
-        else
-                echo "Debian MariaDB ";date +"%r" >> $BUILD;
-                apt-get install expect mariadb-*
-                curl -LsS -O https://downloads.mariadb.com/MariaDB/mariadb_repo_setup
-                bash mariadb_repo_setup --mariadb-server-version=10.6
-                sudo apt-get update
-                sudo apt-get install mariadb-server mariadb-client  mariadb-devel mariadb-shared
-                echo "Status : OK Debian-Maria DB" >> $BUILD
-fi
+#        else
+#                echo "Debian MariaDB ";date +"%r" >> $BUILD;
+#                apt-get install expect mariadb-*
+#                curl -LsS -O https://downloads.mariadb.com/MariaDB/mariadb_repo_setup
+#                bash mariadb_repo_setup --mariadb-server-version=10.6
+#                sudo apt-get update
+#                sudo apt-get install mariadb-server mariadb-client  mariadb-devel mariadb-shared
+#                echo "Status : OK Debian-Maria DB" >> $BUILD
+#fi
 
 
 if mysql -V; then 
