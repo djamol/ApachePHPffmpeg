@@ -5,6 +5,8 @@
 
 #weba=admin;webp=admin;webport=2083;
 
+cd $SCRIPTPATH/src
+
 # Wemin Manual/tar.gz file installation
 FILE=webmin-1.791.tar.gz
 if [ ! -f $FILE ]
