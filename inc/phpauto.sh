@@ -180,5 +180,5 @@ send \"n\r\"
 expect eof
 ")
 echo "$PHPINSTALL"
-
+cp -rf php.ini-production /usr/local/php7/72/usr/etc/php.ini;
 date +"%r" >> $BUILD;echo "PHP Program Complete" >> $BUILD
