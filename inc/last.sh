@@ -156,3 +156,9 @@ echo -e 'zone "ns1.'$MAINDOMAIN'" {	type master;	file "/var/named/ns1.'$MAINDOMA
 
 service qmail stop
 echo -e '\nTraceEnable Off\n' >> /usr/local/apache2/conf/httpd.conf
+# disabled selinux config -Setting up SELinux
+sed -i s/^SELINUX=.*$/SELINUX=disabled/ /etc/selinux/config
+setenforce 0
+
+
+
