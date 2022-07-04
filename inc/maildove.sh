@@ -34,8 +34,8 @@ expect eof
 ")
 echo "$SSLCERt"
 
-postconf -e 'myhostname =  woho.co.in'
-postconf -e 'mydestination = localhost, localhost.localdomain, mail.woho.co.in'
+postconf -e "myhostname =  $MAINDOMAIN"
+postconf -e "mydestination = localhost, localhost.localdomain, mail.$MAINDOMAIN"
 postconf -e 'mynetworks = 127.0.0.0/8'
 postconf -e 'inet_interfaces = all'
 postconf -e 'message_size_limit = 30720000'
