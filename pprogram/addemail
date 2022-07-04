@@ -44,9 +44,19 @@ return 1
 }
 
 
+ echo -e "${ORANGE}########################"
+ echo -e "${LIGHTRED}   M A I N - M E N U"
+ echo -e "${ORANGE}########################"
+ echo -e "${BLUE}1. Add New Email Account"
+
+ echo -e "${BLUE}2. Forward Email To another Email"
+
+ echo -e "${BLUE}3. Enable Validation On Email Server ON Domain Level"
+ echo -e "${BLUE}4. Exit"
 
 echo -e "${NOCOLOR}";
- echo -n "Please enter option [1 - 12]"
+
+ echo -n "Please enter option [1 - 4]"
  read opt
  case $opt in
   1) echo -e "${BLUE}************ Add New Email Account *************${NOCOLOR}"; 
