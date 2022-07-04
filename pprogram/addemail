@@ -1,4 +1,21 @@
+#chown vmail:vmail -R  /home/vmail
 read -p "Enter Domain : "  MAINDOMAIN
+# Email Account
+#INSERT INTO domains (domain) VALUES ('woho.co.in');
+#INSERT INTO users (email, password) VALUES ('amol@woho.co.in', ENCRYPT('amol'));
+
+#Forward Email To Another email id
+#INSERT INTO domains (domain) VALUES ('woho.co.in');
+#INSERT INTO users (source, destination) VALUES ('amol@woho.co.in','newemail@woho.co.in');
+
+
+postmap /etc/postfix/recipient_access
+postmap -q $MAINDOMAIN  mysql:/etc/postfix/mysql-virtual_domains.cf
+postmap -q amol@MAINDOMAIN  mysql:/etc/postfix/mysql-virtual_mailboxes.cf
+service postfix restart
+service dovecot restart
+
+
 mkdir -p /etc/opendkim/keys/$MAINDOMAIN
 opendkim-genkey -D /etc/opendkim/keys/$MAINDOMAIN/ -d $MAINDOMAIN -s default
 echo -e  '*@$MAINDOMAIN $MAINDOMAIN'>>  /etc/opendkim/SigningTable
