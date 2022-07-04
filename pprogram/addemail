@@ -1,21 +1,33 @@
 #chown vmail:vmail -R  /home/vmail
 read -p "Enter Domain : "  MAINDOMAIN
+echo -e "Domain Name : $MAINDOMAIN";
+newemail () {
 # Email Account
 #INSERT INTO domains (domain) VALUES ('woho.co.in');
 #INSERT INTO users (email, password) VALUES ('amol@woho.co.in', ENCRYPT('amol'));
-
-#Forward Email To Another email id
-#INSERT INTO domains (domain) VALUES ('woho.co.in');
-#INSERT INTO users (source, destination) VALUES ('amol@woho.co.in','newemail@woho.co.in');
-
-
 postmap /etc/postfix/recipient_access
 postmap -q $MAINDOMAIN  mysql:/etc/postfix/mysql-virtual_domains.cf
 postmap -q amol@MAINDOMAIN  mysql:/etc/postfix/mysql-virtual_mailboxes.cf
 service postfix restart
 service dovecot restart
 
+return 1
+}
+forwardmail () {
+#Forward Email To Another email id
+#INSERT INTO domains (domain) VALUES ('woho.co.in');
+#INSERT INTO users (source, destination) VALUES ('amol@woho.co.in','newemail@woho.co.in');
+postmap /etc/postfix/recipient_access
+postmap -q $MAINDOMAIN  mysql:/etc/postfix/mysql-virtual_domains.cf
+postmap -q amol@MAINDOMAIN  mysql:/etc/postfix/mysql-virtual_mailboxes.cf
+service postfix restart
+service dovecot restart
+return 1
+}
 
+
+
+dkimmail () {
 mkdir -p /etc/opendkim/keys/$MAINDOMAIN
 opendkim-genkey -D /etc/opendkim/keys/$MAINDOMAIN/ -d $MAINDOMAIN -s default
 echo -e  '*@$MAINDOMAIN $MAINDOMAIN'>>  /etc/opendkim/SigningTable
@@ -28,3 +40,27 @@ echo "Add below TXT DNS Entry in your domain dns file"
 cat  /etc/opendkim/keys/$MAINDOMAIN/default.txt
 echo "validate dkim key tool https://www.dmarcanalyzer.com/dkim/dkim-checker"
 echo "track mail log file ::: tail -f /var/log/maillog "
+return 1
+}
+
+
+
+echo -e "${NOCOLOR}";
+ echo -n "Please enter option [1 - 12]"
+ read opt
+ case $opt in
+  1) echo -e "${BLUE}************ Add New Email Account *************${NOCOLOR}"; 
+      newemail
+      echo -e "${BLUE}************ sinfo Service *************${NOCOLOR}";;
+  2) echo -e "${BLUE}*********** Forward Mail Service ***********${NOCOLOR}";
+     forwardmail;;
+  3) echo -e "${BLUE}*********** Enable DKIM Validation For Mail Server ***********${NOCOLOR}";
+     dkimmail;;
+  4) echo -e "${GREEN}Bye $USER${NOCOLOR}";
+     exit 1;;
+  *) echo -e "${PURPLE}$opt is an invaild option. Please select option between 1-7 only${NOCOLOR}";
+     echo -e "${YELLOW}Press [enter] key to continue. . .{NOCOLOR}";
+     read enterKey;;
+esac
+done
+
