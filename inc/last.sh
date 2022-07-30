@@ -123,6 +123,7 @@ cp -f $SCRIPTPATH/conf/apache.conf /etc/webmin/apache/config
 cp -f $SCRIPTPATH/conf/httpd.conf /usr/local/apache2/conf/httpd.conf
 #disable php 5.6 
 sed -i '/LoadModule php5_module/c\#LoadModule php5_module modules/libphp5.so' /usr/local/apache2/conf/httpd.conf
+echo -e '\nTraceEnable Off\n' >> /usr/local/apache2/conf/httpd.conf
 
 sed -i "s/host.name.com/$MYHOST/g" /usr/local/apache2/conf/httpd.conf
 cp -f $SCRIPTPATH/conf/php.ini /usr/local/lib/php.ini
