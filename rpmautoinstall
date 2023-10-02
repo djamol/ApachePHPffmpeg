@@ -1,5 +1,5 @@
 ##for centos 7 (no required for centos minimal version)
-##  yum install iptables-services
+##  apt install iptables-services
     systemctl start iptables
     systemctl enable iptables
     systemctl disable firewalld

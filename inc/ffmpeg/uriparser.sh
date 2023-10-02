@@ -23,7 +23,7 @@ echo -e $RED"Installation of $_package ....... started"$RESET
 cd $INSTALL_SDIR/
 rm -rf uriparser*
 
-yum -y install doxygen graphviz-devel graphviz expat expat-devel
+apt -y install doxygen graphviz-devel graphviz expat expat-devel
    cd $INSTALL_SDIR
 
 if [ ! -f $SCRIPTPATH/src/ffmpeg/$_package ]

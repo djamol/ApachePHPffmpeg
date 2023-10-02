@@ -27,14 +27,14 @@ if [ $OSN = "debian" ]
                 apt install build-essential
                 echo "Debian groupinstall ----Development Tools Success";date +"%r" >> $BUILD;
  else
-       if yum -y groupinstall "Development Tools"; then 
-       echo -e "\033[33;32m yum -y groupinstall ----Development Tools Success ";date +"%r" >> $BUILD;echo "Success : Development Tools Install" >> $BUILD
+       if apt -y groupinstall "Development Tools"; then 
+       echo -e "\033[33;32m apt -y groupinstall ----Development Tools Success ";date +"%r" >> $BUILD;echo "Success : Development Tools Install" >> $BUILD
        else
-       echo -e "\033[33;31m yum -y groupinstall ----Development Tools Failed";date +"%r" >> $BUILD;echo "Failed : Development Tools Install" >> $BUILD
+       echo -e "\033[33;31m apt -y groupinstall ----Development Tools Failed";date +"%r" >> $BUILD;echo "Failed : Development Tools Install" >> $BUILD
        fi
 fi
 
-if yum -y install sudo expect; then 
+if apt -y install sudo expect; then 
 echo -e "\033[33;32m Sudo Success";date +"%r" >> $BUILD;echo "Success : Sudo Install" >> $BUILD
 else
 echo -e "\033[33;31m Sudo Failed";date +"%r" >> $BUILD;echo "Failed : Sudo Install" >> $BUILD
@@ -74,7 +74,7 @@ date +"%r" >> $BUILD;echo "Status : Auto Apache Installation Start" >> $BUILD
 echo -e "\e[32m########################################\n####   Apache2.4 Server Soft       #########\n#####################################"
 if [ $Apache = "true" ]
         then
-              yum remove httpd -y; source "$SCRIPTPATH/inc/aprq.sh";source "$SCRIPTPATH/inc/apache.sh"; source "$SCRIPTPATH/inc/apacheDOSmod.sh";
+              apt remove httpd -y; source "$SCRIPTPATH/inc/aprq.sh";source "$SCRIPTPATH/inc/apache.sh"; source "$SCRIPTPATH/inc/apacheDOSmod.sh";
         else
                 echo "Reject By USER Apache INstall"
 fi
@@ -221,7 +221,7 @@ date +"%r" >> $BUILD;echo "Status : Auto Extra Domain conf Start" >> $BUILD
 source "$SCRIPTPATH/inc/domainauto.sh";
 date +"%r" >> $BUILD;echo "Status : Auto Extra Domain Conf END" >> $BUILD
 date +"%r" >> $BUILD;echo "Status : Auto PERL And NET-SSL Installation Start" >> $BUILD
-yum -y install perl perl-CPAN perl-Net-SSLeay perl-IO-Socket-SSL
+apt -y install perl perl-CPAN perl-Net-SSLeay perl-IO-Socket-SSL
 date +"%r" >> $BUILD;echo "Status : Auto PERL And NET-SSL Installation END" >> $BUILD
 date +"%r" >> $BUILD;echo "Status : Auto END OF Server Setup Installation Start" >> $BUILD
 source "$SCRIPTPATH/inc/end.sh";

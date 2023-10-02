@@ -1,6 +1,6 @@
 #!/bin/sh
 ##vnstat 
-yum -y install vnstat
+apt -y install vnstat
 if [ -f /usr/bin/vnstat ] 
 then
         for int in `vnstat --iflist| sed 's/Available interfaces://'` 

@@ -1,4 +1,4 @@
-yum install postfix dovecot dovecot-mysql system-switch-mail -y
+apt install postfix dovecot dovecot-mysql system-switch-mail -y
 mkdir /etc/postfix/backup/
  cp -rf /etc/postfix/* /etc/postfix/backup/
 
@@ -82,7 +82,7 @@ INSERT INTO users (email, password) VALUES ('amol@woho.co.in', ENCRYPT('amol'));
 sudo postmap -q woho.co.in  mysql:/etc/postfix/mysql-virtual_domains.cf
 sudo postmap -q amol@woho.co.in  mysql:/etc/postfix/mysql-virtual_mailboxes.cf
 
-yum install cyrus-sasl-plain -y
+apt install cyrus-sasl-plain -y
 
 
 service postfix restart

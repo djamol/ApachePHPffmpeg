@@ -1,4 +1,4 @@
-yum install postfix dovecot dovecot-mysql system-switch-mail -y
+apt install postfix dovecot dovecot-mysql system-switch-mail -y
 mkdir -p /backup/postfix
 cp -rf /etc/postfix/* /backup/postfix/
 mkdir -p /backup/dovecot

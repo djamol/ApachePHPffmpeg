@@ -33,7 +33,7 @@ fi
 
 ##&&&&&& extract php files
 #wget -c https://github.com/djamol/centos-INSTALLER/raw/master/src/openlite/php-litespeed-6.6.tgz -O php-litespeed-6.6.tgz
-[ -f /etc/redhat-release ] && yum install -y autoconf213 || apt-get install autoconf2.13 -y
+[ -f /etc/redhat-release ] && apt install -y autoconf213 || apt-get install autoconf2.13 -y
 
 [ ! -s /usr/local/lsws/phpbuild ] && mkdir -p /usr/local/lsws/phpbuild
 

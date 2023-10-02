@@ -13,7 +13,7 @@
 # for save logs  need in the main.cf for postfix -> syslog_name = postfix
 ##
 # INSTALL postfix(Mail Service/server)
-yum -y install postfix sendmail
+apt -y install postfix sendmail
 service sendmail start
 mkdir /etc;mkdir /etc/ssl;mkdir /etc/ssl/certs;mkdir /etc/ssl/private;
 openssl req -new -x509 -days 3650 -nodes -out /etc/ssl/certs/postfix.pem -keyout /etc/ssl/private/postfix.pem
@@ -93,7 +93,7 @@ service postfix start
 postmap /etc/postfix/virtual
 postmap /etc/postfix/virtual-regexp
 service postfix reload
-yum install mailx # Required for mail command system
+apt install mailx # Required for mail command system
 
 
 ################  All Emails for to one Email Address ##################

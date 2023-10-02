@@ -22,8 +22,8 @@ clear
 sleep 2
 echo -e $RED"Installation of $_package ....... started"$RESET
 ldconfig
-if [ -e "/etc/yum.conf" ];then
-yum -y install ruby
+if [ -e "/etc/apt.conf" ];then
+apt -y install ruby
 date +"%r" >> $BUILD;echo "Succcess :ruby Installled" >> $BUILD;
 echo -e $RED" ruby Installed Success ......"$RESET
 

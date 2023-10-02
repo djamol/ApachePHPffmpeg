@@ -9,7 +9,7 @@
 
 [ ! -s $SRC_DIR/php-litespeed-6.6.tgz ]&& wget -c http://www.litespeedtech.com/packages/lsapi/php-litespeed-6.6.tgz -O $SRC_DIR/php-litespeed-6.6.tgz
 
-[ -f /etc/redhat-release ] && yum install -y autoconf213 || apt-get install autoconf2.13 -y
+[ -f /etc/redhat-release ] && apt install -y autoconf213 || apt-get install autoconf2.13 -y
 
 [ ! -s /usr/local/lsws/phpbuild ] && mkdir -p /usr/local/lsws/phpbuild
 

@@ -34,7 +34,7 @@ mkdir -p /home/wwwroot/default
 centosversion=$(cat /etc/redhat-release | grep -o [0-9] | sed 1q)
 if [ "$centosversion" = "5" ]; then
     rpm -ivh http://rpms.litespeedtech.com/centos/litespeed-repo-1.1-1.el5.noarch.rpm
-    yum -y install openlitespeed-1.3.2
+    apt -y install openlitespeed-1.3.2
 
     chown -R www.www /usr/local/lsws/admin/cgid
     chown -R lsadm.www /usr/local/lsws/admin/tmp

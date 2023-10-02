@@ -60,7 +60,7 @@ echo -e 'LoadModule mod_quotatab.c\nLoadModule mod_quotatab_file.c\n<IfModule mo
  
 cp -f $SCRIPTPATH/conf/ftpquota /usr/bin/
 chmod +x /usr/bin/ftpquota
-yum -y install perl
+apt -y install perl
 cd /etc/proftpd
 ftpquota --create-table --type limit
 ftpquota --create-table --type tally

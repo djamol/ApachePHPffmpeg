@@ -56,11 +56,11 @@ echo -e "$GREEN
 # Copyright By PatilWeb.com           #
 # IG:PatilWeb FB:PatilWeb TW:PatilWeb #
 $RESET";
-echo -e "\e[32m########################################\n#### PRE SETUP  YUM UPgrade #####\n########################################"
-date +"%r" >> $BUILD;echo "Status : Pre Yum Upgrade" >> $BUILD; 
-if [ -e "/etc/yum.conf" ];then
+echo -e "\e[32m########################################\n#### PRE SETUP  apt UPgrade #####\n########################################"
+date +"%r" >> $BUILD;echo "Status : Pre apt Upgrade" >> $BUILD; 
+if [ -e "/etc/apt.conf" ];then
         echo "Ensuring required RPM ........"
-        yum install gcc gcc-c++ libgcc gd gd-devel gettext freetype \
+        apt install gcc gcc-c++ libgcc gd gd-devel gettext freetype \
         	freetype-devel ImageMagick ImageMagick-devel libjpeg* libjpeg-devel* \
         	libpng* libpng-devel* libstdc++* libstdc++-devel* libtiff* \
         	libtiff-devel* libtool*  libxml* libxml2* \
@@ -69,7 +69,7 @@ if [ -e "/etc/yum.conf" ];then
 	rpm -e alsa-lib --nodeps
 	export ARCH=$(arch)
 fi
-date +"%r" >> $BUILD;echo "Status : Pre Yum Upgrade END" >> $BUILD; 
+date +"%r" >> $BUILD;echo "Status : Pre apt Upgrade END" >> $BUILD; 
 
 if [ -e "/etc/csf/csf.conf" ];then
 	csf -x

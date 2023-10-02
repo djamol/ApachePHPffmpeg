@@ -16,7 +16,7 @@ MAINIP=$3
 
 
 # INSTALL postfix(Mail Service/server)
-yum -y install postfix sendmail
+apt -y install postfix sendmail
 service sendmail start
 
 #echo -n "Enter Domain(Eg. domain.com) > "
@@ -94,7 +94,7 @@ service postfix start
 postmap /etc/postfix/virtual
 postmap /etc/postfix/virtual-regexp
 service postfix reload
-yum install mailx # Required for mail command system
+apt install mailx # Required for mail command system
 
 
 ################  All Emails for to one Email Address ##################

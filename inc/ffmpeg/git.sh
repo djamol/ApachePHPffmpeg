@@ -20,8 +20,8 @@ echo -e "$GREEN
 $RESET";
 
 echo -e $RED"Installation of $_package ....... started"$RESET
-if [ -e "/etc/yum.conf" ];then
-	yum -y install git
+if [ -e "/etc/apt.conf" ];then
+	apt -y install git
 fi
 if [ -e "/usr/bin/git" ]; then
 	mkdir -pv /usr/local/avpffmpeg/bin/

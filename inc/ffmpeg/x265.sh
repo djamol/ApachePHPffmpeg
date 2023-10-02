@@ -43,7 +43,7 @@ fi
 
    tar xvzf $xpr;mv x265_1.9 x265
    cd x265/build/linux
-   yum -y install cmake;#cmake
+   apt -y install cmake;#cmake
    cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX=$INSTALL_DDIR -DENABLE_SHARED:bool=off ../../source
 make -j$cpu
 if   make install; then

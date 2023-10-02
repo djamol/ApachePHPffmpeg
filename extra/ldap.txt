@@ -58,22 +58,22 @@
   264  /usr/sbin/slapd -d 64
   265  /usr/sbin/slapd -d 128
   266  cd
-  267  yum --help
-  268  yum --help | uni
-  269  yum --help |rem
-  270  yum --help | grep uni
-  271  yum --help | grep rem
-  272  yum list openldap
-  273  yum list openldap*
-  274  yum --help | grep era
-  275  yum erase openldap*
-  276  yum list openldap*
-  277  yum erase openldap.x*
-  278  yum list openldap*
-  279  yum --help | grep era
+  267  apt --help
+  268  apt --help | uni
+  269  apt --help |rem
+  270  apt --help | grep uni
+  271  apt --help | grep rem
+  272  apt list openldap
+  273  apt list openldap*
+  274  apt --help | grep era
+  275  apt erase openldap*
+  276  apt list openldap*
+  277  apt erase openldap.x*
+  278  apt list openldap*
+  279  apt --help | grep era
   280  date
   281  clear
-  282  yum -y install openldap compat-openldap openldap-clients openldap-servers openldap-servers-sql openldap-devel
+  282  apt -y install openldap compat-openldap openldap-clients openldap-servers openldap-servers-sql openldap-devel
   283  systemctl start slapd
   284  systemctl enable slapd
   285  systemctl status slapd
@@ -171,5 +171,5 @@
   377  wget https://raw.githubusercontent.com/djamol/ApachePHPffmpeg/amol/latest.sh;sh latest.sh
   378  sh latest.sh
   379  tail -f /amol/ApachePHPffmpeg-amol/log/10977.txt | sed '/^AmolInstaller: SUCCESS$/ q'
-  380  yum remove -y webmin
+  380  apt remove -y webmin
   381  history

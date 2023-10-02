@@ -25,7 +25,7 @@ echo -e "\033[33;32m extract openssl Success";date +"%r" >> $BUILD;echo "Success
 else
 echo -e "\033[33;31m extract openssl Failed";date +"%r" >> $BUILD;echo "Failed : $FILE Extract" >> $BUILD;echo "Failed : $FILE Extract" >> $FAILBUILD
 fi
-if yum -y install zlib-devel; then 
+if apt -y install zlib-devel; then 
 echo -e "\033[33;32m zlib install Success";date +"%r" >> $BUILD;echo "Success : Install zlib devel" >> $BUILD
 else
 echo -e "\033[33;31m zlib install Failed";date +"%r" >> $BUILD;echo "Failed : Install zlib devel" >> $BUILD;echo "Failed : Install zlib devel" >> $FAILBUILD

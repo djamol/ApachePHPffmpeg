@@ -8,7 +8,7 @@ gunzip *gz
 #Step 2: Install the GeoIP C API
 #There will be a dependency on zlib so make sure zlib-devel is installed:
 
-yum install zlib-devel -y
+apt install zlib-devel -y
 cd ~
 #wget http://geolite.maxmind.com/download/geoip/api/c/GeoIP-1.4.6.tar.gz
 tar xvzf GeoIP-1.4.6.tar.gz

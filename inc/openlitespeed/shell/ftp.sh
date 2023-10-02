@@ -2,7 +2,7 @@ SCRIPTPATH=$1
 BUILD=$2
 
 rpm -ivh http://ftp.astral.ro/mirrors/fedora/pub/epel/epel-release-latest-7.noarch.rpm
-yum -y install proftpd proftpd-utils
+apt -y install proftpd proftpd-utils
 cp -f $SCRIPTPATH/conf/proftpd.conf /etc/proftpd.conf
  mkdir /etc/proftpd; touch /etc/proftpd/passwd.vhosts;chmod 640 /etc/proftpd/passwd.vhosts
 cp -f $SCRIPTPATH/conf/ftpd-rsa.pem /etc/proftpd/ftpd-rsa.pem

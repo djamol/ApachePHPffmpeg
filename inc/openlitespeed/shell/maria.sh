@@ -1,19 +1,19 @@
 BUILD=$1
 #  Mysql / Mariadb Installation
-touch /etc/yum.repos.d/MariaDB.repo
-echo -e '[mariadb]\nname = MariaDB\nbaseurl = http://yum.mariadb.org/10.2/rhel7-amd64\ngpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB\ngpgcheck=1' >> /etc/yum.repos.d/MariaDB.repo
-yum -y list|grep  MariaDB-server
-rpm --import https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
-if yum -y install MariaDB-server MariaDB-client MariaDB-devel MariaDB-shared; then 
+touch /etc/apt.repos.d/MariaDB.repo
+echo -e '[mariadb]\nname = MariaDB\nbaseurl = http://apt.mariadb.org/10.2/rhel7-amd64\ngpgkey=https://apt.mariadb.org/RPM-GPG-KEY-MariaDB\ngpgcheck=1' >> /etc/apt.repos.d/MariaDB.repo
+apt -y list|grep  MariaDB-server
+rpm --import https://apt.mariadb.org/RPM-GPG-KEY-MariaDB
+if apt -y install MariaDB-server MariaDB-client MariaDB-devel MariaDB-shared; then 
 echo -e "\033[33;32m extract MariaDB Success";date +"%r" >> $BUILD;echo "Success : Install MariaDB" >> $BUILD
-yum -y remove postfix
+apt -y remove postfix
 else
 echo -e "\033[33;31m extract MariaDB Failed";date +"%r" >> $BUILD;echo "Failed : Install MariadB" >> $BUILD
 fi
 systemctl start mysql.service
 ##mysql_secure_installation
 ## MYSQL SECURE INSTALLATION Start
-yum -y install expect
+apt -y install expect
 
 # Not required in actual script
 

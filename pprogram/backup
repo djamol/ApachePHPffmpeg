@@ -49,7 +49,7 @@ file=$(date +"%d-%m-%y")
 if which ccrypt; then
 echo "Already Installed Ccrypt "
 else
-yum install ccrypt -y
+apt install ccrypt -y
 fi
 #tar cvf - /home/www/srv | gzip -9 - > files3.tar.gz # GZIP=-9 tar cvzf file2.tar.gz /home/www/srv
 #tar -zc -f test.tar.gz --exclude='*.xdr' *

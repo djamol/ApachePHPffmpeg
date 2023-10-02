@@ -22,8 +22,8 @@ $RESET";
 echo -e $RED"Installation of $_package ....... started"$RESET
 cd $INSTALL_SDIR/
 rm -rf gpac*
-if [ -e "/etc/yum.conf" ];then
-yum -y install freetype-devel SDL-devel freeglut-devel
+if [ -e "/etc/apt.conf" ];then
+apt -y install freetype-devel SDL-devel freeglut-devel
 fi
 
    cd $INSTALL_SDIR

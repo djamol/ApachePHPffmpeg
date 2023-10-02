@@ -1,4 +1,4 @@
-yum -y install dovecot dovecot-mysql dovecot-pigeonhole
+apt -y install dovecot dovecot-mysql dovecot-pigeonhole
 touch /etc/dovecot/dovecot-sql.conf
 ln -s /etc/dovecot/dovecot-sql.conf /etc/dovecot-sql.conf
 ln -s /etc/dovecot/dovecot.conf /etc/dovecot.conf
@@ -7,7 +7,7 @@ systemctl start dovecot
 
 
 
-yum -y install amavisd-new spamassassin clamav-server clamav-data clamav-update clamav-filesystem clamav clamav-scanner-systemd clamav-devel clamav-lib clamav-server-systemd unzip bzip2 perl-DBD-mysql postgrey re2c
+apt -y install amavisd-new spamassassin clamav-server clamav-data clamav-update clamav-filesystem clamav clamav-scanner-systemd clamav-devel clamav-lib clamav-server-systemd unzip bzip2 perl-DBD-mysql postgrey re2c
 
 sa-update
 freshclam

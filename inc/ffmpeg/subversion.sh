@@ -25,8 +25,8 @@ ldconfig
 cd $INSTALL_SDIR
 echo "removing old source"
    rm -vrf $INSTALL_SDIR/subversion*
-if [ -e "/etc/yum.conf" ];then
-	yum -y install subversion
+if [ -e "/etc/apt.conf" ];then
+	apt -y install subversion
 fi
 if [ -e "/usr/bin/svn" ]; then
 	ln -sf /usr/bin/svn /usr/local/avpffmpeg/bin/svn

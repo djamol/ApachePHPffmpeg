@@ -38,7 +38,7 @@ cd libmemcached-1.0.18
 
 #check gcc version
 if [ ! -z "`gcc --version | head -n1 | grep 4\.1`" ]; then
-    yum -y install gcc44 gcc44-c++ libstdc++44-devel
+    apt -y install gcc44 gcc44-c++ libstdc++44-devel
     export CC=/usr/bin/gcc44
     export CXX=/usr/bin/g++44
 fi

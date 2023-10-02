@@ -12,23 +12,19 @@ cd $SCRIPTPATH/src
 
 #
 #  Mysql / Mariadb Installation
-touch /etc/yum.repos.d/MariaDB.repo
-echo -e "[mariadb]\nname = MariaDB\nbaseurl = http://yum.mariadb.org/10.2/rhel$OSV-amd64\ngpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB\ngpgcheck=1" >> /etc/yum.repos.d/MariaDB.repo
-yum -y list|grep  MariaDB-server
-rpm --import https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
-if yum -y install MariaDB-server MariaDB-client MariaDB-devel MariaDB-shared; then 
+if apt -y install mariadb-server mariadb-client mariadb-devel mariadb-shared; then 
 echo -e "\033[33;32m extract MariaDB Success";date +"%r" >> $BUILD;echo "Success : Install MariaDB" >> $BUILD
-yum -y remove postfix
+apt -y remove postfix
 else
 echo -e "\033[33;31m extract MariaDB Failed";date +"%r" >> $BUILD;echo "Failed : Install MariadB" >> $BUILD;
 fi
 if mysql -V; then 
 echo -e "\033[33;32m Mariadb is Installed";
 else
-yum -y install mariadb-*;
+apt -y install mariadb-*;
 fi
 
-yum -y install expect
+apt -y install expect
 
 
 #        else

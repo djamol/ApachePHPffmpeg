@@ -5,7 +5,7 @@
 
 
 #Install From Source
-yum install libuv libuv-devel libnghttp2-devel libcap-devel # openssl-devel  try without openssl devel rpm
+apt install libuv libuv-devel libnghttp2-devel libcap-devel # openssl-devel  try without openssl devel rpm
 
 cd $SCRIPTPATH/src
 FILE=bind-9.18.1.tar.xz
@@ -29,7 +29,7 @@ service named start
 if [ $OSN = "debian" ]
         then
 #Install From RPM
-if yum -y install bind9; then 
+if apt -y install bind9; then 
 echo -e "\033[33;32m Debian BIND DNS Success "
 date +"%r" >> $BUILD;echo "Success :Debian BIND DNS Install" >> $BUILD
 #chkconfig named on
@@ -37,7 +37,7 @@ chkconfig --level 35 named on
 service named start
 
 else
-echo -e "\033[33;31m yum -y BIND DNS Failed";date +"%r" >> $BUILD;echo "Failed : debianBIND DNS Install" >> $BUILD
+echo -e "\033[33;31m apt -y BIND DNS Failed";date +"%r" >> $BUILD;echo "Failed : debianBIND DNS Install" >> $BUILD
 		echo "Failed :Debian BIND DNS INSTALL" >> $FAILBUILD
 
 fi
@@ -45,15 +45,15 @@ fi
 else
 
 #Install From RPM
-if yum -y install bind; then 
-echo -e "\033[33;32m yum -y BIND DNS Success "
+if apt -y install bind; then 
+echo -e "\033[33;32m apt -y BIND DNS Success "
 date +"%r" >> $BUILD;echo "Success : BIND DNS Install" >> $BUILD
 #chkconfig named on
 chkconfig --level 35 named on
 service named start
 
 else
-echo -e "\033[33;31m yum -y BIND DNS Failed";date +"%r" >> $BUILD;echo "Failed : BIND DNS Install" >> $BUILD
+echo -e "\033[33;31m apt -y BIND DNS Failed";date +"%r" >> $BUILD;echo "Failed : BIND DNS Install" >> $BUILD
 		echo "Failed : BIND DNS INSTALL" >> $FAILBUILD
 
 fi

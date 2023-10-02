@@ -4,7 +4,7 @@
 cd $SCRIPTPATH/src/openlite
 
 ## REquired 
-yum  -y install openssl-devel
+apt  -y install openssl-devel
 adduser  --no-create-home  --system  --user-group --shell /bin/false   www
 
 

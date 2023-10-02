@@ -23,8 +23,8 @@ echo -e $RED"Installation of $_package ....... started"$RESET
 ldconfig
 cd $INSTALL_SDIR
 echo "Removing old source"
-if [ -e "/etc/yum.conf" ];then
-yum -y install nasm
+if [ -e "/etc/apt.conf" ];then
+apt -y install nasm
 fi
 if [ -e "/usr/bin/nasm" ]; then
 	ln -sf /usr/bin/nasm  /usr/local/avpffmpeg/bin/nasm

@@ -9,9 +9,9 @@
 
 
 # INSTALL postfix(Mail Service/server)
-yum -y install sendmail
+apt -y install sendmail
 service sendmail start
-yum -y install postfix mailx
+apt -y install postfix mailx
 mkdir /etc;mkdir /etc/ssl;mkdir /etc/ssl/certs;mkdir /etc/ssl/private;
 
 mails="mail.$MAINDOMAIN"

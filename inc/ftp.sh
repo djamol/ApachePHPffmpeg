@@ -6,7 +6,7 @@
 ## Pro ftpd installation
 #rpm -ivh http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-8.noarch.rpm
 rpm -ivh http://ftp.astral.ro/mirrors/fedora/pub/epel/epel-release-latest-$OSV.noarch.rpm
-yum -y install proftpd proftpd-utils
+apt -y install proftpd proftpd-utils
 
 
 groupadd ftpgroup

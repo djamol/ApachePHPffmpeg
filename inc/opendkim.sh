@@ -4,7 +4,7 @@
 ## opendkim-testkey -d  domain.com  -s 20200308 -vvv
 
 echo "+++++++++++++++++ opendkim started +++++++++\n ";
-yum install -y opendkim
+apt install -y opendkim
 #sed -i "39s/Mode\t v/Mode\tsv/" /etc/opendkim.conf
 #sed -i '103s/# KeyTable/KeyTable/' /etc/opendkim.conf
 #sed -i '108s/# SigningTable/SigningTable/' /etc/opendkim.conf

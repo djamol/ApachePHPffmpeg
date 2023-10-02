@@ -32,7 +32,7 @@ cp php.ini-production /usr/local/lib/php.ini
 
 
 #Install CronJOB
-if yum -y install cronie; then 
+if apt -y install cronie; then 
 echo -e "\033[33;32m cronie For CronJOB Success";date +"%r" >> $BUILD;echo "Success : Cronie for cronjob Install" >> $BUILD
 else
 echo -e "\033[33;31m cronie For CronJoB Failed";date +"%r" >> $BUILD;echo "Failed : cronie for CronJOB Install" >> $BUILD
